@@ -35,12 +35,14 @@ PlayerCharacter::PlayerCharacter(Graphics& theGraphics)
    mCoordinateY = 0.0F;
    mpVelocity = new Vector2D(0.0F,
                              0.0F);
-   mpSprite = new Sprite(theGraphics,
-                         "../Images/TestSprite.png",
-                         0,
-                         0,
-                         32,
-                         32);
+   mpSprite = new AnimatedSprite(theGraphics,
+                                 "../Images/TestSpriteSheet.png",
+                                 0,
+                                 0,
+                                 32,
+                                 32,
+                                 5,
+                                 4);
    mpHitbox = new Rectangle(mCoordinateX + 10,
                             mCoordinateY,
                             12,
@@ -88,7 +90,7 @@ void PlayerCharacter::DrawSprite(Graphics& theGraphics)
    mpSprite->Draw(theGraphics,
                   static_cast<int>(mCoordinateX),
                   static_cast<int>(mCoordinateY));
-   al_draw_rectangle(mCoordinateX + 10, mCoordinateY, mCoordinateX + 10 + 12, mCoordinateY + 32, al_map_rgb(255,0,0), 1.0F);
+   //al_draw_rectangle(mCoordinateX + 10, mCoordinateY, mCoordinateX + 10 + 12, mCoordinateY + 32, al_map_rgb(255,0,0), 1.0F);
 }
 
 //***************************************************************************************************************************************************

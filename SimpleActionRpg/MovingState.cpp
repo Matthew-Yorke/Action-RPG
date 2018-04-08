@@ -50,11 +50,13 @@ void MovingState::KeyDown(ALLEGRO_EVENT theEvent)
    {
       case ALLEGRO_KEY_UP:
       {
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 32, 4);
          mpPlayerCharacter->GetVelocity()->SetComponentY(-1.0F);
          break;
       }
       case ALLEGRO_KEY_DOWN:
       {
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 0, 4);
          mpPlayerCharacter->GetVelocity()->SetComponentY(1.0F);
          break;
       }
@@ -139,6 +141,7 @@ void MovingState::Update(float theTimeChange)
 {
    mpPlayerCharacter->SetCoordinateX(mpPlayerCharacter->GetCoordinateX() + mpPlayerCharacter->GetVelocity()->GetComponentX());
    mpPlayerCharacter->SetCoordinateY(mpPlayerCharacter->GetCoordinateY() + mpPlayerCharacter->GetVelocity()->GetComponentY());
+   mpPlayerCharacter->GetSprite()->Update(theTimeChange);
 }
 
 //************************************************************************************************************************************************

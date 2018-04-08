@@ -1,7 +1,2 @@
-﻿  Game.cpp
-  IdleState.cpp
-  MeleeAttackState.cpp
-  MovingState.cpp
-  PlayerCharacter.cpp
-  Generating Code...
+﻿  AnimatedSprite.cpp
   SimpleActionRpg.vcxproj -> C:\Users\Yorke\source\projects\Action RPG\Action-RPG\x64\Debug\SimpleActionRpg.exe

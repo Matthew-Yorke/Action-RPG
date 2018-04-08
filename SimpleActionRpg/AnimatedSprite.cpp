@@ -48,6 +48,21 @@ AnimatedSprite::~AnimatedSprite()
 {
 }
 
+//************************************************************************************************************************************************
+//
+// Method Name: SetNewAnimation
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void AnimatedSprite::SetNewAnimation(int theSourceX, int theSourceY, int theNumberFrames)
+{
+   SetNewSprite(theSourceX, theSourceY);
+   mNumberFrames = theNumberFrames;
+   mCurrentFrame = 0;
+}
+
 //***************************************************************************************************************************************************
 //
 // Method Name: Update

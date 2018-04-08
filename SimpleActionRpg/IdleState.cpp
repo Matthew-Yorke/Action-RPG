@@ -51,12 +51,14 @@ void IdleState::KeyDown(ALLEGRO_EVENT theEvent)
    {
       case ALLEGRO_KEY_UP:
       {
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 32, 4);
          mpPlayerCharacter->GetVelocity()->SetComponentY(-1.0F);
          mpPlayerCharacter->ChangeState(new MovingState());
          break;
       }
       case ALLEGRO_KEY_DOWN:
       {
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 0, 4);
          mpPlayerCharacter->GetVelocity()->SetComponentY(1.0F);
          mpPlayerCharacter->ChangeState(new MovingState());
          break;

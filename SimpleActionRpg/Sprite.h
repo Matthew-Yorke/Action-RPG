@@ -64,6 +64,24 @@ public:
 
    //************************************************************************************************************************************************
    //
+   // Method Name: SetNewAnimation
+   //
+   // Description:
+   //  TODO: Add description.
+   //
+   // Arguments:
+   //  theSourceX - TODO: Add description.
+   //  theSourceY - TODO: Add description.
+   //  theNumberFrames - TODO: Add description.
+   //
+   // Return:
+   //  N/A
+   //
+   //************************************************************************************************************************************************
+   void SetNewSprite(int theSourceX, int theSourceY);
+
+   //************************************************************************************************************************************************
+   //
    // Method Name: Draw
    //
    // Description:

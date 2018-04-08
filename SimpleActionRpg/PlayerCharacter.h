@@ -17,7 +17,7 @@
 #include <allegro5/allegro_acodec.h>
 #include "allegro5\allegro.h"
 #include "Vector2D.h"
-#include "Sprite.h"
+#include "AnimatedSprite.h"
 #include "MeleeWeapon.h"
 #include "Rectangle.h"
 #include "State.h"
@@ -141,6 +141,22 @@ class PlayerCharacter
       //
       //************************************************************************************************************************************************
       inline Vector2D* GetVelocity() { return mpVelocity; };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: GetSprite
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      inline AnimatedSprite* GetSprite() { return mpSprite; };
 
       //************************************************************************************************************************************************
       //
@@ -294,7 +310,7 @@ class PlayerCharacter
       Vector2D* mpVelocity;
 
       // TODO: Add description.
-      Sprite* mpSprite;
+      AnimatedSprite* mpSprite;
 
       // TODO: Add description.
       Rectangle* mpHitbox;

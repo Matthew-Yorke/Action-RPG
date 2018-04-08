@@ -67,6 +67,24 @@ public:
 
    //************************************************************************************************************************************************
    //
+   // Method Name: SetNewAnimation
+   //
+   // Description:
+   //  TODO: Add description.
+   //
+   // Arguments:
+   //  theSourceX - TODO: Add description.
+   //  theSourceY - TODO: Add description.
+   //  theNumberFrames - TODO: Add description.
+   //
+   // Return:
+   //  N/A
+   //
+   //************************************************************************************************************************************************
+   void SetNewAnimation(int theSourceX, int theSourceY, int theNumberFrames);
+
+   //************************************************************************************************************************************************
+   //
    // Method Name: Update
    //
    // Description:
@@ -111,7 +129,7 @@ private:
    const float mFrameTime;
 
    // TODO: Add description.
-   const int mNumberFrames;
+   int mNumberFrames;
 
    // TODO: Add description.
    int mCurrentFrame;
