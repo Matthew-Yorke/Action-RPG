@@ -11,8 +11,9 @@
 //
 //***************************************************************************************************************************************************
 
-#include "stdio.h"
+#include <allegro5/allegro_primitives.h>
 #include "PlayerCharacter.h"
+#include "IdleState.h"
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -40,6 +41,18 @@ PlayerCharacter::PlayerCharacter(Graphics& theGraphics)
                          0,
                          32,
                          32);
+   mpHitbox = new Rectangle(mCoordinateX + 10,
+                            mCoordinateY,
+                            12,
+                            32);
+   mpMeleeWeapon = new MeleeWeapon(theGraphics,
+                                   1,
+                                   0,
+                                   0,
+                                   8,
+                                   16);
+   mpCurrentState = new IdleState();
+   mpCurrentState->SetCharacterReference(this);
 }
 
 //***************************************************************************************************************************************************
@@ -56,34 +69,26 @@ PlayerCharacter::~PlayerCharacter()
    delete mpSprite;
 }
 
-//***************************************************************************************************************************************************
+//************************************************************************************************************************************************
 //
-// Method Name: Update
-//
-// Description:
-//  TODO: Add method description.
-//
-//***************************************************************************************************************************************************
-void PlayerCharacter::Update()
-{
-   // Update movement based on the character's current velocity.
-   mCoordinateX += mpVelocity->GetComponentX();
-   mCoordinateY += mpVelocity->GetComponentY();
-}
-
-//***************************************************************************************************************************************************
-//
-// Method Name: Draw
+// Method Name: DrawSprite
 //
 // Description:
-//  TODO: Add method description.
+//  TODO: Add description.
 //
-//***************************************************************************************************************************************************
-void PlayerCharacter::Draw(Graphics& theGraphics)
+// Arguments:
+//  theGraphics - TODO: Add description.
+//
+// Return:
+//  N/A
+//
+//************************************************************************************************************************************************
+void PlayerCharacter::DrawSprite(Graphics& theGraphics)
 {
    mpSprite->Draw(theGraphics,
                   static_cast<int>(mCoordinateX),
                   static_cast<int>(mCoordinateY));
+   al_draw_rectangle(mCoordinateX + 10, mCoordinateY, mCoordinateX + 10 + 12, mCoordinateY + 32, al_map_rgb(255,0,0), 1.0F);
 }
 
 //***************************************************************************************************************************************************

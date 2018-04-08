@@ -249,60 +249,12 @@ void Game::GameLoop()
          // The event was the user pressing a key down.
          else if (nextEvent.type == ALLEGRO_EVENT_KEY_DOWN)
          {
-            if (nextEvent.keyboard.keycode == ALLEGRO_KEY_W)
-            {
-               // Call to update - Start
-               pTestCharacter->GetVelocity()->SetComponentY(-1.0F);
-               // Call to update - End
-            }
-            else if (nextEvent.keyboard.keycode == ALLEGRO_KEY_S)
-            {
-               // Call to update - Start
-               pTestCharacter->GetVelocity()->SetComponentY(1.0F);
-               // Call to update - End
-            }
-
-            if (nextEvent.keyboard.keycode == ALLEGRO_KEY_A)
-            {
-               // Call to update - Start
-               pTestCharacter->GetVelocity()->SetComponentX(-1.0F);
-               // Call to update - End
-            }
-            else if (nextEvent.keyboard.keycode == ALLEGRO_KEY_D)
-            {
-               // Call to update - Start
-               pTestCharacter->GetVelocity()->SetComponentX(1.0F);
-               // Call to update - End
-            }
+            pTestCharacter->KeyDown(nextEvent);
          }
          // The event was the user releasing a downed key.
          else if (nextEvent.type == ALLEGRO_EVENT_KEY_UP)
          {
-            if (nextEvent.keyboard.keycode == ALLEGRO_KEY_W)
-            {
-               // Call to update - Start
-               pTestCharacter->GetVelocity()->SetComponentY(0.0F);
-               // Call to update - End
-            }
-            else if (nextEvent.keyboard.keycode == ALLEGRO_KEY_S)
-            {
-               // Call to update - Start
-               pTestCharacter->GetVelocity()->SetComponentY(0.0F);
-               // Call to update - End
-            }
-
-            if (nextEvent.keyboard.keycode == ALLEGRO_KEY_A)
-            {
-               // Call to update - Start
-               pTestCharacter->GetVelocity()->SetComponentX(0.0F);
-               // Call to update - End
-            }
-            else if (nextEvent.keyboard.keycode == ALLEGRO_KEY_D)
-            {
-               // Call to update - Start
-               pTestCharacter->GetVelocity()->SetComponentX(0.0F);
-               // Call to update - End
-            }
+            pTestCharacter->KeyUp(nextEvent);
          }
          // The event was a timer event.
          else if (nextEvent.type == ALLEGRO_EVENT_TIMER)
@@ -314,7 +266,7 @@ void Game::GameLoop()
                const float currentTime = static_cast<float>(al_current_time());
 
                // Call to update - Start
-               pTestCharacter->Update();
+               pTestCharacter->Update(currentTime - lastUpdateTime);
                // Call to update - End
 
                lastUpdateTime = currentTime;

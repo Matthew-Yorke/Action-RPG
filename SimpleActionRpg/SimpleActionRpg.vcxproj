@@ -169,17 +169,29 @@
     <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MeleeAttackState.cpp" />
+    <ClCompile Include="MeleeWeapon.cpp" />
+    <ClCompile Include="MovingState.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="State.cpp" />
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedSprite.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="IdleState.h" />
+    <ClInclude Include="MeleeAttackState.h" />
+    <ClInclude Include="MeleeWeapon.h" />
+    <ClInclude Include="MovingState.h" />
     <ClInclude Include="PlayerCharacter.h" />
+    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="State.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>

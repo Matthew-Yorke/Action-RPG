@@ -14,9 +14,13 @@
 #ifndef PlayerCharacter_h
 #define PlayerCharacter_h
 
+#include <allegro5/allegro_acodec.h>
 #include "allegro5\allegro.h"
 #include "Vector2D.h"
 #include "Sprite.h"
+#include "MeleeWeapon.h"
+#include "Rectangle.h"
+#include "State.h"
 
 class PlayerCharacter
 {
@@ -34,7 +38,7 @@ class PlayerCharacter
       //  TODO: Add description.
       //
       // Arguments:
-      //  N/A
+      //  theGraphics - TODO: Add description.
       //
       // Return:
       //  N/A
@@ -58,7 +62,149 @@ class PlayerCharacter
       //************************************************************************************************************************************************
       ~PlayerCharacter();
 
-      inline Vector2D* GetVelocity() { return mpVelocity; }
+      //************************************************************************************************************************************************
+      //
+      // Method Name: GetCoordinateX
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      inline float GetCoordinateX() { return mCoordinateX; };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: SetCoordinateX
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theCoordinateX - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      inline void SetCoordinateX(float theCoordinateX) { mCoordinateX = theCoordinateX; mpMeleeWeapon->SetCoordinateX(theCoordinateX); };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: GetCoordinateY
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      inline float GetCoordinateY() { return mCoordinateY; };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: SetCoordinateY
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theCoordinateY - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      inline void SetCoordinateY(float theCoordinateY) { mCoordinateY = theCoordinateY; mpMeleeWeapon->SetCoordinateY(theCoordinateY); };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: GetVelocity
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      inline Vector2D* GetVelocity() { return mpVelocity; };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: GetMeleeWeapon
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      inline MeleeWeapon* GetMeleeWeapon() { return mpMeleeWeapon; };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: ChangeState
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theState - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      inline void ChangeState(State* theState) { delete mpCurrentState; mpCurrentState = theState; mpCurrentState->SetCharacterReference(this); };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: KeyDown
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theEvent - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      inline void KeyDown(ALLEGRO_EVENT theEvent) { mpCurrentState->KeyDown(theEvent); };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: KeyUp
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theEvent - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      inline void KeyUp(ALLEGRO_EVENT theEvent) { mpCurrentState->KeyUp(theEvent); };
 
       //************************************************************************************************************************************************
       //
@@ -74,7 +220,7 @@ class PlayerCharacter
       //  N/A
       //
       //************************************************************************************************************************************************
-      void Update();
+      inline void Update(float theTimeChange) { mpCurrentState->Update(theTimeChange); };
 
       //************************************************************************************************************************************************
       //
@@ -90,7 +236,23 @@ class PlayerCharacter
       //  N/A
       //
       //************************************************************************************************************************************************
-      void Draw(Graphics& theGraphics);
+      inline void Draw(Graphics& theGraphics) { mpCurrentState->Draw(theGraphics); };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: DrawSprite
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theGraphics - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      void DrawSprite(Graphics& theGraphics);
 
    protected:
 
@@ -133,6 +295,14 @@ class PlayerCharacter
 
       // TODO: Add description.
       Sprite* mpSprite;
+
+      // TODO: Add description.
+      Rectangle* mpHitbox;
+
+      // TODO: Add description.
+      MeleeWeapon* mpMeleeWeapon;
+
+      State* mpCurrentState;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations
