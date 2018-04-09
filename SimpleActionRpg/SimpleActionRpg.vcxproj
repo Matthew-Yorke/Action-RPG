@@ -170,6 +170,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="IdleState.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MeleeAttackState.cpp" />
     <ClCompile Include="MeleeWeapon.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="IdleState.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="MeleeAttackState.h" />
     <ClInclude Include="MeleeWeapon.h" />
     <ClInclude Include="MovingState.h" />

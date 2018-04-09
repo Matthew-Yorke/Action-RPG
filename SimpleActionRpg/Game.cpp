@@ -23,6 +23,7 @@
 #include "Game.h"
 #include "Graphics.h"
 #include "PlayerCharacter.h" // TODO: Remove
+#include "Light.h" // TODO: Remove
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -56,7 +57,8 @@ Game::Game()
 bool Game::Initialize()
 {
    // Initialize allegro and catch if a failure occurs.
-   if (!al_init()) {
+   if (!al_init())
+   {
       al_show_native_message_box(mpDisplay,
                                  "Error",
                                  "Error: al_init",
@@ -67,7 +69,8 @@ bool Game::Initialize()
    }
 
    // Initialize the allegro image add-on and catch if a failure occurs.
-   if (!al_init_image_addon()) {
+   if (!al_init_image_addon())
+   {
       al_show_native_message_box(mpDisplay,
                                  "Error",
                                  "Error: al_init_image_addon",
@@ -78,7 +81,8 @@ bool Game::Initialize()
    }
 
    // Initialize the allegro primitives add-on and catch if a failure occurs.
-   if (!al_init_primitives_addon()) {
+   if (!al_init_primitives_addon())
+   {
       al_show_native_message_box(mpDisplay,
                                  "Error",
                                  "Error: al_init_primitives_addon",
@@ -90,7 +94,8 @@ bool Game::Initialize()
 
    // Initialize the allegro display and catch if a failure occurs.
    mpDisplay = al_create_display(mScreenWidth, mScreenHeight);
-   if (!mpDisplay) {
+   if (!mpDisplay)
+   {
       al_show_native_message_box(mpDisplay,
                                  "Error",
                                  "Error: display",
@@ -101,7 +106,8 @@ bool Game::Initialize()
    }
 
    // Initialize the allegro audio and catch if a failure occurs.
-   if (!al_install_audio()) {
+   if (!al_install_audio())
+   {
       al_show_native_message_box(mpDisplay,
                                  "Error",
                                  "Error: audio",
@@ -113,7 +119,8 @@ bool Game::Initialize()
    }
 
    // Initialize the allegro acodec and catch if a failure occurs.
-   if (!al_init_acodec_addon()) {
+   if (!al_init_acodec_addon())
+   {
       al_show_native_message_box(mpDisplay,
                                  "Error",
                                  "Error: acodec",
@@ -125,7 +132,8 @@ bool Game::Initialize()
    }
 
    // Reserve samples for the allegro audio mixer and catch if a failure occurs.
-   if (!al_reserve_samples(5)) {
+   if (!al_reserve_samples(5))
+   {
       al_show_native_message_box(mpDisplay,
                                  "Error",
                                  "Error: reserve samples",
@@ -226,6 +234,10 @@ void Game::GameLoop()
 
    // TODO: Remove: Test Code - Start
    PlayerCharacter* pTestCharacter = new PlayerCharacter(graphics);
+   PlayerCharacter* pTestCharacter2 = new PlayerCharacter(graphics);
+   int count = 0;
+   int time = 0;
+   bool increase = true;
    // TODO: Remove: Test Code - End
 
    bool redraw = false;
@@ -281,7 +293,48 @@ void Game::GameLoop()
          redraw = false;
 
          // Call to draw - Start
+         al_draw_filled_rectangle(0, 0, mScreenWidth, mScreenHeight, al_map_rgb(0, 255, 0)); // Temporary background.
          pTestCharacter->Draw(graphics);
+
+         // Lighting Test - Start
+         Light* testLight = new Light(50, 50, 50, 5);
+         Light* testLight2 = new Light(150, 150, 50, 2);
+         ALLEGRO_BITMAP* shadowMap = al_load_bitmap("../Images/ShadowLayer.png");
+         if (increase)
+         {
+            time++;
+            if (time == 5) {
+               count++;
+               time = 0;
+            }
+
+            if (count == 240)
+               increase = false;
+         }
+         else
+         {
+            time++;
+            if (time == 5) {
+               count--;
+               time = 0;
+            }
+
+            if (count == 0)
+               increase = true;
+         }
+
+         al_set_target_bitmap(shadowMap);
+         al_set_blender(ALLEGRO_ADD, ALLEGRO_ALPHA, ALLEGRO_INVERSE_ALPHA);
+         testLight->Draw(graphics);
+         testLight2->Draw(graphics);
+         al_set_target_bitmap(al_get_backbuffer(mpDisplay));
+         al_draw_tinted_bitmap(shadowMap, al_map_rgba(255, 255, 255, count), 0, 0, 0);
+         al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_INVERSE_ALPHA);
+
+         delete testLight;
+         delete testLight2;
+         al_destroy_bitmap(shadowMap);
+         // Lighting Test - End
          // Call to draw - End
 
          // Flip the two screens (drawing unseen screen with the display screen) and clear the new drawing screen.

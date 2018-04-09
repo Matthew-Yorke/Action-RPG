@@ -65,6 +65,9 @@
     <ClCompile Include="MeleeAttackState.cpp">
       <Filter>Code\Objects\Player\States</Filter>
     </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Code\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -102,6 +105,9 @@
     </ClInclude>
     <ClInclude Include="Vector2D.h">
       <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Code\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
