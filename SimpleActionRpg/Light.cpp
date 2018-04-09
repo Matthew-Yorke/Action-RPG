@@ -18,14 +18,31 @@
 // Start Public Method Definitions
 //***************************************************************************************************************************************************
 
-Light::Light(int theCoordinateX, int theCoordinateY, int theRadius, int theIntensity)
+//***************************************************************************************************************************************************
+//
+// Method Name: Light
+//
+// Description:
+//  TODO: Add method description.
+//
+//***************************************************************************************************************************************************
+Light::Light(int theCoordinateX, int theCoordinateY, int theRadius, ALLEGRO_COLOR theColor, int theIntensity)
 {
    mCoordinateX = theCoordinateX;
    mCoordinateY = theCoordinateY;
    mRaidus = theRadius;
+   mColor = theColor;
    mIntensity = theIntensity;
 }
 
+//***************************************************************************************************************************************************
+//
+// Method Name: Draw
+//
+// Description:
+//  TODO: Add method description.
+//
+//***************************************************************************************************************************************************
 void Light::Draw(Graphics& theGraphics)
 {
    for (int currentRaidus = mRaidus; currentRaidus > 0; currentRaidus--)
@@ -33,9 +50,9 @@ void Light::Draw(Graphics& theGraphics)
       al_draw_filled_circle(mCoordinateX,
                             mCoordinateY,
                             currentRaidus,
-                            al_map_rgba(255,
-                                        255,
-                                        255,
+                            al_map_rgba(mColor.r * 255,
+                                        mColor.g * 255,
+                                        mColor.b * 255,
                                         mIntensity));
    }
 }

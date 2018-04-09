@@ -68,6 +68,9 @@
     <ClCompile Include="Light.cpp">
       <Filter>Code\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="ShadowLayer.cpp">
+      <Filter>Code\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -107,6 +110,9 @@
       <Filter>Code</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
+      <Filter>Code\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowLayer.h">
       <Filter>Code\Graphics</Filter>
     </ClInclude>
   </ItemGroup>

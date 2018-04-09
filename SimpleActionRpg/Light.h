@@ -40,7 +40,7 @@ class Light
       //  N/A
       //
       //************************************************************************************************************************************************
-      Light(int theCoordinateX, int theCoordinateY, int theRaidus, int theIntensity);
+      Light(int theCoordinateX, int theCoordinateY, int theRaidus, ALLEGRO_COLOR theColor, int theIntensity);
 
       //************************************************************************************************************************************************
       //
@@ -159,6 +159,9 @@ class Light
 
       // TODO: Add description.
       int mIntensity;
+
+      // TODO: Add description.
+      ALLEGRO_COLOR mColor;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

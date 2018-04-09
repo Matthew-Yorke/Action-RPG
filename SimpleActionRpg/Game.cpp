@@ -24,6 +24,7 @@
 #include "Graphics.h"
 #include "PlayerCharacter.h" // TODO: Remove
 #include "Light.h" // TODO: Remove
+#include "ShadowLayer.h" // TODO: Remove
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -293,13 +294,20 @@ void Game::GameLoop()
          redraw = false;
 
          // Call to draw - Start
-         al_draw_filled_rectangle(0, 0, mScreenWidth, mScreenHeight, al_map_rgb(0, 255, 0)); // Temporary background.
+         ALLEGRO_BITMAP* grassTile = al_load_bitmap("../Images/TestGrassTile.png"); // Temporary background.
+         al_draw_bitmap(grassTile, 0, 0, 0); // Temporary background.
+         al_draw_bitmap(grassTile, 100, 0, 0); // Temporary background.
+         al_draw_bitmap(grassTile, 0, 99, 0); // Temporary background.
+         al_draw_bitmap(grassTile, 100, 99, 0); // Temporary background.
          pTestCharacter->Draw(graphics);
 
          // Lighting Test - Start
-         Light* testLight = new Light(50, 50, 50, 5);
-         Light* testLight2 = new Light(150, 150, 50, 2);
-         ALLEGRO_BITMAP* shadowMap = al_load_bitmap("../Images/ShadowLayer.png");
+         ShadowLayer* shadowLayer = new ShadowLayer("../Images/ShadowLayer.png"); 
+         Light* testLight = new Light(50, 50, 100, al_map_rgb(255, 255, 255), 5);
+         Light* testLight2 = new Light(150, 150, 100, al_map_rgb(255, 0, 0), 3);
+         shadowLayer->AddLight(*testLight);
+         shadowLayer->AddLight(*testLight2);
+
          if (increase)
          {
             time++;
@@ -323,17 +331,13 @@ void Game::GameLoop()
                increase = true;
          }
 
-         al_set_target_bitmap(shadowMap);
-         al_set_blender(ALLEGRO_ADD, ALLEGRO_ALPHA, ALLEGRO_INVERSE_ALPHA);
-         testLight->Draw(graphics);
-         testLight2->Draw(graphics);
-         al_set_target_bitmap(al_get_backbuffer(mpDisplay));
-         al_draw_tinted_bitmap(shadowMap, al_map_rgba(255, 255, 255, count), 0, 0, 0);
-         al_set_blender(ALLEGRO_ADD, ALLEGRO_ONE, ALLEGRO_INVERSE_ALPHA);
+         shadowLayer->SetIntensity(count);
+         shadowLayer->Draw(graphics);
 
+         delete shadowLayer;
          delete testLight;
          delete testLight2;
-         al_destroy_bitmap(shadowMap);
+         al_destroy_bitmap(grassTile);
          // Lighting Test - End
          // Call to draw - End
 

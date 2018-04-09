@@ -177,6 +177,7 @@
     <ClCompile Include="MovingState.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="ShadowLayer.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="Vector2D.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="MovingState.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="ShadowLayer.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Vector2D.h" />
