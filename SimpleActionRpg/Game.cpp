@@ -25,6 +25,7 @@
 #include "PlayerCharacter.h" // TODO: Remove
 #include "Light.h" // TODO: Remove
 #include "ShadowLayer.h" // TODO: Remove
+#include "Clock.h" // TODO: Remove
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -239,6 +240,12 @@ void Game::GameLoop()
    int count = 0;
    int time = 0;
    bool increase = true;
+   ShadowLayer* shadowLayer = new ShadowLayer("../Images/ShadowLayer.png"); 
+   Light* testLight = new Light(50, 50, 100, al_map_rgb(255, 255, 255), 2);
+   Light* testLight2 = new Light(150, 150, 100, al_map_rgb(255, 0, 0), 3);
+   Clock* clock = new Clock(1.0F);
+   shadowLayer->AddLight(testLight);
+   shadowLayer->AddLight(testLight2);
    // TODO: Remove: Test Code - End
 
    bool redraw = false;
@@ -282,6 +289,11 @@ void Game::GameLoop()
                pTestCharacter->Update(currentTime - lastUpdateTime);
                // Call to update - End
 
+               // TODO: Remove clock test code - Start
+               clock->Update(currentTime - lastUpdateTime);
+               std::cout << clock->GetTimeString() << std::endl;
+               // TODO: Remove clock test code - End
+
                lastUpdateTime = currentTime;
                redraw = true;
             }
@@ -302,11 +314,9 @@ void Game::GameLoop()
          pTestCharacter->Draw(graphics);
 
          // Lighting Test - Start
-         ShadowLayer* shadowLayer = new ShadowLayer("../Images/ShadowLayer.png"); 
-         Light* testLight = new Light(50, 50, 100, al_map_rgb(255, 255, 255), 5);
-         Light* testLight2 = new Light(150, 150, 100, al_map_rgb(255, 0, 0), 3);
-         shadowLayer->AddLight(*testLight);
-         shadowLayer->AddLight(*testLight2);
+         
+         
+         testLight->SetCoordinateX(testLight->GetCoordinateX() + 1);
 
          if (increase)
          {
@@ -331,12 +341,10 @@ void Game::GameLoop()
                increase = true;
          }
 
-         shadowLayer->SetIntensity(count);
+         shadowLayer->SetIntensity(240);
          shadowLayer->Draw(graphics);
 
-         delete shadowLayer;
-         delete testLight;
-         delete testLight2;
+         
          al_destroy_bitmap(grassTile);
          // Lighting Test - End
          // Call to draw - End
@@ -348,6 +356,11 @@ void Game::GameLoop()
                                       0));
       }
    }
+
+   // TODO: Remove test code below.
+   delete shadowLayer;
+   delete testLight;
+   delete testLight2;
 }
 
 //***************************************************************************************************************************************************

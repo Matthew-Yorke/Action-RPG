@@ -57,13 +57,15 @@ void ShadowLayer::Draw(Graphics& theGraphics)
 {
    al_set_target_bitmap(mBitmap);
    
+   al_clear_to_color(al_map_rgb(0,0,0));
+
    // Set the blender to additive of the source alpha and inverse destination alpha.
    al_set_blender(ALLEGRO_ADD, ALLEGRO_ALPHA, ALLEGRO_INVERSE_ALPHA);
 
    // Add lights to the shadow bitmap.
    for (auto currentLight = mLightList.begin(); currentLight != mLightList.end(); currentLight++)
    {
-      currentLight->Draw(theGraphics);
+      (*currentLight)->Draw(theGraphics);
    }
 
     // Switch target back to the display and draw the tinted shadow bitmap

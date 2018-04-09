@@ -104,7 +104,7 @@ class ShadowLayer
       //  N/A
       //
       //************************************************************************************************************************************************
-      inline void AddLight(Light theLight) { mLightList.push_back(theLight); };
+      inline void AddLight(Light* theLight) { mLightList.push_back(theLight); };
 
       //************************************************************************************************************************************************
       //
@@ -170,7 +170,7 @@ class ShadowLayer
       // TODO: Add description.
       int mIntensity;
 
-      std::vector<Light> mLightList;
+      std::vector<Light*> mLightList;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

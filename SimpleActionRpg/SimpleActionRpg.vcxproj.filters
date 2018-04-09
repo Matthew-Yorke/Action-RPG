@@ -21,7 +21,10 @@
     <Filter Include="Code\Objects\Weapons">
       <UniqueIdentifier>{712f7b74-f0e5-4a69-89a0-47cae41b5b4f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Code\Graphics">
+    <Filter Include="Code\Engine">
+      <UniqueIdentifier>{449689b1-acf3-4293-83ba-5b8e813a4cab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Engine\Graphics">
       <UniqueIdentifier>{5c0bc52b-ff20-4508-a01c-25d1578bdd2f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -32,20 +35,14 @@
     <ClCompile Include="Game.cpp">
       <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2D.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
-    <ClCompile Include="Rectangle.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
     <ClCompile Include="AnimatedSprite.cpp">
-      <Filter>Code\Graphics</Filter>
+      <Filter>Code\Engine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Graphics.cpp">
-      <Filter>Code\Graphics</Filter>
+      <Filter>Code\Engine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Sprite.cpp">
-      <Filter>Code\Graphics</Filter>
+      <Filter>Code\Engine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="PlayerCharacter.cpp">
       <Filter>Code\Objects\Player</Filter>
@@ -66,21 +63,30 @@
       <Filter>Code\Objects\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="Light.cpp">
-      <Filter>Code\Graphics</Filter>
+      <Filter>Code\Engine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="ShadowLayer.cpp">
-      <Filter>Code\Graphics</Filter>
+      <Filter>Code\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Clock.cpp">
+      <Filter>Code\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Code\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2D.cpp">
+      <Filter>Code\Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
-      <Filter>Code\Graphics</Filter>
+      <Filter>Code\Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Graphics.h">
-      <Filter>Code\Graphics</Filter>
+      <Filter>Code\Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="AnimatedSprite.h">
-      <Filter>Code\Graphics</Filter>
+      <Filter>Code\Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="PlayerCharacter.h">
       <Filter>Code\Objects\Player</Filter>
@@ -103,17 +109,20 @@
     <ClInclude Include="Game.h">
       <Filter>Code</Filter>
     </ClInclude>
-    <ClInclude Include="Rectangle.h">
-      <Filter>Code</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2D.h">
-      <Filter>Code</Filter>
-    </ClInclude>
     <ClInclude Include="Light.h">
-      <Filter>Code\Graphics</Filter>
+      <Filter>Code\Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="ShadowLayer.h">
-      <Filter>Code\Graphics</Filter>
+      <Filter>Code\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Clock.h">
+      <Filter>Code\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Code\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>Code\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
