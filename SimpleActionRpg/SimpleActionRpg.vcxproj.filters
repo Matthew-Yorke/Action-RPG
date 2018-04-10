@@ -77,6 +77,9 @@
     <ClCompile Include="Vector2D.cpp">
       <Filter>Code\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Code\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -126,6 +129,9 @@
     </ClInclude>
     <ClInclude Include="PlayerConstants.h">
       <Filter>Code\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Code\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

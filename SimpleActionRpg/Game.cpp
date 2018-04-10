@@ -26,6 +26,7 @@
 #include "Light.h" // TODO: Remove
 #include "ShadowLayer.h" // TODO: Remove
 #include "Clock.h" // TODO: Remove
+#include "Camera.h" // TODO: Remove
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -235,6 +236,7 @@ void Game::GameLoop()
    Graphics graphics(mpDisplay);
 
    // TODO: Remove: Test Code - Start
+   Camera* camera = new Camera();
    PlayerCharacter* pTestCharacter = new PlayerCharacter(graphics);
    PlayerCharacter* pTestCharacter2 = new PlayerCharacter(graphics);
    int count = 0;
@@ -292,6 +294,7 @@ void Game::GameLoop()
                // TODO: Remove clock test code - Start
                clock->Update(currentTime - lastUpdateTime);
                std::cout << clock->GetTimeString() << std::endl;
+               camera->Update(pTestCharacter->GetCoordinateX(), pTestCharacter->GetCoordinateY());
                // TODO: Remove clock test code - End
 
                lastUpdateTime = currentTime;
