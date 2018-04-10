@@ -14,6 +14,7 @@
 #include "IdleState.h"
 #include "MovingState.h"
 #include "MeleeAttackState.h"
+#include "PlayerConstants.h"
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -51,27 +52,33 @@ void IdleState::KeyDown(ALLEGRO_EVENT theEvent)
    {
       case ALLEGRO_KEY_UP:
       {
-         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 32, 4);
-         mpPlayerCharacter->GetVelocity()->SetComponentY(-1.0F);
+         mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::UP);
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 128, 4);
+         mpPlayerCharacter->mUpPressed = true;
          mpPlayerCharacter->ChangeState(new MovingState());
          break;
       }
       case ALLEGRO_KEY_DOWN:
       {
-         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 0, 4);
-         mpPlayerCharacter->GetVelocity()->SetComponentY(1.0F);
+         mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::DOWN);
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 32, 4);
+         mpPlayerCharacter->mDownPressed = true;
          mpPlayerCharacter->ChangeState(new MovingState());
          break;
       }
       case ALLEGRO_KEY_LEFT:
       {
-         mpPlayerCharacter->GetVelocity()->SetComponentX(-1.0F);
+         mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::LEFT);
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 64, 4);
+         mpPlayerCharacter->mLeftPressed = true;
          mpPlayerCharacter->ChangeState(new MovingState());
          break;
       }
       case ALLEGRO_KEY_RIGHT:
       {
-         mpPlayerCharacter->GetVelocity()->SetComponentX(1.0F);
+         mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::RIGHT);
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 96, 4);
+         mpPlayerCharacter->mRightPressed = true;
          mpPlayerCharacter->ChangeState(new MovingState());
          break;
       }

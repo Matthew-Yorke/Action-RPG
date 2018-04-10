@@ -14,6 +14,7 @@
 #ifndef MeleeWeapon_H
 #define MeleeWeapon_H
 
+#include "PlayerConstants.h"
 #include "Sprite.h"
 #include "Rectangle.h"
 
@@ -107,6 +108,22 @@ class MeleeWeapon
 
       //************************************************************************************************************************************************
       //
+      // Method Name: SetDirection
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theDirection - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      inline void SetDirection(PlayerConstants::DIRECTION theDirection) { mDirection = theDirection; };
+
+      //************************************************************************************************************************************************
+      //
       // Method Name: DrawSprite
       //
       // Description:
@@ -119,7 +136,7 @@ class MeleeWeapon
       //  N/A
       //
       //************************************************************************************************************************************************
-      void DrawSprite(Graphics& theGraphics);
+      void DrawSprite(Graphics& theGraphics, int theCoordianteX, int theCoordinateY);
 
    protected:
 
@@ -161,6 +178,9 @@ class MeleeWeapon
 
       // TODO: Add description.
       Rectangle* mpHitbox;
+
+      // TODO: Add description.
+      PlayerConstants::DIRECTION mDirection;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

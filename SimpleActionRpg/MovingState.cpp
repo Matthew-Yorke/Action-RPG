@@ -13,6 +13,7 @@
 
 #include "MovingState.h"
 #include "IdleState.h"
+#include "MeleeAttackState.h"
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -50,29 +51,39 @@ void MovingState::KeyDown(ALLEGRO_EVENT theEvent)
    {
       case ALLEGRO_KEY_UP:
       {
-         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 32, 4);
-         mpPlayerCharacter->GetVelocity()->SetComponentY(-1.0F);
+         mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::UP);
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 128, 4);
+         mpPlayerCharacter->mUpPressed = false;
          break;
       }
       case ALLEGRO_KEY_DOWN:
       {
-         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 0, 4);
-         mpPlayerCharacter->GetVelocity()->SetComponentY(1.0F);
+         mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::DOWN);
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 32, 4);
+         mpPlayerCharacter->mDownPressed = false;
          break;
       }
       case ALLEGRO_KEY_LEFT:
       {
-         mpPlayerCharacter->GetVelocity()->SetComponentX(-1.0F);
+         mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::LEFT);
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 64, 4);
+         mpPlayerCharacter->mLeftPressed = false;
          break;
       }
       case ALLEGRO_KEY_RIGHT:
       {
-         mpPlayerCharacter->GetVelocity()->SetComponentX(1.0F);
+         mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::RIGHT);
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 96, 4);
+         mpPlayerCharacter->mRightPressed = false;
          break;
       }
       case ALLEGRO_KEY_Z:
       {
-         //mpPlayerCharacter->ChangeState(new MovingState());
+         mpPlayerCharacter->mUpPressed = false;
+         mpPlayerCharacter->mDownPressed = false;
+         mpPlayerCharacter->mLeftPressed = false;
+         mpPlayerCharacter->mRightPressed = false;
+         mpPlayerCharacter->ChangeState(new MeleeAttackState());
          break;
       }
    }
@@ -98,28 +109,32 @@ void MovingState::KeyUp(ALLEGRO_EVENT theEvent)
    {
       case ALLEGRO_KEY_UP:
       {
-         mpPlayerCharacter->GetVelocity()->SetComponentY(0.0F);
-         mpPlayerCharacter->ChangeState(new IdleState());
+         mpPlayerCharacter->mUpPressed = false;
          break;
       }
       case ALLEGRO_KEY_DOWN:
       {
-         mpPlayerCharacter->GetVelocity()->SetComponentY(0.0F);
-         mpPlayerCharacter->ChangeState(new IdleState());
+         mpPlayerCharacter->mDownPressed = false;
          break;
       }
       case ALLEGRO_KEY_LEFT:
       {
-         mpPlayerCharacter->GetVelocity()->SetComponentX(0.0F);
-         mpPlayerCharacter->ChangeState(new IdleState());
+         mpPlayerCharacter->mLeftPressed = false;
          break;
       }
       case ALLEGRO_KEY_RIGHT:
       {
-         mpPlayerCharacter->GetVelocity()->SetComponentX(0.0F);
-         mpPlayerCharacter->ChangeState(new IdleState());
+         mpPlayerCharacter->mRightPressed = false;
          break;
       }
+   }
+
+   if (mpPlayerCharacter->mUpPressed == false &&
+       mpPlayerCharacter->mDownPressed == false &&
+       mpPlayerCharacter->mLeftPressed == false &&
+       mpPlayerCharacter->mRightPressed == false)
+   {
+      mpPlayerCharacter->ChangeState(new IdleState());
    }
 }
 
@@ -139,8 +154,23 @@ void MovingState::KeyUp(ALLEGRO_EVENT theEvent)
 //************************************************************************************************************************************************
 void MovingState::Update(float theTimeChange)
 {
-   mpPlayerCharacter->SetCoordinateX(mpPlayerCharacter->GetCoordinateX() + mpPlayerCharacter->GetVelocity()->GetComponentX());
-   mpPlayerCharacter->SetCoordinateY(mpPlayerCharacter->GetCoordinateY() + mpPlayerCharacter->GetVelocity()->GetComponentY());
+   if (mpPlayerCharacter->mUpPressed == true)
+   {
+      mpPlayerCharacter->SetCoordinateY(mpPlayerCharacter->GetCoordinateY() - mpPlayerCharacter->GetVelocity()->GetComponentY());
+   }
+   else if (mpPlayerCharacter->mDownPressed == true)
+   {
+      mpPlayerCharacter->SetCoordinateY(mpPlayerCharacter->GetCoordinateY() + mpPlayerCharacter->GetVelocity()->GetComponentY());
+   }
+   else if (mpPlayerCharacter->mLeftPressed == true)
+   {
+      mpPlayerCharacter->SetCoordinateX(mpPlayerCharacter->GetCoordinateX() - mpPlayerCharacter->GetVelocity()->GetComponentX());
+   }
+   else if (mpPlayerCharacter->mRightPressed == true)
+   {
+      mpPlayerCharacter->SetCoordinateX(mpPlayerCharacter->GetCoordinateX() + mpPlayerCharacter->GetVelocity()->GetComponentX());
+   }
+   
    mpPlayerCharacter->GetSprite()->Update(theTimeChange);
 }
 

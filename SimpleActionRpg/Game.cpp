@@ -316,7 +316,8 @@ void Game::GameLoop()
          // Lighting Test - Start
          
          
-         testLight->SetCoordinateX(testLight->GetCoordinateX() + 1);
+         // Test moving light.
+         //testLight->SetCoordinateX(testLight->GetCoordinateX() + 1);
 
          if (increase)
          {

@@ -87,6 +87,23 @@ void MeleeAttackState::Update(float theTimeChange)
 
    if (mAttackTimeRemaining < 0.0F)
    {
+      if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::DOWN)
+      {
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(32, 32, 1);
+      }
+      else if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::UP)
+      {
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(32, 128, 1);
+      }
+      else if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::LEFT)
+      {
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(32, 64, 1);
+      }
+      else if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::RIGHT)
+      {
+         mpPlayerCharacter->GetSprite()->SetNewAnimation(32, 96, 1);
+      }
+
       mpPlayerCharacter->ChangeState(new IdleState());
    }
 }
@@ -107,8 +124,30 @@ void MeleeAttackState::Update(float theTimeChange)
 //************************************************************************************************************************************************
 void MeleeAttackState::Draw(Graphics& theGraphics)
 {
-   mpPlayerCharacter->DrawSprite(theGraphics);
-   mpPlayerCharacter->GetMeleeWeapon()->DrawSprite(theGraphics);
+   if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::DOWN)
+   {
+      mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 160, 1);
+      mpPlayerCharacter->DrawSprite(theGraphics);
+      mpPlayerCharacter->GetMeleeWeapon()->DrawSprite(theGraphics, mpPlayerCharacter->GetCoordinateX(), mpPlayerCharacter->GetCoordinateY());
+   }
+   else if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::LEFT)
+   {
+      mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 224, 1);
+      mpPlayerCharacter->DrawSprite(theGraphics);
+      mpPlayerCharacter->GetMeleeWeapon()->DrawSprite(theGraphics, mpPlayerCharacter->GetCoordinateX(), mpPlayerCharacter->GetCoordinateY());
+   }
+   else if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::RIGHT)
+   {
+      mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 256, 1);
+      mpPlayerCharacter->DrawSprite(theGraphics);
+      mpPlayerCharacter->GetMeleeWeapon()->DrawSprite(theGraphics, mpPlayerCharacter->GetCoordinateX(), mpPlayerCharacter->GetCoordinateY());
+   }
+   else if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::UP)
+   {
+      mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 192, 1);
+      mpPlayerCharacter->GetMeleeWeapon()->DrawSprite(theGraphics, mpPlayerCharacter->GetCoordinateX(), mpPlayerCharacter->GetCoordinateY());
+      mpPlayerCharacter->DrawSprite(theGraphics);
+   }
 }
 
 //***************************************************************************************************************************************************

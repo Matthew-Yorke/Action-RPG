@@ -124,6 +124,9 @@
     <ClInclude Include="Vector2D.h">
       <Filter>Code\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerConstants.h">
+      <Filter>Code\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

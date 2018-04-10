@@ -21,6 +21,7 @@
 #include "MeleeWeapon.h"
 #include "Rectangle.h"
 #include "State.h"
+#include "PlayerConstants.h"
 
 class PlayerCharacter
 {
@@ -125,6 +126,38 @@ class PlayerCharacter
       //
       //************************************************************************************************************************************************
       inline void SetCoordinateY(float theCoordinateY) { mCoordinateY = theCoordinateY; mpMeleeWeapon->SetCoordinateY(theCoordinateY); };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: GetDirection
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      PlayerConstants::DIRECTION GetDirection() { return mDirection; };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: SetDirection
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theDirection - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      void SetDirection(PlayerConstants::DIRECTION theDirection) { mDirection = theDirection; mpMeleeWeapon->SetDirection(theDirection); };
 
       //************************************************************************************************************************************************
       //
@@ -284,6 +317,14 @@ class PlayerCharacter
 
    public:
 
+      bool mLeftPressed;
+
+      bool mRightPressed;
+
+      bool mUpPressed;
+
+      bool mDownPressed;
+
    protected:
 
    private:
@@ -318,7 +359,11 @@ class PlayerCharacter
       // TODO: Add description.
       MeleeWeapon* mpMeleeWeapon;
 
+      // TODO: Add description.
       State* mpCurrentState;
+
+      // TODO: Add description.
+      PlayerConstants::DIRECTION mDirection; 
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations
