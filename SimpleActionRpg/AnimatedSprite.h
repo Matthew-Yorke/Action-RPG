@@ -67,7 +67,7 @@ public:
 
    //************************************************************************************************************************************************
    //
-   // Method Name: SetNewAnimation
+   // Method Name: SetAnimationSourceX
    //
    // Description:
    //  TODO: Add description.
@@ -81,7 +81,25 @@ public:
    //  N/A
    //
    //************************************************************************************************************************************************
-   void SetNewAnimation(int theSourceX, int theSourceY, int theNumberFrames);
+   void SetAnimationSourceX(int theSourcex);
+
+   //************************************************************************************************************************************************
+   //
+   // Method Name: SetAnimationSourceY
+   //
+   // Description:
+   //  TODO: Add description.
+   //
+   // Arguments:
+   //  theSourceX - TODO: Add description.
+   //  theSourceY - TODO: Add description.
+   //  theNumberFrames - TODO: Add description.
+   //
+   // Return:
+   //  N/A
+   //
+   //************************************************************************************************************************************************
+   void SetAnimationSourceY(int theSourceY, int theNumberFrames);
 
    //************************************************************************************************************************************************
    //

@@ -48,12 +48,13 @@ IdleState::IdleState()
 //************************************************************************************************************************************************
 void IdleState::KeyDown(ALLEGRO_EVENT theEvent)
 {
+   // Track that a key was pressed down and enter that action's state.
    switch (theEvent.keyboard.keycode)
    {
       case ALLEGRO_KEY_UP:
       {
          mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::UP);
-         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 128, 4);
+         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(128, 4);
          mpPlayerCharacter->mUpPressed = true;
          mpPlayerCharacter->ChangeState(new MovingState());
          break;
@@ -61,7 +62,7 @@ void IdleState::KeyDown(ALLEGRO_EVENT theEvent)
       case ALLEGRO_KEY_DOWN:
       {
          mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::DOWN);
-         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 32, 4);
+         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(32, 4);
          mpPlayerCharacter->mDownPressed = true;
          mpPlayerCharacter->ChangeState(new MovingState());
          break;
@@ -69,7 +70,7 @@ void IdleState::KeyDown(ALLEGRO_EVENT theEvent)
       case ALLEGRO_KEY_LEFT:
       {
          mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::LEFT);
-         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 64, 4);
+         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(64, 4);
          mpPlayerCharacter->mLeftPressed = true;
          mpPlayerCharacter->ChangeState(new MovingState());
          break;
@@ -77,7 +78,7 @@ void IdleState::KeyDown(ALLEGRO_EVENT theEvent)
       case ALLEGRO_KEY_RIGHT:
       {
          mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::RIGHT);
-         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 96, 4);
+         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(96, 4);
          mpPlayerCharacter->mRightPressed = true;
          mpPlayerCharacter->ChangeState(new MovingState());
          break;

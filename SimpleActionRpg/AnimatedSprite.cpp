@@ -50,17 +50,29 @@ AnimatedSprite::~AnimatedSprite()
 
 //************************************************************************************************************************************************
 //
-// Method Name: SetNewAnimation
+// Method Name: SetAnimationSourceX
 //
 // Description:
 //  TODO: Add description.
 //
 //************************************************************************************************************************************************
-void AnimatedSprite::SetNewAnimation(int theSourceX, int theSourceY, int theNumberFrames)
+void AnimatedSprite::SetAnimationSourceX(int theSourceX)
 {
-   SetNewSprite(theSourceX, theSourceY);
+   mSourceX = theSourceX;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: SetAnimationSourceY
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void AnimatedSprite::SetAnimationSourceY(int theSourceY, int theNumberFrames)
+{
+   mSourceY = theSourceY;
    mNumberFrames = theNumberFrames;
-   mCurrentFrame = 0;
 }
 
 //***************************************************************************************************************************************************
@@ -86,7 +98,7 @@ void AnimatedSprite::Update(float theElapsedTime)
       }
       else
       {
-         mSourceX -= mWidth * (mNumberFrames - 1);
+         mSourceX = 0;
          mCurrentFrame = 0;
       }
    }

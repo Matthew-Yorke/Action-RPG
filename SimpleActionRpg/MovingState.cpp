@@ -47,42 +47,31 @@ MovingState::MovingState()
 //************************************************************************************************************************************************
 void MovingState::KeyDown(ALLEGRO_EVENT theEvent)
 {
+   // Track that an additional movement key was pressed
    switch (theEvent.keyboard.keycode)
    {
-      case ALLEGRO_KEY_UP:
-      {
-         mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::UP);
-         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 128, 4);
-         mpPlayerCharacter->mUpPressed = false;
-         break;
-      }
       case ALLEGRO_KEY_DOWN:
       {
-         mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::DOWN);
-         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 32, 4);
-         mpPlayerCharacter->mDownPressed = false;
+         mpPlayerCharacter->mDownPressed = true;
          break;
       }
       case ALLEGRO_KEY_LEFT:
       {
-         mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::LEFT);
-         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 64, 4);
-         mpPlayerCharacter->mLeftPressed = false;
+         mpPlayerCharacter->mLeftPressed = true;
          break;
       }
       case ALLEGRO_KEY_RIGHT:
       {
-         mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::RIGHT);
-         mpPlayerCharacter->GetSprite()->SetNewAnimation(0, 96, 4);
-         mpPlayerCharacter->mRightPressed = false;
+         mpPlayerCharacter->mRightPressed = true;
+         break;
+      }
+      case ALLEGRO_KEY_UP:
+      {
+         mpPlayerCharacter->mUpPressed = true;
          break;
       }
       case ALLEGRO_KEY_Z:
       {
-         mpPlayerCharacter->mUpPressed = false;
-         mpPlayerCharacter->mDownPressed = false;
-         mpPlayerCharacter->mLeftPressed = false;
-         mpPlayerCharacter->mRightPressed = false;
          mpPlayerCharacter->ChangeState(new MeleeAttackState());
          break;
       }
@@ -105,13 +94,9 @@ void MovingState::KeyDown(ALLEGRO_EVENT theEvent)
 //************************************************************************************************************************************************
 void MovingState::KeyUp(ALLEGRO_EVENT theEvent)
 {
+   // Track that a movement key was let go.
    switch (theEvent.keyboard.keycode)
    {
-      case ALLEGRO_KEY_UP:
-      {
-         mpPlayerCharacter->mUpPressed = false;
-         break;
-      }
       case ALLEGRO_KEY_DOWN:
       {
          mpPlayerCharacter->mDownPressed = false;
@@ -127,8 +112,14 @@ void MovingState::KeyUp(ALLEGRO_EVENT theEvent)
          mpPlayerCharacter->mRightPressed = false;
          break;
       }
+      case ALLEGRO_KEY_UP:
+      {
+         mpPlayerCharacter->mUpPressed = false;
+         break;
+      }
    }
 
+   // If all movement is let go, return to the idle state.
    if (mpPlayerCharacter->mUpPressed == false &&
        mpPlayerCharacter->mDownPressed == false &&
        mpPlayerCharacter->mLeftPressed == false &&
@@ -154,23 +145,31 @@ void MovingState::KeyUp(ALLEGRO_EVENT theEvent)
 //************************************************************************************************************************************************
 void MovingState::Update(float theTimeChange)
 {
-   if (mpPlayerCharacter->mUpPressed == true)
+   if (mpPlayerCharacter->mDownPressed == true)
    {
-      mpPlayerCharacter->SetCoordinateY(mpPlayerCharacter->GetCoordinateY() - mpPlayerCharacter->GetVelocity()->GetComponentY());
-   }
-   else if (mpPlayerCharacter->mDownPressed == true)
-   {
+      mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::DOWN);
+      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(32, 4);
       mpPlayerCharacter->SetCoordinateY(mpPlayerCharacter->GetCoordinateY() + mpPlayerCharacter->GetVelocity()->GetComponentY());
-   }
+   } 
    else if (mpPlayerCharacter->mLeftPressed == true)
    {
+      mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::LEFT);
+      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(64, 4);
       mpPlayerCharacter->SetCoordinateX(mpPlayerCharacter->GetCoordinateX() - mpPlayerCharacter->GetVelocity()->GetComponentX());
    }
    else if (mpPlayerCharacter->mRightPressed == true)
    {
+      mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::RIGHT);
+      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(96, 4);
       mpPlayerCharacter->SetCoordinateX(mpPlayerCharacter->GetCoordinateX() + mpPlayerCharacter->GetVelocity()->GetComponentX());
    }
-   
+   else if (mpPlayerCharacter->mUpPressed == true)
+   {
+      mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::UP);
+      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(128, 4);
+      mpPlayerCharacter->SetCoordinateY(mpPlayerCharacter->GetCoordinateY() - mpPlayerCharacter->GetVelocity()->GetComponentY());
+   }
+
    mpPlayerCharacter->GetSprite()->Update(theTimeChange);
 }
 
