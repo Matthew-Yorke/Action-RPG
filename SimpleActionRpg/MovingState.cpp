@@ -52,22 +52,22 @@ void MovingState::KeyDown(ALLEGRO_EVENT theEvent)
    {
       case ALLEGRO_KEY_DOWN:
       {
-         mpPlayerCharacter->mDownPressed = true;
+         mpPlayerCharacter->InsertMovementDirection(PlayerConstants::DIRECTION::DOWN);
          break;
       }
       case ALLEGRO_KEY_LEFT:
       {
-         mpPlayerCharacter->mLeftPressed = true;
+         mpPlayerCharacter->InsertMovementDirection(PlayerConstants::DIRECTION::LEFT);
          break;
       }
       case ALLEGRO_KEY_RIGHT:
       {
-         mpPlayerCharacter->mRightPressed = true;
+         mpPlayerCharacter->InsertMovementDirection(PlayerConstants::DIRECTION::RIGHT);
          break;
       }
       case ALLEGRO_KEY_UP:
       {
-         mpPlayerCharacter->mUpPressed = true;
+         mpPlayerCharacter->InsertMovementDirection(PlayerConstants::DIRECTION::UP);
          break;
       }
       case ALLEGRO_KEY_Z:
@@ -99,31 +99,27 @@ void MovingState::KeyUp(ALLEGRO_EVENT theEvent)
    {
       case ALLEGRO_KEY_DOWN:
       {
-         mpPlayerCharacter->mDownPressed = false;
+         mpPlayerCharacter->RemoveMovementDirection(PlayerConstants::DIRECTION::DOWN);
          break;
       }
       case ALLEGRO_KEY_LEFT:
       {
-         mpPlayerCharacter->mLeftPressed = false;
+         mpPlayerCharacter->RemoveMovementDirection(PlayerConstants::DIRECTION::LEFT);
          break;
       }
       case ALLEGRO_KEY_RIGHT:
       {
-         mpPlayerCharacter->mRightPressed = false;
+         mpPlayerCharacter->RemoveMovementDirection(PlayerConstants::DIRECTION::RIGHT);
          break;
       }
       case ALLEGRO_KEY_UP:
       {
-         mpPlayerCharacter->mUpPressed = false;
+         mpPlayerCharacter->RemoveMovementDirection(PlayerConstants::DIRECTION::UP);
          break;
       }
    }
 
-   // If all movement is let go, return to the idle state.
-   if (mpPlayerCharacter->mUpPressed == false &&
-       mpPlayerCharacter->mDownPressed == false &&
-       mpPlayerCharacter->mLeftPressed == false &&
-       mpPlayerCharacter->mRightPressed == false)
+   if (mpPlayerCharacter->IsMovingDirectionEmpty() == true)
    {
       mpPlayerCharacter->ChangeState(new IdleState());
    }
@@ -145,28 +141,34 @@ void MovingState::KeyUp(ALLEGRO_EVENT theEvent)
 //************************************************************************************************************************************************
 void MovingState::Update(float theTimeChange)
 {
-   if (mpPlayerCharacter->mDownPressed == true)
+   PlayerConstants::DIRECTION currentDirection = mpPlayerCharacter->GetFrontOfMovingDirectionVector();
+
+   if (currentDirection == PlayerConstants::DIRECTION::DOWN)
    {
       mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::DOWN);
-      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(32, 4);
+      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(32,
+                                                          4);
       mpPlayerCharacter->SetCoordinateY(mpPlayerCharacter->GetCoordinateY() + mpPlayerCharacter->GetVelocity()->GetComponentY());
    } 
-   else if (mpPlayerCharacter->mLeftPressed == true)
+   else if (currentDirection == PlayerConstants::DIRECTION::LEFT)
    {
       mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::LEFT);
-      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(64, 4);
+      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(64,
+                                                          4);
       mpPlayerCharacter->SetCoordinateX(mpPlayerCharacter->GetCoordinateX() - mpPlayerCharacter->GetVelocity()->GetComponentX());
    }
-   else if (mpPlayerCharacter->mRightPressed == true)
+   else if (currentDirection == PlayerConstants::DIRECTION::RIGHT)
    {
       mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::RIGHT);
-      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(96, 4);
+      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(96,
+                                                          4);
       mpPlayerCharacter->SetCoordinateX(mpPlayerCharacter->GetCoordinateX() + mpPlayerCharacter->GetVelocity()->GetComponentX());
    }
-   else if (mpPlayerCharacter->mUpPressed == true)
+   else if (currentDirection == PlayerConstants::DIRECTION::UP)
    {
       mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::UP);
-      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(128, 4);
+      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(128,
+                                                          4);
       mpPlayerCharacter->SetCoordinateY(mpPlayerCharacter->GetCoordinateY() - mpPlayerCharacter->GetVelocity()->GetComponentY());
    }
 

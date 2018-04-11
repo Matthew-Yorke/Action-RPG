@@ -22,6 +22,8 @@
 #include "Rectangle.h"
 #include "State.h"
 #include "PlayerConstants.h"
+#include <vector>
+#include <algorithm>
 
 class PlayerCharacter
 {
@@ -158,6 +160,86 @@ class PlayerCharacter
       //
       //************************************************************************************************************************************************
       void SetDirection(PlayerConstants::DIRECTION theDirection) { mDirection = theDirection; mpMeleeWeapon->SetDirection(theDirection); };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: InsertMovementDirection
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theDirection - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      inline void InsertMovementDirection(PlayerConstants::DIRECTION theDirection)
+      {
+         mMovingDirectionVector.insert(mMovingDirectionVector.begin(),
+                                       theDirection);
+      };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: RemoveMovementDirection
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theDirection - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      inline void RemoveMovementDirection(PlayerConstants::DIRECTION theDirection)
+      {
+         mMovingDirectionVector.erase(std::remove(mMovingDirectionVector.begin(),
+                                                  mMovingDirectionVector.end(),
+                                                  theDirection),
+                                      mMovingDirectionVector.end());
+      };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: IsMovingDirectionEmpty
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      inline bool IsMovingDirectionEmpty()
+      {
+         return mMovingDirectionVector.empty();
+      };
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: IsMovingDirectionEmpty
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      inline PlayerConstants::DIRECTION GetFrontOfMovingDirectionVector()
+      {
+         return mMovingDirectionVector.front();
+      };
 
       //************************************************************************************************************************************************
       //
@@ -317,14 +399,6 @@ class PlayerCharacter
 
    public:
 
-      bool mLeftPressed;
-
-      bool mRightPressed;
-
-      bool mUpPressed;
-
-      bool mDownPressed;
-
    protected:
 
    private:
@@ -364,6 +438,9 @@ class PlayerCharacter
 
       // TODO: Add description.
       PlayerConstants::DIRECTION mDirection; 
+
+      // TODO: Add description.
+      std::vector<PlayerConstants::DIRECTION> mMovingDirectionVector;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

@@ -56,10 +56,6 @@ PlayerCharacter::PlayerCharacter(Graphics& theGraphics)
    mpCurrentState = new IdleState();
    mpCurrentState->SetCharacterReference(this);
    mDirection = PlayerConstants::DIRECTION::DOWN;
-   mLeftPressed = false;
-   mRightPressed = false;
-   mUpPressed = false;
-   mDownPressed = false;
 }
 
 //***************************************************************************************************************************************************

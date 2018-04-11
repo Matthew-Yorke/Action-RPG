@@ -51,35 +51,39 @@ void IdleState::KeyDown(ALLEGRO_EVENT theEvent)
    // Track that a key was pressed down and enter that action's state.
    switch (theEvent.keyboard.keycode)
    {
-      case ALLEGRO_KEY_UP:
-      {
-         mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::UP);
-         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(128, 4);
-         mpPlayerCharacter->mUpPressed = true;
-         mpPlayerCharacter->ChangeState(new MovingState());
-         break;
-      }
       case ALLEGRO_KEY_DOWN:
       {
          mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::DOWN);
-         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(32, 4);
-         mpPlayerCharacter->mDownPressed = true;
+         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(32,
+                                                             4);
+         mpPlayerCharacter->InsertMovementDirection(PlayerConstants::DIRECTION::DOWN);
          mpPlayerCharacter->ChangeState(new MovingState());
          break;
       }
       case ALLEGRO_KEY_LEFT:
       {
          mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::LEFT);
-         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(64, 4);
-         mpPlayerCharacter->mLeftPressed = true;
+         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(64,
+                                                             4);
+         mpPlayerCharacter->InsertMovementDirection(PlayerConstants::DIRECTION::LEFT);
          mpPlayerCharacter->ChangeState(new MovingState());
          break;
       }
       case ALLEGRO_KEY_RIGHT:
       {
          mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::RIGHT);
-         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(96, 4);
-         mpPlayerCharacter->mRightPressed = true;
+         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(96,
+                                                             4);
+         mpPlayerCharacter->InsertMovementDirection(PlayerConstants::DIRECTION::RIGHT);
+         mpPlayerCharacter->ChangeState(new MovingState());
+         break;
+      }
+      case ALLEGRO_KEY_UP:
+      {
+         mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::UP);
+         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(128,
+                                                             4);
+         mpPlayerCharacter->InsertMovementDirection(PlayerConstants::DIRECTION::UP);
          mpPlayerCharacter->ChangeState(new MovingState());
          break;
       }
