@@ -27,6 +27,9 @@
 #include "ShadowLayer.h" // TODO: Remove
 #include "Clock.h" // TODO: Remove
 #include "Camera.h" // TODO: Remove
+#include "DialogBox.h" // TODO: Remove
+#include "DialogImage.h" // TODO: Remove
+#include "Rectangle.h" // TODO: Remove
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -248,6 +251,27 @@ void Game::GameLoop()
    Clock* clock = new Clock(1.0F);
    shadowLayer->AddLight(testLight);
    shadowLayer->AddLight(testLight2);
+   DialogImage* dialogOverlay = new DialogImage(graphics,
+                                                "../Images/DialogBoxOverlayTest.png",
+                                                0,
+                                                390,
+                                                960,
+                                                180);
+   DialogImage* characterImage = new DialogImage(graphics, "../Images/DialogImageTest.png",
+                                                 0,
+                                                 390,
+                                                 150,
+                                                 150);
+   Rectangle* dialogDimensions = new Rectangle(0,
+                                               390,
+                                               960,  // Screen Width
+                                               150); // Arbitrary
+   DialogBox* dialogBox = new DialogBox("Advise Guy:",
+                                        "(Note: Press the 'V' key to continue to dialog) This is a test dialog to make sure that the dialog Fits properly within the dialog box. This test also makes sure that not only does the text fit horizontally in the dialog box but also only shows the amount of lines that can fit vertically. By pressing the next key ('V' for this test) the dialog will move on to the next set of lines to be displayed.",
+                                        dialogDimensions);
+   dialogBox->AddOverlay(dialogOverlay);
+   dialogBox->AddCharacterImage(characterImage);
+   bool dialogDone = false;
    // TODO: Remove: Test Code - End
 
    bool redraw = false;
@@ -272,6 +296,11 @@ void Game::GameLoop()
          else if (nextEvent.type == ALLEGRO_EVENT_KEY_DOWN)
          {
             pTestCharacter->KeyDown(nextEvent);
+
+            // Test Code - Start
+            if (nextEvent.keyboard.keycode == ALLEGRO_KEY_V)
+               dialogDone = dialogBox->NextLineSet();
+            // Test Code - End
          }
          // The event was the user releasing a downed key.
          else if (nextEvent.type == ALLEGRO_EVENT_KEY_UP)
@@ -295,6 +324,17 @@ void Game::GameLoop()
                clock->Update(currentTime - lastUpdateTime);
                std::cout << clock->GetTimeString() << std::endl;
                camera->Update(pTestCharacter->GetCoordinateX(), pTestCharacter->GetCoordinateY());
+               if (dialogDone == true)
+               {
+                  delete dialogBox;
+                  dialogBox = nullptr;
+                  delete dialogOverlay;
+                  dialogOverlay = nullptr;
+                  delete characterImage;
+                  characterImage = nullptr;
+               }
+               if (dialogBox != nullptr)
+                  dialogBox->CameraUpdate(camera);
                // TODO: Remove clock test code - End
 
                lastUpdateTime = currentTime;
@@ -315,7 +355,6 @@ void Game::GameLoop()
          al_draw_bitmap(grassTile, 0, 99, 0); // Temporary background.
          al_draw_bitmap(grassTile, 100, 99, 0); // Temporary background.
          pTestCharacter->Draw(graphics);
-
          // Lighting Test - Start
          
          
@@ -347,7 +386,8 @@ void Game::GameLoop()
 
          shadowLayer->SetIntensity(240);
          shadowLayer->Draw(graphics);
-
+         if (dialogBox != nullptr)
+            dialogBox->Draw(graphics);
          
          al_destroy_bitmap(grassTile);
          // Lighting Test - End

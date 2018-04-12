@@ -38,6 +38,18 @@ public:
    //************************************************************************************************************************************************
    Rectangle(int theCoordinateX, int theCoordianteY, int theWidth, int theHeight);
 
+   inline int GetCoordinateX() { return mCoordianteX; };
+
+   inline void SetCoordinateX(int theCoordinateX) { mCoordianteX = theCoordinateX; };
+
+   inline int GetCoordinateY() { return mCoordianteY; };
+
+   inline void SetCoordinateY(int theCoordinateY) { mCoordianteY = theCoordinateY; };
+
+   inline int GetWidth() { return mWidth; };
+
+   inline int GetHeight() { return mHeight; };
+
 protected:
 
    // There are currently no protected methods for this class.

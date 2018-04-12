@@ -1,7 +1,5 @@
-﻿  Game.cpp
-  IdleState.cpp
-  MeleeAttackState.cpp
-  MovingState.cpp
-  PlayerCharacter.cpp
+﻿  DialogBox.cpp
+  DialogImage.cpp
+  Game.cpp
   Generating Code...
   SimpleActionRpg.vcxproj -> C:\Users\Yorke\source\projects\Action RPG\Action-RPG\x64\Debug\SimpleActionRpg.exe

@@ -27,6 +27,9 @@
     <Filter Include="Code\Engine\Graphics">
       <UniqueIdentifier>{5c0bc52b-ff20-4508-a01c-25d1578bdd2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Code\Engine\Dialog">
+      <UniqueIdentifier>{b4977681-ed10-4d44-93d4-0dbcd32dd0eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -80,6 +83,12 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Code\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="DialogBox.cpp">
+      <Filter>Code\Engine\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogImage.cpp">
+      <Filter>Code\Engine\Dialog</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -132,6 +141,12 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Code\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogBox.h">
+      <Filter>Code\Engine\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogImage.h">
+      <Filter>Code\Engine\Dialog</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -169,6 +169,8 @@
     <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="DialogBox.cpp" />
+    <ClCompile Include="DialogImage.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="IdleState.cpp" />
@@ -188,6 +190,8 @@
     <ClInclude Include="AnimatedSprite.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Clock.h" />
+    <ClInclude Include="DialogBox.h" />
+    <ClInclude Include="DialogImage.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="PlayerConstants.h" />
