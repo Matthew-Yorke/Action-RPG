@@ -148,5 +148,5 @@ float Vector2D::GetLength()
 //*********************************************************************************************************************************************
 void Vector2D::CalculateLength()
 {
-   mLength = sqrt(powf(fabsf(mComponentX), 2.0F) + powf(fabsf(mComponentY), 2.0F));
+   mLength = sqrtf(powf(fabsf(mComponentX), 2.0F) + powf(fabsf(mComponentY), 2.0F));
 }

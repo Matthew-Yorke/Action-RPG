@@ -1,13 +1,22 @@
-﻿  Camera.cpp
+﻿  AnimatedSprite.cpp
+  Camera.cpp
   Clock.cpp
   DialogBox.cpp
+  DialogImage.cpp
   Game.cpp
+  Graphics.cpp
   IdleState.cpp
   Light.cpp
+  Main.cpp
   MeleeAttackState.cpp
+  MeleeWeapon.cpp
   MovingState.cpp
   Object.cpp
   PlayerCharacter.cpp
+  Rectangle.cpp
   ShadowLayer.cpp
+  Sprite.cpp
+  State.cpp
+  Vector2D.cpp
   Generating Code...
   SimpleActionRpg.vcxproj -> C:\Users\Yorke\source\projects\Action RPG\Action-RPG\x64\Debug\SimpleActionRpg.exe
