@@ -26,10 +26,9 @@
 //  TODO: Add method description.
 //
 //***************************************************************************************************************************************************
-Light::Light(int theCoordinateX, int theCoordinateY, int theRadius, ALLEGRO_COLOR theColor, int theIntensity)
+Light::Light(int theCoordinateX, int theCoordinateY, int theRadius, ALLEGRO_COLOR theColor, int theIntensity) :
+Object(theCoordinateX, theCoordinateY, theRadius, theRadius)
 {
-   mCoordinateX = theCoordinateX;
-   mCoordinateY = theCoordinateY;
    mRaidus = theRadius;
    mColor = theColor;
    mIntensity = theIntensity;

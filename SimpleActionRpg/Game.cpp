@@ -239,16 +239,14 @@ void Game::GameLoop()
    Graphics graphics(mpDisplay);
 
    // TODO: Remove: Test Code - Start
-   Camera* camera = new Camera();
-   PlayerCharacter* pTestCharacter = new PlayerCharacter(graphics);
-   PlayerCharacter* pTestCharacter2 = new PlayerCharacter(graphics);
+   PlayerCharacter* pTestCharacter = new PlayerCharacter(graphics, 0, 0);
    int count = 0;
    int time = 0;
    bool increase = true;
    ShadowLayer* shadowLayer = new ShadowLayer("../Images/ShadowLayer.png"); 
    Light* testLight = new Light(50, 50, 100, al_map_rgb(255, 255, 255), 2);
    Light* testLight2 = new Light(150, 150, 100, al_map_rgb(255, 0, 0), 3);
-   Clock* clock = new Clock(1.0F);
+   Clock* clock = new Clock(0.5F);
    shadowLayer->AddLight(testLight);
    shadowLayer->AddLight(testLight2);
    DialogImage* dialogOverlay = new DialogImage(graphics,
@@ -266,12 +264,17 @@ void Game::GameLoop()
                                                390,
                                                960,  // Screen Width
                                                150); // Arbitrary
+   Rectangle* areaBoundary = new Rectangle(-100,
+                                           0,
+                                           1000,
+                                           1000);
    DialogBox* dialogBox = new DialogBox("Advise Guy:",
-                                        "(Note: Press the 'V' key to continue to dialog) This is a test dialog to make sure that the dialog Fits properly within the dialog box. This test also makes sure that not only does the text fit horizontally in the dialog box but also only shows the amount of lines that can fit vertically. By pressing the next key ('V' for this test) the dialog will move on to the next set of lines to be displayed.",
+                                        "(Note: Press the 'V' key to continue to dialog) This is a test dialog to make sure that the dialog Fits properly within the dialog box. This test also makes sure that not only does the text fit horizontally in the dialog box but also only shows the amount of lines that can fit vertically. By pressing the next key ('V' for this test) the dialog will move on to the next set of lines to be displayed. After this conversation is done this window will close and the camera will change focus to the first test light (white color).",
                                         dialogDimensions);
    dialogBox->AddOverlay(dialogOverlay);
    dialogBox->AddCharacterImage(characterImage);
    bool dialogDone = false;
+   Camera* camera = new Camera(areaBoundary, pTestCharacter);
    // TODO: Remove: Test Code - End
 
    bool redraw = false;
@@ -323,9 +326,10 @@ void Game::GameLoop()
                // TODO: Remove clock test code - Start
                clock->Update(currentTime - lastUpdateTime);
                std::cout << clock->GetTimeString() << std::endl;
-               camera->Update(pTestCharacter->GetCoordinateX(), pTestCharacter->GetCoordinateY());
+               camera->Update();
                if (dialogDone == true)
                {
+                  camera->ChangeFollowingObject(testLight); // Test to make sure this will change
                   delete dialogBox;
                   dialogBox = nullptr;
                   delete dialogOverlay;
@@ -384,7 +388,7 @@ void Game::GameLoop()
                increase = true;
          }
 
-         shadowLayer->SetIntensity(240);
+         shadowLayer->SetIntensity(130);
          shadowLayer->Draw(graphics);
          if (dialogBox != nullptr)
             dialogBox->Draw(graphics);

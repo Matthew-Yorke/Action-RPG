@@ -15,8 +15,9 @@
 #define Light_H
 
 #include "Graphics.h"
+#include "Object.h"
 
-class Light
+class Light : public Object
 {
    //************************************************************************************************************************************************
    // Start Method Declarations
@@ -41,70 +42,6 @@ class Light
       //
       //************************************************************************************************************************************************
       Light(int theCoordinateX, int theCoordinateY, int theRaidus, ALLEGRO_COLOR theColor, int theIntensity);
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: GetCoordinateX
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A
-      //
-      // Return:
-      //  TODO: Add description.
-      //
-      //************************************************************************************************************************************************
-      inline float GetCoordinateX() { return mCoordinateX; };
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: SetCoordinateX
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  theCoordinateX - TODO: Add description.
-      //
-      // Return:
-      //  N/A
-      //
-      //************************************************************************************************************************************************
-      inline void SetCoordinateX(float theCoordinateX) { mCoordinateX = theCoordinateX; };
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: GetCoordinateY
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A
-      //
-      // Return:
-      //  TODO: Add description.
-      //
-      //************************************************************************************************************************************************
-      inline float GetCoordinateY() { return mCoordinateY; };
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: SetCoordinateY
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  theCoordinateY - TODO: Add description.
-      //
-      // Return:
-      //  N/A
-      //
-      //************************************************************************************************************************************************
-      inline void SetCoordinateY(float theCoordinateY) { mCoordinateY = theCoordinateY; };
 
       //************************************************************************************************************************************************
       //
@@ -147,12 +84,6 @@ class Light
    // There are currently no protected member variables for this class.
 
    private:
-
-      // TODO: Add description.
-      int mCoordinateX;
-
-      // TODO: Add description.
-      int mCoordinateY;
 
       // TODO: Add description.
       int mRaidus;

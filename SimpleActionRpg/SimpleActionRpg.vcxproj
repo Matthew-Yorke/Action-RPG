@@ -179,6 +179,7 @@
     <ClCompile Include="MeleeAttackState.cpp" />
     <ClCompile Include="MeleeWeapon.cpp" />
     <ClCompile Include="MovingState.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="ShadowLayer.cpp" />
@@ -194,6 +195,8 @@
     <ClInclude Include="DialogImage.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="MathConstants.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="PlayerConstants.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="Light.h" />

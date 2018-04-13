@@ -12,6 +12,7 @@
 //***************************************************************************************************************************************************
 
 #include "allegro5/allegro.h"
+#include "MathConstants.h"
 #include "Camera.h"
 
 //***************************************************************************************************************************************************
@@ -23,13 +24,70 @@
 // Method Name: Camera
 //
 // Description:
-//  TODO: Add method description.
+//  Set member to default values and call to update the camera position.
 //
 //***************************************************************************************************************************************************
-Camera::Camera()
+Camera::Camera(Rectangle* thepBoundaries, Object* thepObject)
 {
-   mCoordinateX = 0.0F;
-   mCoordinateY = 0.0F;
+   mCoordinateX = 0;
+   mCoordinateY = 0;
+   mpBoundaries = thepBoundaries;
+   mpFollowingObject = thepObject;
+
+   Update();
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: ChangeFollowingObject
+//
+// Description:
+//  Store the new object being tracked and call to update the camera position.
+//
+//************************************************************************************************************************************************
+void Camera::ChangeFollowingObject(Object* theObject)
+{
+   mpFollowingObject = theObject;
+   Update();
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: GetCoordinateX
+//
+// Description:
+//  Return the current X-Coordinate of the camera.
+//
+//************************************************************************************************************************************************
+int Camera::GetCoordinateX()
+{
+   return mCoordinateX;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: GetCoordinateY
+//
+// Description:
+//  Return the current Y-Coordinate of the camera.
+//
+//************************************************************************************************************************************************
+int Camera::GetCoordinateY()
+{
+   return mCoordinateY;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: SetBoundaries
+//
+// Description:
+//  Store the boundary limits of the passed in rectangle.
+//
+//************************************************************************************************************************************************
+void Camera::SetBoundaries(Rectangle* thepBoundaries)
+{
+   mpBoundaries = thepBoundaries;
 }
 
 //***************************************************************************************************************************************************
@@ -37,32 +95,48 @@ Camera::Camera()
 // Method Name: Update
 //
 // Description:
-//  TODO: Add method description.
+//  If an object is being followed, scroll the camera position along with the player at the center of the X-Coordinate and/or Y-Coordinate up to the
+//  boundary limits for the camera. If there is not object to be followed then the camera stays at its previous location.
 //
 //***************************************************************************************************************************************************
-void Camera::Update(float thePlayerCoordinateX, float thePlayerCoordinateY)
+void Camera::Update()
 {
    // Note: 960 is screen width and 540 is screen height.
-   // TODO: Change those values to use constants.
-   // Note 2: 32 represents the width and height of the player sprite.
-   // TODO: Change those values to obtain from constants.
-   mCoordinateX = -(960 / 2) + (thePlayerCoordinateX + 32/ 2); 
-   mCoordinateY = -(540 / 2) + (thePlayerCoordinateY + 32/ 2); 
-
-   if (mCoordinateX < 0.0F)
+   // TODO: Change those values to use constants or have some value passed in.
+   // If there is an object being followed, update the camera coordinates to place the followed object center of the camera.
+   if (mpFollowingObject != nullptr)
    {
-      mCoordinateX = 0.0F;
+      mCoordinateX = (-960 / MathConstants::HALF) +
+                     (mpFollowingObject->GetCoordinateX() + mpFollowingObject->GetWidthCenterPoint()); 
+      mCoordinateY = (-540 / MathConstants::HALF) +
+                     (mpFollowingObject->GetCoordinateY() + mpFollowingObject->GetHeightCenterPoint()); 
    }
-   // TODO: Need to see maximum x value. This can be a member variable that is adjustable based on map sizes.
 
-   if (mCoordinateY < 0.0F)
+   // Prevent the camera from scrolling past the world coordinate origin point for the left side of the screen.
+   if (mCoordinateX < mpBoundaries->GetCoordinateX())
    {
-      mCoordinateY = 0.0F;
+      mCoordinateX = mpBoundaries->GetCoordinateX();
    }
-   // TODO: Need to see maximum y value. This can be a member variable that is adjustable based on map sizes.
+   else if ((mCoordinateX + 960) > mpBoundaries->GetWidth())
+   {
+      mCoordinateX = mpBoundaries->GetWidth() - 960;
+   }
 
+   // Prevent the camera from scrolling past the world coordinate origin point for the top of the screen.
+   if (mCoordinateY < mpBoundaries->GetCoordinateY())
+   {
+      mCoordinateY = mpBoundaries->GetCoordinateY();
+   }
+   else if ((mCoordinateY + 540) > mpBoundaries->GetHeight())
+   {
+      mCoordinateY = mpBoundaries->GetHeight() - 540;
+   }
+
+   // Have the camera mock follow the object by pushing all other object the opposite direction the object is moving.
    al_identity_transform(&mCamera);
-   al_translate_transform(&mCamera, -mCoordinateX, -mCoordinateY);
+   al_translate_transform(&mCamera,
+                          -mCoordinateX,
+                          -mCoordinateY);
    al_use_transform(&mCamera);
 }
 

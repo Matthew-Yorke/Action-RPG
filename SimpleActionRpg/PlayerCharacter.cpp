@@ -27,12 +27,11 @@
 //  TODO: Add method description.
 //
 //***************************************************************************************************************************************************
-PlayerCharacter::PlayerCharacter(Graphics& theGraphics)
+PlayerCharacter::PlayerCharacter(Graphics& theGraphics, int theCoordinateX, int theCoordinateY) :
+Object(0, 0, (32 / 2), (32 / 2))
 {
    mCurrentHealth = mMaxHealth = 10;
    mCurrentMana = mMaxMana = 5;
-   mCoordinateX = 0.0F;
-   mCoordinateY = 0.0F;
    mpVelocity = new Vector2D(1.0F,
                              1.0F);
    mpSprite = new AnimatedSprite(theGraphics,
@@ -43,8 +42,8 @@ PlayerCharacter::PlayerCharacter(Graphics& theGraphics)
                                  32,
                                  5,
                                  4);
-   mpHitbox = new Rectangle(mCoordinateX + 10,
-                            mCoordinateY,
+   mpHitbox = new Rectangle(theCoordinateX + 10,
+                            theCoordinateY,
                             12,
                             32);
    mpMeleeWeapon = new MeleeWeapon(theGraphics,
@@ -89,8 +88,8 @@ PlayerCharacter::~PlayerCharacter()
 void PlayerCharacter::DrawSprite(Graphics& theGraphics)
 {
    mpSprite->Draw(theGraphics,
-                  static_cast<int>(mCoordinateX),
-                  static_cast<int>(mCoordinateY));
+                  static_cast<int>(GetCoordinateX()),
+                  static_cast<int>(GetCoordinateY()));
 }
 
 //***************************************************************************************************************************************************

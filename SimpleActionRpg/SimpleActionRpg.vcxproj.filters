@@ -30,6 +30,12 @@
     <Filter Include="Code\Engine\Dialog">
       <UniqueIdentifier>{b4977681-ed10-4d44-93d4-0dbcd32dd0eb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Code\Engine\Objects">
+      <UniqueIdentifier>{793b0a57-6def-470c-87b5-fe9a15648cbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Engine\Camera">
+      <UniqueIdentifier>{035d5b8e-8475-4739-a607-eae106f2d537}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -80,14 +86,17 @@
     <ClCompile Include="Vector2D.cpp">
       <Filter>Code\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Code\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="DialogBox.cpp">
       <Filter>Code\Engine\Dialog</Filter>
     </ClCompile>
     <ClCompile Include="DialogImage.cpp">
       <Filter>Code\Engine\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Code\Engine\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Code\Engine\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,14 +148,20 @@
     <ClInclude Include="PlayerConstants.h">
       <Filter>Code\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Code\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="DialogBox.h">
       <Filter>Code\Engine\Dialog</Filter>
     </ClInclude>
     <ClInclude Include="DialogImage.h">
       <Filter>Code\Engine\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Code\Engine\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Code\Engine\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="MathConstants.h">
+      <Filter>Code\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

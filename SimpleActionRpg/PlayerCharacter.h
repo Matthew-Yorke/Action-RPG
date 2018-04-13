@@ -24,8 +24,9 @@
 #include "PlayerConstants.h"
 #include <vector>
 #include <algorithm>
+#include "Object.h"
 
-class PlayerCharacter
+class PlayerCharacter : public Object
 {
    //************************************************************************************************************************************************
    // Start Method Declarations
@@ -47,7 +48,7 @@ class PlayerCharacter
       //  N/A
       //
       //************************************************************************************************************************************************
-      PlayerCharacter(Graphics& theGraphics);
+      PlayerCharacter(Graphics& theGraphics, int theCoordianteX, int theCoordinateY);
 
       //************************************************************************************************************************************************
       //
@@ -64,70 +65,6 @@ class PlayerCharacter
       //
       //************************************************************************************************************************************************
       ~PlayerCharacter();
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: GetCoordinateX
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A
-      //
-      // Return:
-      //  TODO: Add description.
-      //
-      //************************************************************************************************************************************************
-      inline float GetCoordinateX() { return mCoordinateX; };
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: SetCoordinateX
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  theCoordinateX - TODO: Add description.
-      //
-      // Return:
-      //  N/A
-      //
-      //************************************************************************************************************************************************
-      inline void SetCoordinateX(float theCoordinateX) { mCoordinateX = theCoordinateX; mpMeleeWeapon->SetCoordinateX(theCoordinateX); };
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: GetCoordinateY
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A
-      //
-      // Return:
-      //  TODO: Add description.
-      //
-      //************************************************************************************************************************************************
-      inline float GetCoordinateY() { return mCoordinateY; };
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: SetCoordinateY
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  theCoordinateY - TODO: Add description.
-      //
-      // Return:
-      //  N/A
-      //
-      //************************************************************************************************************************************************
-      inline void SetCoordinateY(float theCoordinateY) { mCoordinateY = theCoordinateY; mpMeleeWeapon->SetCoordinateY(theCoordinateY); };
 
       //************************************************************************************************************************************************
       //
@@ -414,12 +351,6 @@ class PlayerCharacter
 
       // TODO: Add description.
       int mCurrentMana;
-
-      // TODO: Add description.
-      float mCoordinateX;
- 
-      // TODO: Add description.
-      float mCoordinateY;
 
       // TODO: Add description.
       Vector2D* mpVelocity;
