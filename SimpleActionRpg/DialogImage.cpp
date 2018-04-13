@@ -31,6 +31,45 @@ DialogImage::DialogImage(Graphics& theGraphics, std::string theFilePath, int the
    mpDimensions = new Rectangle(theCoordinateX, theCoordinateY, theWidth, theHeight);
 }
 
+//*********************************************************************************************************************************************
+//
+// Method Name: SetCoordinateX
+//
+// Description:
+//  Update the X-Coordinate with the new passed in value.
+//
+//*********************************************************************************************************************************************
+void DialogImage::SetCoordinateX(int theCoordianteX)
+{
+   mpDimensions->SetCoordinateX(theCoordianteX);
+}
+
+//*********************************************************************************************************************************************
+//
+// Method Name: SetCoordinateY
+//
+// Description:
+//  Update the Y-Coordinate with the new passed in value.
+//
+//*********************************************************************************************************************************************
+void DialogImage::SetCoordinateY(int theCoordianteY)
+{
+   mpDimensions->SetCoordinateY(theCoordianteY);
+}
+
+//*********************************************************************************************************************************************
+//
+// Method Name: GetImageWidth
+//
+// Description:
+//  Return the width of the image.
+//
+//*********************************************************************************************************************************************
+int DialogImage::GetImageWidth()
+{
+   return mpDimensions->GetWidth();
+}
+
 //***************************************************************************************************************************************************
 //
 // Method Name: Draw

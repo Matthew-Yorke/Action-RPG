@@ -28,7 +28,7 @@
 //
 //***************************************************************************************************************************************************
 PlayerCharacter::PlayerCharacter(Graphics& theGraphics, int theCoordinateX, int theCoordinateY) :
-Object(0, 0, (32 / 2), (32 / 2))
+RectangleObject(theCoordinateX, theCoordinateY, 32, 32)
 {
    mCurrentHealth = mMaxHealth = 10;
    mCurrentMana = mMaxMana = 5;
@@ -52,8 +52,7 @@ Object(0, 0, (32 / 2), (32 / 2))
                                    0,
                                    8,
                                    16);
-   mpCurrentState = new IdleState();
-   mpCurrentState->SetCharacterReference(this);
+   mpCurrentState = new IdleState(this);
    mDirection = PlayerConstants::DIRECTION::DOWN;
 }
 
@@ -69,6 +68,195 @@ PlayerCharacter::~PlayerCharacter()
 {
    delete mpVelocity;
    delete mpSprite;
+   delete mpHitbox;
+   delete mpMeleeWeapon;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: GetDirection
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+PlayerConstants::DIRECTION PlayerCharacter::GetDirection()
+{
+   return mDirection;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: SetDirection
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void PlayerCharacter::SetDirection(PlayerConstants::DIRECTION theDirection)
+{
+   mDirection = theDirection; mpMeleeWeapon->SetDirection(theDirection);
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: InsertMovementDirection
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void PlayerCharacter::InsertMovementDirection(PlayerConstants::DIRECTION theDirection)
+{
+   mMovingDirectionVector.insert(mMovingDirectionVector.begin(),
+                                 theDirection);
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: RemoveMovementDirection
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void PlayerCharacter::RemoveMovementDirection(PlayerConstants::DIRECTION theDirection)
+{
+   mMovingDirectionVector.erase(std::remove(mMovingDirectionVector.begin(),
+                                            mMovingDirectionVector.end(),
+                                            theDirection),
+                                mMovingDirectionVector.end());
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: IsMovingDirectionEmpty
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+bool PlayerCharacter::IsMovingDirectionEmpty()
+{
+   return mMovingDirectionVector.empty();
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: IsMovingDirectionEmpty
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+PlayerConstants::DIRECTION PlayerCharacter::GetFrontOfMovingDirectionVector()
+{
+   return mMovingDirectionVector.front();
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: GetVelocity
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+Vector2D* PlayerCharacter::GetVelocity()
+{
+   return mpVelocity;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: GetSprite
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+AnimatedSprite* PlayerCharacter::GetSprite()
+{
+   return mpSprite;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: GetMeleeWeapon
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+MeleeWeapon* PlayerCharacter::GetMeleeWeapon()
+{
+   return mpMeleeWeapon;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: ChangeState
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void PlayerCharacter::ChangeState(State* theState)
+{
+   delete mpCurrentState;
+   mpCurrentState = theState;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: KeyDown
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void PlayerCharacter::KeyDown(ALLEGRO_EVENT theEvent)
+{
+   mpCurrentState->KeyDown(theEvent);
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: KeyUp
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void PlayerCharacter::KeyUp(ALLEGRO_EVENT theEvent)
+{
+   mpCurrentState->KeyUp(theEvent);
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: Update
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void PlayerCharacter::Update(float theTimeChange)
+{
+   mpCurrentState->Update(theTimeChange);
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: Draw
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void PlayerCharacter::Draw(Graphics& theGraphics)
+{
+   mpCurrentState->Draw(theGraphics);
 }
 
 //************************************************************************************************************************************************
@@ -88,8 +276,8 @@ PlayerCharacter::~PlayerCharacter()
 void PlayerCharacter::DrawSprite(Graphics& theGraphics)
 {
    mpSprite->Draw(theGraphics,
-                  static_cast<int>(GetCoordinateX()),
-                  static_cast<int>(GetCoordinateY()));
+                  GetCoordinateX(),
+                  GetCoordinateY());
 }
 
 //***************************************************************************************************************************************************

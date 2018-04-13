@@ -28,7 +28,8 @@
 //  TODO: Add method description.
 //
 //***************************************************************************************************************************************************
-IdleState::IdleState()
+IdleState::IdleState(PlayerCharacter* thePlayerCharacter) :
+State(thePlayerCharacter)
 {
 }
 
@@ -57,7 +58,7 @@ void IdleState::KeyDown(ALLEGRO_EVENT theEvent)
          mpPlayerCharacter->GetSprite()->SetAnimationSourceY(32,
                                                              4);
          mpPlayerCharacter->InsertMovementDirection(PlayerConstants::DIRECTION::DOWN);
-         mpPlayerCharacter->ChangeState(new MovingState());
+         mpPlayerCharacter->ChangeState(new MovingState(mpPlayerCharacter));
          break;
       }
       case ALLEGRO_KEY_LEFT:
@@ -66,7 +67,7 @@ void IdleState::KeyDown(ALLEGRO_EVENT theEvent)
          mpPlayerCharacter->GetSprite()->SetAnimationSourceY(64,
                                                              4);
          mpPlayerCharacter->InsertMovementDirection(PlayerConstants::DIRECTION::LEFT);
-         mpPlayerCharacter->ChangeState(new MovingState());
+         mpPlayerCharacter->ChangeState(new MovingState(mpPlayerCharacter));
          break;
       }
       case ALLEGRO_KEY_RIGHT:
@@ -75,7 +76,7 @@ void IdleState::KeyDown(ALLEGRO_EVENT theEvent)
          mpPlayerCharacter->GetSprite()->SetAnimationSourceY(96,
                                                              4);
          mpPlayerCharacter->InsertMovementDirection(PlayerConstants::DIRECTION::RIGHT);
-         mpPlayerCharacter->ChangeState(new MovingState());
+         mpPlayerCharacter->ChangeState(new MovingState(mpPlayerCharacter));
          break;
       }
       case ALLEGRO_KEY_UP:
@@ -84,12 +85,12 @@ void IdleState::KeyDown(ALLEGRO_EVENT theEvent)
          mpPlayerCharacter->GetSprite()->SetAnimationSourceY(128,
                                                              4);
          mpPlayerCharacter->InsertMovementDirection(PlayerConstants::DIRECTION::UP);
-         mpPlayerCharacter->ChangeState(new MovingState());
+         mpPlayerCharacter->ChangeState(new MovingState(mpPlayerCharacter));
          break;
       }
       case ALLEGRO_KEY_Z:
       {
-         mpPlayerCharacter->ChangeState(new MeleeAttackState());
+         mpPlayerCharacter->ChangeState(new MeleeAttackState(mpPlayerCharacter));
          break;
       }
    }

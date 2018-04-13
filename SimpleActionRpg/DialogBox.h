@@ -62,10 +62,7 @@ class DialogBox
       //  N/A
       //
       //*********************************************************************************************************************************************
-      inline void AddOverlay(DialogImage* theOverlayImage)
-      {
-         mpOverlayImage = theOverlayImage;
-      };
+      void AddOverlay(DialogImage* theOverlayImage);
 
       //*********************************************************************************************************************************************
       //
@@ -81,10 +78,7 @@ class DialogBox
       //  N/A
       //
       //*********************************************************************************************************************************************
-      inline void AddCharacterImage(DialogImage* theCharacterImage)
-      {
-         mpCharacterImage = theCharacterImage; DetermineNumberCharactersInLine();
-      };
+      void AddCharacterImage(DialogImage* theCharacterImage);
 
       //*********************************************************************************************************************************************
       //

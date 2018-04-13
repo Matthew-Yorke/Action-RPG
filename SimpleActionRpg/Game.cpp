@@ -339,6 +339,8 @@ void Game::GameLoop()
                }
                if (dialogBox != nullptr)
                   dialogBox->CameraUpdate(camera);
+               if (shadowLayer != nullptr)
+                  shadowLayer->CameraUpdate(camera);
                // TODO: Remove clock test code - End
 
                lastUpdateTime = currentTime;

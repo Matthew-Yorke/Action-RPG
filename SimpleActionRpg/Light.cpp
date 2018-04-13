@@ -27,11 +27,26 @@
 //
 //***************************************************************************************************************************************************
 Light::Light(int theCoordinateX, int theCoordinateY, int theRadius, ALLEGRO_COLOR theColor, int theIntensity) :
-Object(theCoordinateX, theCoordinateY, theRadius, theRadius)
+CircleObject(theCoordinateX, theCoordinateY, theRadius)
 {
-   mRaidus = theRadius;
    mColor = theColor;
    mIntensity = theIntensity;
+   mWorldCoordinateX = theCoordinateX;
+   mWorldCoordinateY = theCoordinateY;
+}
+
+//*********************************************************************************************************************************************
+//
+// Method Name: CameraUpdate
+//
+// Description:
+//  Update the dialog pieces coordinates relative to the camera coordinates.
+//
+//*********************************************************************************************************************************************
+void Light::CameraUpdate(Camera* theCamera)
+{
+   mWorldCoordinateX = mCoordinateX - theCamera->GetCoordinateX();
+   mWorldCoordinateY = mCoordinateY - theCamera->GetCoordinateY();
 }
 
 //***************************************************************************************************************************************************
@@ -44,11 +59,11 @@ Object(theCoordinateX, theCoordinateY, theRadius, theRadius)
 //***************************************************************************************************************************************************
 void Light::Draw(Graphics& theGraphics)
 {
-   for (int currentRaidus = mRaidus; currentRaidus > 0; currentRaidus--)
+   for (int currentRadius = GetRadius(); currentRadius > 0; currentRadius--)
    {
-      al_draw_filled_circle(mCoordinateX,
-                            mCoordinateY,
-                            currentRaidus,
+      al_draw_filled_circle(mWorldCoordinateX,
+                            mWorldCoordinateY,
+                            currentRadius,
                             al_map_rgba(mColor.r * 255,
                                         mColor.g * 255,
                                         mColor.b * 255,

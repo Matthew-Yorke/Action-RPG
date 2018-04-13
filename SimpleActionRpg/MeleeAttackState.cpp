@@ -28,7 +28,8 @@
 //  TODO: Add method description.
 //
 //***************************************************************************************************************************************************
-MeleeAttackState::MeleeAttackState()
+MeleeAttackState::MeleeAttackState(PlayerCharacter* thePlayerCharacter) :
+State(thePlayerCharacter)
 {
    mAttackTimeRemaining = 0.3F;
 }
@@ -160,7 +161,7 @@ void MeleeAttackState::Update(float theTimeChange)
                                                                 4);
          }
 
-         mpPlayerCharacter->ChangeState(new MovingState());
+         mpPlayerCharacter->ChangeState(new MovingState(mpPlayerCharacter));
       }
       else
       {
@@ -185,7 +186,7 @@ void MeleeAttackState::Update(float theTimeChange)
                                                                 1);
          }
 
-         mpPlayerCharacter->ChangeState(new IdleState());
+         mpPlayerCharacter->ChangeState(new IdleState(mpPlayerCharacter));
       }
    }
 }

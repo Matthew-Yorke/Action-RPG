@@ -98,6 +98,12 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Code\Engine\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="RectangleObject.cpp">
+      <Filter>Code\Engine\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleObject.cpp">
+      <Filter>Code\Engine\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -162,6 +168,12 @@
     </ClInclude>
     <ClInclude Include="MathConstants.h">
       <Filter>Code\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangleObject.h">
+      <Filter>Code\Engine\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleObject.h">
+      <Filter>Code\Engine\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

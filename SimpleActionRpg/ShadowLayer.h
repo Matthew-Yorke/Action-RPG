@@ -17,6 +17,7 @@
 #include "Graphics.h"
 #include <vector>
 #include "Light.h"
+#include "Camera.h"
 
 class ShadowLayer
 {
@@ -72,7 +73,7 @@ class ShadowLayer
       //  TODO: Add description.
       //
       //************************************************************************************************************************************************
-      inline int GetIntenstiry() { return mIntensity; };
+      int GetIntenstiry();
 
       //************************************************************************************************************************************************
       //
@@ -88,7 +89,7 @@ class ShadowLayer
       //  N/A
       //
       //************************************************************************************************************************************************
-      inline void SetIntensity(int theIntensity) { mIntensity = theIntensity; };
+      void SetIntensity(int theIntensity);
 
       //************************************************************************************************************************************************
       //
@@ -104,7 +105,7 @@ class ShadowLayer
       //  N/A
       //
       //************************************************************************************************************************************************
-      inline void AddLight(Light* theLight) { mLightList.push_back(theLight); };
+      void AddLight(Light* theLight);
 
       //************************************************************************************************************************************************
       //
@@ -120,7 +121,23 @@ class ShadowLayer
       //  N/A
       //
       //************************************************************************************************************************************************
-      inline void RemoveLight() { /* TODO: Remove specific light */ };
+      void RemoveLight();
+
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: CameraUpdate
+      //
+      // Description:
+      //  Update the message box screen location based upon the camera location.
+      //
+      // Arguments:
+      //  theCamera - Pointer to the camera object used to update the X and Y coordinates relative to the camera.
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      void CameraUpdate(Camera* theCamera);
 
       //************************************************************************************************************************************************
       //
@@ -171,6 +188,12 @@ class ShadowLayer
       int mIntensity;
 
       std::vector<Light*> mLightList;
+
+      Rectangle* mpDimensions;
+
+      float mCoordinateX;
+
+      float mCoordinateY;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

@@ -38,17 +38,101 @@ public:
    //************************************************************************************************************************************************
    Rectangle(int theCoordinateX, int theCoordianteY, int theWidth, int theHeight);
 
-   inline int GetCoordinateX() { return mCoordianteX; };
+   //************************************************************************************************************************************************
+   //
+   // Method Name: GetCoordinateX
+   //
+   // Description:
+   //  TODO: Add description.
+   //
+   // Arguments:
+   //  N/A
+   //
+   // Return:
+   //  TODO: Add description.
+   //
+   //************************************************************************************************************************************************
+   int GetCoordinateX();
 
-   inline void SetCoordinateX(int theCoordinateX) { mCoordianteX = theCoordinateX; };
+   //************************************************************************************************************************************************
+   //
+   // Method Name: SetCoordinateX
+   //
+   // Description:
+   //  TODO: Add description.
+   //
+   // Arguments:
+   //  theCoordinateX - TODO: Add description.
+   //
+   // Return:
+   //  N/A
+   //
+   //************************************************************************************************************************************************
+   void SetCoordinateX(int theCoordinateX);
 
-   inline int GetCoordinateY() { return mCoordianteY; };
+   //************************************************************************************************************************************************
+   //
+   // Method Name: GetCoordinateY
+   //
+   // Description:
+   //  TODO: Add description.
+   //
+   // Arguments:
+   //  N/A
+   //
+   // Return:
+   //  TODO: Add description.
+   //
+   //************************************************************************************************************************************************
+   int GetCoordinateY();
 
-   inline void SetCoordinateY(int theCoordinateY) { mCoordianteY = theCoordinateY; };
+   //************************************************************************************************************************************************
+   //
+   // Method Name: SetCoordinateY
+   //
+   // Description:
+   //  TODO: Add description.
+   //
+   // Arguments:
+   //  theCoordinateY - TODO: Add description.
+   //
+   // Return:
+   //  N/A
+   //
+   //************************************************************************************************************************************************
+   void SetCoordinateY(int theCoordinateY);
 
-   inline int GetWidth() { return mWidth; };
+   //************************************************************************************************************************************************
+   //
+   // Method Name: GetWidth
+   //
+   // Description:
+   //  TODO: Add description.
+   //
+   // Arguments:
+   //  N/A
+   //
+   // Return:
+   //  TODO: Add description.
+   //
+   //************************************************************************************************************************************************
+   int GetWidth();
 
-   inline int GetHeight() { return mHeight; };
+   //************************************************************************************************************************************************
+   //
+   // Method Name: GetHeight
+   //
+   // Description:
+   //  TODO: Add description.
+   //
+   // Arguments:
+   //  N/A
+   //
+   // Return:
+   //  TODO: Add description.
+   //
+   //************************************************************************************************************************************************
+   int GetHeight();
 
 protected:
 

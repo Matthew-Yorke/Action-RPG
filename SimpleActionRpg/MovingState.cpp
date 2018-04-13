@@ -27,7 +27,8 @@
 //  TODO: Add method description.
 //
 //***************************************************************************************************************************************************
-MovingState::MovingState()
+MovingState::MovingState(PlayerCharacter* thePlayerCharacter) :
+State(thePlayerCharacter)
 {
 }
 
@@ -72,7 +73,7 @@ void MovingState::KeyDown(ALLEGRO_EVENT theEvent)
       }
       case ALLEGRO_KEY_Z:
       {
-         mpPlayerCharacter->ChangeState(new MeleeAttackState());
+         mpPlayerCharacter->ChangeState(new MeleeAttackState(mpPlayerCharacter));
          break;
       }
    }
@@ -121,7 +122,7 @@ void MovingState::KeyUp(ALLEGRO_EVENT theEvent)
 
    if (mpPlayerCharacter->IsMovingDirectionEmpty() == true)
    {
-      mpPlayerCharacter->ChangeState(new IdleState());
+      mpPlayerCharacter->ChangeState(new IdleState(mpPlayerCharacter));
    }
 }
 

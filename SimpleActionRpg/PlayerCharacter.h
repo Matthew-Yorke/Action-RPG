@@ -24,9 +24,9 @@
 #include "PlayerConstants.h"
 #include <vector>
 #include <algorithm>
-#include "Object.h"
+#include "RectangleObject.h"
 
-class PlayerCharacter : public Object
+class PlayerCharacter : public RectangleObject
 {
    //************************************************************************************************************************************************
    // Start Method Declarations
@@ -80,7 +80,7 @@ class PlayerCharacter : public Object
       //  TODO: Add description.
       //
       //************************************************************************************************************************************************
-      PlayerConstants::DIRECTION GetDirection() { return mDirection; };
+      PlayerConstants::DIRECTION GetDirection();
 
       //************************************************************************************************************************************************
       //
@@ -96,7 +96,7 @@ class PlayerCharacter : public Object
       //  N/A
       //
       //************************************************************************************************************************************************
-      void SetDirection(PlayerConstants::DIRECTION theDirection) { mDirection = theDirection; mpMeleeWeapon->SetDirection(theDirection); };
+      void SetDirection(PlayerConstants::DIRECTION theDirection);
 
       //************************************************************************************************************************************************
       //
@@ -112,11 +112,7 @@ class PlayerCharacter : public Object
       //  N/A
       //
       //************************************************************************************************************************************************
-      inline void InsertMovementDirection(PlayerConstants::DIRECTION theDirection)
-      {
-         mMovingDirectionVector.insert(mMovingDirectionVector.begin(),
-                                       theDirection);
-      };
+      void InsertMovementDirection(PlayerConstants::DIRECTION theDirection);
 
       //************************************************************************************************************************************************
       //
@@ -132,13 +128,7 @@ class PlayerCharacter : public Object
       //  N/A
       //
       //************************************************************************************************************************************************
-      inline void RemoveMovementDirection(PlayerConstants::DIRECTION theDirection)
-      {
-         mMovingDirectionVector.erase(std::remove(mMovingDirectionVector.begin(),
-                                                  mMovingDirectionVector.end(),
-                                                  theDirection),
-                                      mMovingDirectionVector.end());
-      };
+      void RemoveMovementDirection(PlayerConstants::DIRECTION theDirection);
 
       //************************************************************************************************************************************************
       //
@@ -154,10 +144,7 @@ class PlayerCharacter : public Object
       //  TODO: Add description.
       //
       //************************************************************************************************************************************************
-      inline bool IsMovingDirectionEmpty()
-      {
-         return mMovingDirectionVector.empty();
-      };
+      bool IsMovingDirectionEmpty();
 
       //************************************************************************************************************************************************
       //
@@ -173,10 +160,7 @@ class PlayerCharacter : public Object
       //  TODO: Add description.
       //
       //************************************************************************************************************************************************
-      inline PlayerConstants::DIRECTION GetFrontOfMovingDirectionVector()
-      {
-         return mMovingDirectionVector.front();
-      };
+      PlayerConstants::DIRECTION GetFrontOfMovingDirectionVector();
 
       //************************************************************************************************************************************************
       //
@@ -192,7 +176,7 @@ class PlayerCharacter : public Object
       //  TODO: Add description.
       //
       //************************************************************************************************************************************************
-      inline Vector2D* GetVelocity() { return mpVelocity; };
+      Vector2D* GetVelocity();
 
       //************************************************************************************************************************************************
       //
@@ -208,7 +192,7 @@ class PlayerCharacter : public Object
       //  TODO: Add description.
       //
       //************************************************************************************************************************************************
-      inline AnimatedSprite* GetSprite() { return mpSprite; };
+      AnimatedSprite* GetSprite();
 
       //************************************************************************************************************************************************
       //
@@ -224,7 +208,7 @@ class PlayerCharacter : public Object
       //  TODO: Add description.
       //
       //************************************************************************************************************************************************
-      inline MeleeWeapon* GetMeleeWeapon() { return mpMeleeWeapon; };
+      MeleeWeapon* GetMeleeWeapon();
 
       //************************************************************************************************************************************************
       //
@@ -240,7 +224,7 @@ class PlayerCharacter : public Object
       //  N/A
       //
       //************************************************************************************************************************************************
-      inline void ChangeState(State* theState) { delete mpCurrentState; mpCurrentState = theState; mpCurrentState->SetCharacterReference(this); };
+      void ChangeState(State* theState);
 
       //************************************************************************************************************************************************
       //
@@ -256,7 +240,7 @@ class PlayerCharacter : public Object
       //  N/A
       //
       //************************************************************************************************************************************************
-      inline void KeyDown(ALLEGRO_EVENT theEvent) { mpCurrentState->KeyDown(theEvent); };
+      void KeyDown(ALLEGRO_EVENT theEvent);
 
       //************************************************************************************************************************************************
       //
@@ -272,7 +256,7 @@ class PlayerCharacter : public Object
       //  N/A
       //
       //************************************************************************************************************************************************
-      inline void KeyUp(ALLEGRO_EVENT theEvent) { mpCurrentState->KeyUp(theEvent); };
+      void KeyUp(ALLEGRO_EVENT theEvent);
 
       //************************************************************************************************************************************************
       //
@@ -288,7 +272,7 @@ class PlayerCharacter : public Object
       //  N/A
       //
       //************************************************************************************************************************************************
-      inline void Update(float theTimeChange) { mpCurrentState->Update(theTimeChange); };
+      void Update(float theTimeChange);
 
       //************************************************************************************************************************************************
       //
@@ -304,7 +288,7 @@ class PlayerCharacter : public Object
       //  N/A
       //
       //************************************************************************************************************************************************
-      inline void Draw(Graphics& theGraphics) { mpCurrentState->Draw(theGraphics); };
+      void Draw(Graphics& theGraphics);
 
       //************************************************************************************************************************************************
       //

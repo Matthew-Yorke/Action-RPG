@@ -44,6 +44,32 @@ DialogBox::DialogBox(std::string theSpeakerName, std::string theSpeakerText, Rec
 
 //*********************************************************************************************************************************************
 //
+// Method Name: AddOverlay
+//
+// Description:
+//  Changes the overlay image pointer.
+//
+//*********************************************************************************************************************************************
+void DialogBox::AddOverlay(DialogImage* theOverlayImage)
+{
+   mpOverlayImage = theOverlayImage;
+}
+
+//*********************************************************************************************************************************************
+//
+// Method Name: AddCharacterImage
+//
+// Description:
+//  Changes the character image pointer.
+//
+//*********************************************************************************************************************************************
+void DialogBox::AddCharacterImage(DialogImage* theCharacterImage)
+{
+   mpCharacterImage = theCharacterImage; DetermineNumberCharactersInLine();
+}
+
+//*********************************************************************************************************************************************
+//
 // Method Name: CameraUpdate
 //
 // Description:

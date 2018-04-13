@@ -15,9 +15,10 @@
 #define Light_H
 
 #include "Graphics.h"
-#include "Object.h"
+#include "CircleObject.h"
+#include "Camera.h"
 
-class Light : public Object
+class Light : public CircleObject
 {
    //************************************************************************************************************************************************
    // Start Method Declarations
@@ -42,6 +43,22 @@ class Light : public Object
       //
       //************************************************************************************************************************************************
       Light(int theCoordinateX, int theCoordinateY, int theRaidus, ALLEGRO_COLOR theColor, int theIntensity);
+
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: CameraUpdate
+      //
+      // Description:
+      //  Update the message box screen location based upon the camera location.
+      //
+      // Arguments:
+      //  theCamera - Pointer to the camera object used to update the X and Y coordinates relative to the camera.
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      void CameraUpdate(Camera* theCamera);
 
       //************************************************************************************************************************************************
       //
@@ -86,13 +103,16 @@ class Light : public Object
    private:
 
       // TODO: Add description.
-      int mRaidus;
-
-      // TODO: Add description.
       int mIntensity;
 
       // TODO: Add description.
       ALLEGRO_COLOR mColor;
+
+      // The X-Coordinate of the light based on world coordinates.
+      int mWorldCoordinateX;
+
+      // The Y-Coordinate of the light based on world coordinates.
+      int mWorldCoordinateY;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations
