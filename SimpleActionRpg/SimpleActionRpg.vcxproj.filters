@@ -36,6 +36,9 @@
     <Filter Include="Code\Engine\Camera">
       <UniqueIdentifier>{035d5b8e-8475-4739-a607-eae106f2d537}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Code\Engine\Maps">
+      <UniqueIdentifier>{33e90db6-7edf-47be-8196-c01c3d4c8ada}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -103,6 +106,9 @@
     </ClCompile>
     <ClCompile Include="CircleObject.cpp">
       <Filter>Code\Engine\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Code\Engine\Maps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +180,9 @@
     </ClInclude>
     <ClInclude Include="CircleObject.h">
       <Filter>Code\Engine\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Code\Engine\Maps</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

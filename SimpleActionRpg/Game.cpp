@@ -30,6 +30,7 @@
 #include "DialogBox.h" // TODO: Remove
 #include "DialogImage.h" // TODO: Remove
 #include "Rectangle.h" // TODO: Remove
+#include "Map.h"
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -275,6 +276,7 @@ void Game::GameLoop()
    dialogBox->AddCharacterImage(characterImage);
    bool dialogDone = false;
    Camera* camera = new Camera(areaBoundary, pTestCharacter);
+   Map* testMap = new Map("../Maps/TestMap.txt");
    // TODO: Remove: Test Code - End
 
    bool redraw = false;
@@ -355,11 +357,12 @@ void Game::GameLoop()
          redraw = false;
 
          // Call to draw - Start
-         ALLEGRO_BITMAP* grassTile = al_load_bitmap("../Images/TestGrassTile.png"); // Temporary background.
-         al_draw_bitmap(grassTile, 0, 0, 0); // Temporary background.
-         al_draw_bitmap(grassTile, 100, 0, 0); // Temporary background.
-         al_draw_bitmap(grassTile, 0, 99, 0); // Temporary background.
-         al_draw_bitmap(grassTile, 100, 99, 0); // Temporary background.
+        //ALLEGRO_BITMAP* grassTile = al_load_bitmap("../Images/TestGrassTile.png"); // Temporary background.
+        //al_draw_bitmap(grassTile, 0, 0, 0); // Temporary background.
+        //al_draw_bitmap(grassTile, 100, 0, 0); // Temporary background.
+        //al_draw_bitmap(grassTile, 0, 99, 0); // Temporary background.
+        //al_draw_bitmap(grassTile, 100, 99, 0); // Temporary background.
+         testMap->Draw();
          pTestCharacter->Draw(graphics);
          // Lighting Test - Start
          
@@ -395,7 +398,7 @@ void Game::GameLoop()
          if (dialogBox != nullptr)
             dialogBox->Draw(graphics);
          
-         al_destroy_bitmap(grassTile);
+         //al_destroy_bitmap(grassTile);
          // Lighting Test - End
          // Call to draw - End
 

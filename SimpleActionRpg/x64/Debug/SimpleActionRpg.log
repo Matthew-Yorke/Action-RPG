@@ -1,6 +1,4 @@
-﻿  Clock.cpp
-  Game.cpp
-  Light.cpp
-  ShadowLayer.cpp
+﻿  Game.cpp
+  Map.cpp
   Generating Code...
   SimpleActionRpg.vcxproj -> C:\Users\Yorke\source\projects\Action RPG\Action-RPG\x64\Debug\SimpleActionRpg.exe
