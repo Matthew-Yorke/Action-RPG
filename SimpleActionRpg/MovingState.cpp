@@ -147,30 +147,30 @@ void MovingState::Update(float theTimeChange)
    if (currentDirection == PlayerConstants::DIRECTION::DOWN)
    {
       mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::DOWN);
-      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(32,
+      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(0,
                                                           4);
       mpPlayerCharacter->SetCoordinateY(mpPlayerCharacter->GetCoordinateY() + mpPlayerCharacter->GetVelocity()->GetComponentY());
    } 
-   else if (currentDirection == PlayerConstants::DIRECTION::LEFT)
+   else if (currentDirection == PlayerConstants::DIRECTION::UP)
    {
-      mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::LEFT);
+      mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::UP);
       mpPlayerCharacter->GetSprite()->SetAnimationSourceY(64,
                                                           4);
-      mpPlayerCharacter->SetCoordinateX(mpPlayerCharacter->GetCoordinateX() - mpPlayerCharacter->GetVelocity()->GetComponentX());
+      mpPlayerCharacter->SetCoordinateY(mpPlayerCharacter->GetCoordinateY() - mpPlayerCharacter->GetVelocity()->GetComponentY());
    }
    else if (currentDirection == PlayerConstants::DIRECTION::RIGHT)
    {
       mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::RIGHT);
-      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(96,
+      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(128,
                                                           4);
       mpPlayerCharacter->SetCoordinateX(mpPlayerCharacter->GetCoordinateX() + mpPlayerCharacter->GetVelocity()->GetComponentX());
    }
-   else if (currentDirection == PlayerConstants::DIRECTION::UP)
+   else if (currentDirection == PlayerConstants::DIRECTION::LEFT)
    {
-      mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::UP);
-      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(128,
+      mpPlayerCharacter->SetDirection(PlayerConstants::DIRECTION::LEFT);
+      mpPlayerCharacter->GetSprite()->SetAnimationSourceY(192,
                                                           4);
-      mpPlayerCharacter->SetCoordinateY(mpPlayerCharacter->GetCoordinateY() - mpPlayerCharacter->GetVelocity()->GetComponentY());
+      mpPlayerCharacter->SetCoordinateX(mpPlayerCharacter->GetCoordinateX() - mpPlayerCharacter->GetVelocity()->GetComponentX());
    }
 
    mpPlayerCharacter->GetSprite()->Update(theTimeChange);

@@ -28,24 +28,24 @@
 //
 //***************************************************************************************************************************************************
 PlayerCharacter::PlayerCharacter(Graphics& theGraphics, int theCoordinateX, int theCoordinateY) :
-RectangleObject(theCoordinateX, theCoordinateY, 32, 32)
+RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
 {
    mCurrentHealth = mMaxHealth = 10;
    mCurrentMana = mMaxMana = 5;
    mpVelocity = new Vector2D(1.0F,
                              1.0F);
    mpSprite = new AnimatedSprite(theGraphics,
-                                 "../Images/TestSpriteSheet.png",
+                                 "../Images/test.png",
                                  0,
                                  0,
-                                 32,
-                                 32,
+                                 64,
+                                 64,
                                  5,
                                  4);
-   mpHitbox = new Rectangle(theCoordinateX + 10,
-                            theCoordinateY,
-                            12,
-                            32);
+   //mpHitbox = new Rectangle(theCoordinateX + 10,
+   //                         theCoordinateY,
+   //                         12,
+   //                         32);
    mpMeleeWeapon = new MeleeWeapon(theGraphics,
                                    1,
                                    0,

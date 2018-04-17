@@ -63,14 +63,6 @@ void Graphics::Draw(ALLEGRO_BITMAP* thepSource, int theStartPositionX, int theSt
    rotated = al_create_bitmap(theWidth,
                               theHeight);
    al_set_target_bitmap(rotated);
-   al_clear_to_color(al_map_rgb(0,
-                                0,
-                                0));
-
-   al_convert_mask_to_alpha(thepSource,
-                            al_map_rgb(255,
-                                       0,
-                                       255));
 
    al_draw_bitmap_region(thepSource,
                          theStartPositionX,
@@ -81,10 +73,6 @@ void Graphics::Draw(ALLEGRO_BITMAP* thepSource, int theStartPositionX, int theSt
                          0,
                          0);
 
-   al_convert_mask_to_alpha(rotated,
-                            al_map_rgb(0,
-                                       0,
-                                       0));
    al_set_target_bitmap(al_get_backbuffer(mpDisplay));
    al_draw_rotated_bitmap(rotated,
                           al_get_bitmap_width(rotated) / 2,
