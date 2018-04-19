@@ -31,12 +31,14 @@ MeleeWeapon::MeleeWeapon(Graphics& theGraphics, int theDamage, int theCoordinate
    mDamage = theDamage;
    mCoordinateX = theCoordinateX;
    mCoordinateY = theCoordinateY;
-   mpSprite = new Sprite(theGraphics,
+   mpSprite = new AnimatedSprite(theGraphics,
                          "../Images/TestSword.png",
                          theCoordinateX,
                          theCoordinateY,
                          theWidth,
-                         theHeight);
+                         theHeight,
+                         5,
+                         3);
    mpHitbox = new Rectangle(theCoordinateX,
                             theCoordinateY,
                             theWidth,
@@ -112,6 +114,19 @@ void MeleeWeapon::SetDirection(PlayerConstants::DIRECTION theDirection)
 
 //************************************************************************************************************************************************
 //
+// Method Name: GetSprite
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+AnimatedSprite* MeleeWeapon::GetSprite()
+{
+   return mpSprite;
+}
+
+//************************************************************************************************************************************************
+//
 // Method Name: DrawSprite
 //
 // Description:
@@ -124,8 +139,8 @@ void MeleeWeapon::DrawSprite(Graphics& theGraphics, int theCoordianteX, int theC
    {
       mpSprite->SetAngle(0);
       mpSprite->Draw(theGraphics,
-                     theCoordianteX + 10 - 3,
-                     theCoordinateY + 25);
+                     theCoordianteX,
+                     theCoordinateY);
    }
    else if (mDirection == PlayerConstants::DIRECTION::UP)
    {

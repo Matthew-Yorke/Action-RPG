@@ -1,4 +1,2 @@
-﻿  IdleState.cpp
-  MovingState.cpp
-  Generating Code...
+﻿  MeleeAttackState.cpp
   SimpleActionRpg.vcxproj -> C:\Users\Yorke\source\projects\Action RPG\Action-RPG\x64\Debug\SimpleActionRpg.exe

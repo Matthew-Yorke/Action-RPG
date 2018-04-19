@@ -15,7 +15,7 @@
 #define MeleeWeapon_H
 
 #include "PlayerConstants.h"
-#include "Sprite.h"
+#include "AnimatedSprite.h"
 #include "Rectangle.h"
 
 class MeleeWeapon
@@ -124,6 +124,22 @@ class MeleeWeapon
 
       //************************************************************************************************************************************************
       //
+      // Method Name: GetSprite
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      AnimatedSprite* GetSprite();
+
+      //************************************************************************************************************************************************
+      //
       // Method Name: DrawSprite
       //
       // Description:
@@ -174,7 +190,7 @@ class MeleeWeapon
       float mCoordinateY;
 
       // TODO: Add description.
-      Sprite* mpSprite;
+      AnimatedSprite* mpSprite;
 
       // TODO: Add description.
       Rectangle* mpHitbox;
