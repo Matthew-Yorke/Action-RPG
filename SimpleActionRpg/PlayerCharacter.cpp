@@ -32,8 +32,8 @@ RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
 {
    mCurrentHealth = mMaxHealth = 10;
    mCurrentMana = mMaxMana = 5;
-   mpVelocity = new Vector2D(1.0F,
-                             1.0F);
+   mpVelocity = new Vector2D(2.0F,
+                             2.0F);
    mpSprite = new AnimatedSprite(theGraphics,
                                  "../Images/test.png",
                                  0,

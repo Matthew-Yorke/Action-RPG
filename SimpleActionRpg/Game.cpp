@@ -393,7 +393,7 @@ void Game::GameLoop()
                increase = true;
          }
 
-         shadowLayer->SetIntensity(130);
+         shadowLayer->SetIntensity(200);
          shadowLayer->Draw(graphics);
          if (dialogBox != nullptr)
             dialogBox->Draw(graphics);

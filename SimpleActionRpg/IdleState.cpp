@@ -90,12 +90,6 @@ void IdleState::KeyDown(ALLEGRO_EVENT theEvent)
       }
       case ALLEGRO_KEY_Z:
       {
-         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(256,
-                                                             3);
-         mpPlayerCharacter->GetSprite()->SetAnimationSourceX(0);
-         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceX(0);
-         mpPlayerCharacter->GetSprite()->ResetFrames();
-         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->ResetFrames();
          mpPlayerCharacter->ChangeState(new MeleeAttackState(mpPlayerCharacter));
          break;
       }

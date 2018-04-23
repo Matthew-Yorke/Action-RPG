@@ -32,7 +32,7 @@ MeleeWeapon::MeleeWeapon(Graphics& theGraphics, int theDamage, int theCoordinate
    mCoordinateX = theCoordinateX;
    mCoordinateY = theCoordinateY;
    mpSprite = new AnimatedSprite(theGraphics,
-                         "../Images/TestSword.png",
+                         "../Images/TestSword2.png",
                          theCoordinateX,
                          theCoordinateY,
                          theWidth,

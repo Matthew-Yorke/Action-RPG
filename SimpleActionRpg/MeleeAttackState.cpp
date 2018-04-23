@@ -15,6 +15,7 @@
 #include "IdleState.h"
 #include "MovingState.h"
 #include <algorithm>
+#include "PlayerConstants.h"
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -31,7 +32,39 @@
 MeleeAttackState::MeleeAttackState(PlayerCharacter* thePlayerCharacter) :
 State(thePlayerCharacter)
 {
-   mAttackTimeRemaining = 0.45F;
+   switch (mpPlayerCharacter->GetDirection())
+   {
+      case PlayerConstants::DIRECTION::DOWN:
+      {
+         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(256,
+                                                             3);
+         break;
+      } 
+      case PlayerConstants::DIRECTION::UP:
+      {
+         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(320,
+                                                             3);
+         break;
+      }
+      case PlayerConstants::DIRECTION::RIGHT:
+      {
+         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(384,
+                                                             3);
+         break;
+      }
+      case PlayerConstants::DIRECTION::LEFT:
+      {
+         mpPlayerCharacter->GetSprite()->SetAnimationSourceY(448,
+                                                             3);
+         break;
+      }
+   }
+
+   mpPlayerCharacter->GetSprite()->SetAnimationSourceX(0);
+   mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceX(0);
+   mpPlayerCharacter->GetSprite()->ResetFrames();
+   mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->ResetFrames();
+   mAttackTimeRemaining = 0.5F;
 }
 
 //************************************************************************************************************************************************
@@ -144,12 +177,13 @@ void MeleeAttackState::Update(float theTimeChange)
    {
       if (mpPlayerCharacter->IsMovingDirectionEmpty() == false)
       {
+         
          if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::DOWN)
          {
             mpPlayerCharacter->GetSprite()->SetAnimationSourceY(0,
                                                                 4);
          }
-         else if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::LEFT)
+         else if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::UP)
          {
             mpPlayerCharacter->GetSprite()->SetAnimationSourceY(64,
                                                                 4);
@@ -159,7 +193,7 @@ void MeleeAttackState::Update(float theTimeChange)
             mpPlayerCharacter->GetSprite()->SetAnimationSourceY(128,
                                                                 4);
          }
-         else if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::UP)
+         else if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::LEFT)
          {
             mpPlayerCharacter->GetSprite()->SetAnimationSourceY(192,
                                                                 4);
@@ -174,7 +208,7 @@ void MeleeAttackState::Update(float theTimeChange)
             mpPlayerCharacter->GetSprite()->SetAnimationSourceY(0,
                                                                 1);
          }
-         else if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::LEFT)
+         else if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::UP)
          {
             mpPlayerCharacter->GetSprite()->SetAnimationSourceY(64,
                                                                 1);
@@ -184,7 +218,7 @@ void MeleeAttackState::Update(float theTimeChange)
             mpPlayerCharacter->GetSprite()->SetAnimationSourceY(128,
                                                                 1);
          }
-         else if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::UP)
+         else if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::LEFT)
          {
             mpPlayerCharacter->GetSprite()->SetAnimationSourceY(192,
                                                                 1);
