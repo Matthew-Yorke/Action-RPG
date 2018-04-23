@@ -40,7 +40,7 @@ RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
                                  0,
                                  64,
                                  64,
-                                 5,
+                                 6,
                                  4);
    //mpHitbox = new Rectangle(theCoordinateX + 10,
    //                         theCoordinateY,
