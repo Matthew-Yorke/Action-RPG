@@ -50,8 +50,8 @@ RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
                                    1,
                                    0,
                                    0,
-                                   84,
-                                   106);
+                                   118,
+                                   160);
    mpCurrentState = new IdleState(this);
    mDirection = PlayerConstants::DIRECTION::DOWN;
 }

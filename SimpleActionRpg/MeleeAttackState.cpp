@@ -45,21 +45,21 @@ State(thePlayerCharacter)
       {
          mpPlayerCharacter->GetSprite()->SetAnimationSourceY(320,
                                                              3);
-         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceY(106, 3);
+         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceY(160, 3);
          break;
       }
       case PlayerConstants::DIRECTION::RIGHT:
       {
          mpPlayerCharacter->GetSprite()->SetAnimationSourceY(384,
                                                              3);
-         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceY(212, 3);
+         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceY(320, 3);
          break;
       }
       case PlayerConstants::DIRECTION::LEFT:
       {
          mpPlayerCharacter->GetSprite()->SetAnimationSourceY(448,
                                                              3);
-         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceY(318, 3);
+         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceY(480, 3);
          break;
       }
    }
@@ -250,16 +250,16 @@ void MeleeAttackState::Draw(Graphics& theGraphics)
    if (mpPlayerCharacter->GetDirection() == PlayerConstants::DIRECTION::UP)
    {
       mpPlayerCharacter->GetMeleeWeapon()->DrawSprite(theGraphics,
-                                                      mpPlayerCharacter->GetCoordinateX() - 10,
-                                                      mpPlayerCharacter->GetCoordinateY() - 21);
+                                                      mpPlayerCharacter->GetCoordinateX() - 27,
+                                                      mpPlayerCharacter->GetCoordinateY() - 48);
       mpPlayerCharacter->DrawSprite(theGraphics);
    }
    else
    {
       mpPlayerCharacter->DrawSprite(theGraphics);
       mpPlayerCharacter->GetMeleeWeapon()->DrawSprite(theGraphics,
-                                                      mpPlayerCharacter->GetCoordinateX() - 10,
-                                                      mpPlayerCharacter->GetCoordinateY() - 21);
+                                                      mpPlayerCharacter->GetCoordinateX() - 27,
+                                                      mpPlayerCharacter->GetCoordinateY() - 48);
    }
 }
 
