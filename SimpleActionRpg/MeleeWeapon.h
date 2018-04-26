@@ -70,6 +70,14 @@ class MeleeWeapon
 
       int GetWeaponHeight() { return mWeaponHeight; };
 
+      bool GetIsWeaponSwinging() { return mIsSwinging; };
+
+      void SetIsWeaponSwinging(bool theIsWeapongSwinging) { mIsSwinging = theIsWeapongSwinging; };
+
+      int GetDamage() { return mDamage; };
+
+      Rectangle* GetHitBox() { return mpHitBox; };
+
       //************************************************************************************************************************************************
       //
       // Method Name: GetSprite
@@ -142,6 +150,8 @@ class MeleeWeapon
       int mWeaponHeight;
 
       Rectangle* mpHitBox;
+
+      bool mIsSwinging;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

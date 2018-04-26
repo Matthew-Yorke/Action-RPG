@@ -20,6 +20,7 @@
 #include "PlayerCharacter.h"
 #include "Camera.h"
 #include "Clock.h"
+#include "Enemy.h"
 
 class PlayState : public GameState
 {
@@ -162,6 +163,8 @@ class PlayState : public GameState
       Camera* mpCamera;
 
       Clock* mpGameClock;
+
+      Enemy* mpTestEnemy;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

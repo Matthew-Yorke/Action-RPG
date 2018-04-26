@@ -40,6 +40,8 @@ PlayState::PlayState(Graphics& theGraphics)
    mpCamera = new Camera(mpMapAreaBoundary, mpPlayer);
    
    mpGameClock = new Clock(6.0F);
+
+   mpTestEnemy = new Enemy(theGraphics, 50, 50);
 }
 
 //***************************************************************************************************************************************************
@@ -114,6 +116,11 @@ void PlayState::KeyUp(ALLEGRO_EVENT theEvent)
 //************************************************************************************************************************************************
 void PlayState::Update(float theTimeChange)
 {
+   if (mpTestEnemy != nullptr)
+   {
+      mpTestEnemy->Update(theTimeChange);
+   }
+
    mpPlayer->Update(theTimeChange);
    mpGameClock->Update(theTimeChange);
    mpCamera->Update();
@@ -126,6 +133,31 @@ void PlayState::Update(float theTimeChange)
    else
    {
       mpShadowLayer->SetIntensity(abs((0.28F * mpGameClock->GetTotalMinutes()) - 404));
+   }
+
+   //Check player weapon collision
+   if (mpPlayer->GetMeleeWeapon()->GetIsWeaponSwinging() == true)
+   {
+      if (mpTestEnemy != nullptr &&
+          mpPlayer->GetMeleeWeapon()->GetHitBox()->GetCoordinateX() < (mpTestEnemy->GetCoordinateX() + mpTestEnemy->GetWidth()) &&
+          (mpPlayer->GetMeleeWeapon()->GetHitBox()->GetCoordinateX() + mpPlayer->GetMeleeWeapon()->GetHitBox()->GetWidth()) > mpTestEnemy->GetCoordinateX() &&
+          mpPlayer->GetMeleeWeapon()->GetHitBox()->GetCoordinateY() < (mpTestEnemy->GetCoordinateY() + mpTestEnemy->GetHeight()) &&
+          (mpPlayer->GetMeleeWeapon()->GetHitBox()->GetCoordinateY() + mpPlayer->GetMeleeWeapon()->GetHitBox()->GetHeight()) > mpTestEnemy->GetCoordinateY())
+      {
+          // collision detected!
+         if (mpTestEnemy->GetIsInvincible() == false)
+         {
+            mpTestEnemy->TakeDamage(mpPlayer->GetMeleeWeapon()->GetDamage());
+            mpTestEnemy->TemporaryInvincible();
+            std::cout << "hit\n";
+
+            if (mpTestEnemy->GetCurrentHealth() <= 0)
+            {
+               delete mpTestEnemy;
+               mpTestEnemy = nullptr;
+            }
+         }
+      }
    }
 }
 
@@ -148,6 +180,11 @@ void PlayState::Draw(Graphics& theGraphics)
    if (mpCurrentMap != nullptr)
    {
       mpCurrentMap->Draw();
+   }
+
+   if (mpTestEnemy != nullptr)
+   {
+      mpTestEnemy->Draw(theGraphics);
    }
 
    if (mpPlayer != nullptr)

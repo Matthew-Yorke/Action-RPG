@@ -32,6 +32,8 @@
 MeleeAttackState::MeleeAttackState(PlayerCharacter* thePlayerCharacter) :
 State(thePlayerCharacter)
 {
+   mpPlayerCharacter->GetMeleeWeapon()->SetIsWeaponSwinging(true);
+
    switch (mpPlayerCharacter->GetDirection())
    {
       case PlayerConstants::DIRECTION::DOWN:
@@ -197,6 +199,8 @@ void MeleeAttackState::Update(float theTimeChange)
 
    if (mAttackTimeRemaining < 0.0F)
    {
+      mpPlayerCharacter->GetMeleeWeapon()->SetIsWeaponSwinging(false);
+
       if (mpPlayerCharacter->IsMovingDirectionEmpty() == false)
       {
          

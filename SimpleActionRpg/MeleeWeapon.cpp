@@ -46,6 +46,7 @@ MeleeWeapon::MeleeWeapon(Graphics& theGraphics, int theDamage)
                             0,
                             0);
    mDirection = PlayerConstants::DIRECTION::DOWN;
+   mIsSwinging = false;
 }
 
 //************************************************************************************************************************************************

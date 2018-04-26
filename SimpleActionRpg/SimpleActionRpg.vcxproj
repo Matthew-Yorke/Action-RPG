@@ -172,6 +172,7 @@
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="DialogBox.cpp" />
     <ClCompile Include="DialogImage.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="Clock.h" />
     <ClInclude Include="DialogBox.h" />
     <ClInclude Include="DialogImage.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Graphics.h" />

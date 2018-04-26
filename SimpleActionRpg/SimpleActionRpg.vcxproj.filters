@@ -45,6 +45,9 @@
     <Filter Include="Code\Game\Game States">
       <UniqueIdentifier>{5a568844-eceb-438f-8fbf-c185328d8182}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Code\Game\Objects\NPCs">
+      <UniqueIdentifier>{2bbec233-e4f3-4f12-bca5-de191a7232a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp">
@@ -121,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="PlayState.cpp">
       <Filter>Code\Game\Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Code\Game\Objects\NPCs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +207,9 @@
     </ClInclude>
     <ClInclude Include="PlayState.h">
       <Filter>Code\Game\Game States</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Code\Game\Objects\NPCs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
