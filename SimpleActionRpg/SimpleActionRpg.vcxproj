@@ -173,6 +173,7 @@
     <ClCompile Include="DialogBox.cpp" />
     <ClCompile Include="DialogImage.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="Light.cpp" />
@@ -183,6 +184,7 @@
     <ClCompile Include="MovingState.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
+    <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RectangleObject.cpp" />
     <ClCompile Include="ShadowLayer.cpp" />
@@ -198,6 +200,7 @@
     <ClInclude Include="DialogBox.h" />
     <ClInclude Include="DialogImage.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MathConstants.h" />
@@ -209,6 +212,7 @@
     <ClInclude Include="MeleeWeapon.h" />
     <ClInclude Include="MovingState.h" />
     <ClInclude Include="PlayerCharacter.h" />
+    <ClInclude Include="PlayState.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RectangleObject.h" />
     <ClInclude Include="ShadowLayer.h" />

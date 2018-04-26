@@ -38,28 +38,48 @@ State(thePlayerCharacter)
       {
          mpPlayerCharacter->GetSprite()->SetAnimationSourceY(256,
                                                              3);
-         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceY(0, 3);
+         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceY(0,
+                                                                               3);
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxCoordinateX(mpPlayerCharacter->GetHitBox()->GetCoordinateX());
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxCoordinateY(mpPlayerCharacter->GetHitBox()->GetCoordinateY() + mpPlayerCharacter->GetHitBox()->GetHeight());
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxWidth(mpPlayerCharacter->GetMeleeWeapon()->GetWeaponWidth());
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxHeight(mpPlayerCharacter->GetMeleeWeapon()->GetWeaponHeight());
          break;
       } 
       case PlayerConstants::DIRECTION::UP:
       {
          mpPlayerCharacter->GetSprite()->SetAnimationSourceY(320,
                                                              3);
-         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceY(160, 3);
+         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceY(160,
+                                                                               3);
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxCoordinateX(mpPlayerCharacter->GetHitBox()->GetCoordinateX());
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxCoordinateY(mpPlayerCharacter->GetHitBox()->GetCoordinateY() - mpPlayerCharacter->GetMeleeWeapon()->GetWeaponHeight());
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxWidth(mpPlayerCharacter->GetMeleeWeapon()->GetWeaponWidth());
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxHeight(mpPlayerCharacter->GetMeleeWeapon()->GetWeaponHeight());
          break;
       }
       case PlayerConstants::DIRECTION::RIGHT:
       {
          mpPlayerCharacter->GetSprite()->SetAnimationSourceY(384,
                                                              3);
-         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceY(320, 3);
+         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceY(320,
+                                                                               3);
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxCoordinateX(mpPlayerCharacter->GetHitBox()->GetCoordinateX() + mpPlayerCharacter->GetHitBox()->GetWidth());
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxCoordinateY(mpPlayerCharacter->GetHitBox()->GetCoordinateY() + 10);
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxWidth(mpPlayerCharacter->GetMeleeWeapon()->GetWeaponHeight());
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxHeight(mpPlayerCharacter->GetMeleeWeapon()->GetWeaponWidth());
          break;
       }
       case PlayerConstants::DIRECTION::LEFT:
       {
          mpPlayerCharacter->GetSprite()->SetAnimationSourceY(448,
                                                              3);
-         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceY(480, 3);
+         mpPlayerCharacter->GetMeleeWeapon()->GetSprite()->SetAnimationSourceY(480,
+                                                                               3);
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxCoordinateX(mpPlayerCharacter->GetHitBox()->GetCoordinateX() - mpPlayerCharacter->GetMeleeWeapon()->GetWeaponHeight());
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxCoordinateY(mpPlayerCharacter->GetHitBox()->GetCoordinateY() + 10);
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxWidth(mpPlayerCharacter->GetMeleeWeapon()->GetWeaponHeight());
+         mpPlayerCharacter->GetMeleeWeapon()->SetHitBoxHeight(mpPlayerCharacter->GetMeleeWeapon()->GetWeaponWidth());
          break;
       }
    }

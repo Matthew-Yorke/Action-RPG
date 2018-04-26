@@ -37,8 +37,48 @@ Map::Map(std::string theSpriteSheetFilePath)
    mpTileSheet = nullptr;
    mTileWidth = 0;
    mTileHeight = 0;
+   mMapWidth = 0;
+   mMapHeight = 0;
 
    LoadMap(theSpriteSheetFilePath);
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: ~Map
+//
+// Description:
+//  TODO: Add description/A
+//
+//************************************************************************************************************************************************
+Map::~Map()
+{
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: GetMapWidth
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+int Map::GetMapWidth()
+{
+   return mMapWidth;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: GetMapHeight
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+int Map::GetMapHeight()
+{
+   return mMapHeight;
 }
 
 //************************************************************************************************************************************************
@@ -125,6 +165,9 @@ void Map::LoadMap(std::string theSpriteSheetFilePath)
       lineCount++;
    }
 
+   // Multiply the vector count representing as the number of tiles height-wise by the tile height to get the total height of the map.
+   mMapHeight = vectorCount * mTileHeight;
+
 	mapFile.close();
 }
 
@@ -186,6 +229,8 @@ void Map::SaveTileDimensions(std::string theTileDimensions)
 bool Map::SaveTileLocation(std::string theTileLocation, int theVectorRow)
 {
    bool finished = false;
+   // Reset the width of the map width.
+   mMapWidth = 0;
 
    // Break the parsed line down further to individual tile components.
    std::vector<std::string> parsedTileInformation;
@@ -194,7 +239,12 @@ bool Map::SaveTileLocation(std::string theTileLocation, int theVectorRow)
    while(std::getline(stringStream, token, ','))
    {
       parsedTileInformation.push_back(token);
+      // Increment the map width for each tile in the string.
+      mMapWidth++;
    }
+   
+   // Multiply the current map width (number of tiles) by the tile width to get the total screen width.
+   mMapWidth *= mTileWidth;
 
    // Break down tile components and save the information to the map vector.
    int count = 0;

@@ -22,15 +22,7 @@
 #include <allegro5/allegro_acodec.h>
 #include "Game.h"
 #include "Graphics.h"
-#include "PlayerCharacter.h" // TODO: Remove
-#include "Light.h" // TODO: Remove
-#include "ShadowLayer.h" // TODO: Remove
-#include "Clock.h" // TODO: Remove
-#include "Camera.h" // TODO: Remove
-#include "DialogBox.h" // TODO: Remove
-#include "DialogImage.h" // TODO: Remove
-#include "Rectangle.h" // TODO: Remove
-#include "Map.h"
+#include "PlayState.h"
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -51,6 +43,7 @@ Game::Game()
    mpTimer = nullptr;
    mpEventQueue = nullptr;
    mIsGameDone = false;
+   mpCurrentState = nullptr;
 }
 
 //***************************************************************************************************************************************************
@@ -223,6 +216,20 @@ bool Game::Initialize()
    return true;
 }
 
+//************************************************************************************************************************************************
+//
+// Method Name: ChangeState
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void Game::ChangeState(GameState* theState)
+{
+   delete mpCurrentState;
+   mpCurrentState = theState;
+}
+
 //***************************************************************************************************************************************************
 //
 // Method Name: GameLoop
@@ -239,45 +246,7 @@ void Game::GameLoop()
    // Set up the graphics used in this game.
    Graphics graphics(mpDisplay);
 
-   // TODO: Remove: Test Code - Start
-   PlayerCharacter* pTestCharacter = new PlayerCharacter(graphics, 0, 0);
-   int count = 0;
-   int time = 0;
-   bool increase = true;
-   ShadowLayer* shadowLayer = new ShadowLayer("../Images/ShadowLayer.png"); 
-   Light* testLight = new Light(50, 50, 100, al_map_rgb(255, 255, 255), 2);
-   Light* testLight2 = new Light(150, 150, 100, al_map_rgb(255, 0, 0), 3);
-   Clock* clock = new Clock(0.5F);
-   shadowLayer->AddLight(testLight);
-   shadowLayer->AddLight(testLight2);
-   DialogImage* dialogOverlay = new DialogImage(graphics,
-                                                "../Images/DialogBoxOverlayTest.png",
-                                                0,
-                                                390,
-                                                960,
-                                                180);
-   DialogImage* characterImage = new DialogImage(graphics, "../Images/DialogImageTest.png",
-                                                 0,
-                                                 390,
-                                                 150,
-                                                 150);
-   Rectangle* dialogDimensions = new Rectangle(0,
-                                               390,
-                                               960,  // Screen Width
-                                               150); // Arbitrary
-   Rectangle* areaBoundary = new Rectangle(-100,
-                                           0,
-                                           1000,
-                                           1000);
-   DialogBox* dialogBox = new DialogBox("Advise Guy:",
-                                        "(Note: Press the 'V' key to continue to dialog) This is a test dialog to make sure that the dialog Fits properly within the dialog box. This test also makes sure that not only does the text fit horizontally in the dialog box but also only shows the amount of lines that can fit vertically. By pressing the next key ('V' for this test) the dialog will move on to the next set of lines to be displayed. After this conversation is done this window will close and the camera will change focus to the first test light (white color).",
-                                        dialogDimensions);
-   dialogBox->AddOverlay(dialogOverlay);
-   dialogBox->AddCharacterImage(characterImage);
-   bool dialogDone = false;
-   Camera* camera = new Camera(areaBoundary, pTestCharacter);
-   Map* testMap = new Map("../Maps/TestMap.txt");
-   // TODO: Remove: Test Code - End
+   mpCurrentState = new PlayState(graphics);
 
    bool redraw = false;
    float lastUpdateTime = static_cast<float>(al_current_time());
@@ -300,17 +269,12 @@ void Game::GameLoop()
          // The event was the user pressing a key down.
          else if (nextEvent.type == ALLEGRO_EVENT_KEY_DOWN)
          {
-            pTestCharacter->KeyDown(nextEvent);
-
-            // Test Code - Start
-            if (nextEvent.keyboard.keycode == ALLEGRO_KEY_V)
-               dialogDone = dialogBox->NextLineSet();
-            // Test Code - End
+            mpCurrentState->KeyDown(nextEvent);
          }
          // The event was the user releasing a downed key.
          else if (nextEvent.type == ALLEGRO_EVENT_KEY_UP)
          {
-            pTestCharacter->KeyUp(nextEvent);
+            mpCurrentState->KeyUp(nextEvent);
          }
          // The event was a timer event.
          else if (nextEvent.type == ALLEGRO_EVENT_TIMER)
@@ -321,29 +285,7 @@ void Game::GameLoop()
             {
                const float currentTime = static_cast<float>(al_current_time());
 
-               // Call to update - Start
-               pTestCharacter->Update(currentTime - lastUpdateTime);
-               // Call to update - End
-
-               // TODO: Remove clock test code - Start
-               clock->Update(currentTime - lastUpdateTime);
-               std::cout << clock->GetTimeString() << std::endl;
-               camera->Update();
-               if (dialogDone == true)
-               {
-                  camera->ChangeFollowingObject(testLight); // Test to make sure this will change
-                  delete dialogBox;
-                  dialogBox = nullptr;
-                  delete dialogOverlay;
-                  dialogOverlay = nullptr;
-                  delete characterImage;
-                  characterImage = nullptr;
-               }
-               if (dialogBox != nullptr)
-                  dialogBox->CameraUpdate(camera);
-               if (shadowLayer != nullptr)
-                  shadowLayer->CameraUpdate(camera);
-               // TODO: Remove clock test code - End
+               mpCurrentState->Update(currentTime - lastUpdateTime);
 
                lastUpdateTime = currentTime;
                redraw = true;
@@ -356,51 +298,7 @@ void Game::GameLoop()
       {
          redraw = false;
 
-         // Call to draw - Start
-        //ALLEGRO_BITMAP* grassTile = al_load_bitmap("../Images/TestGrassTile.png"); // Temporary background.
-        //al_draw_bitmap(grassTile, 0, 0, 0); // Temporary background.
-        //al_draw_bitmap(grassTile, 100, 0, 0); // Temporary background.
-        //al_draw_bitmap(grassTile, 0, 99, 0); // Temporary background.
-        //al_draw_bitmap(grassTile, 100, 99, 0); // Temporary background.
-         testMap->Draw();
-         pTestCharacter->Draw(graphics);
-         // Lighting Test - Start
-         
-         
-         // Test moving light.
-         //testLight->SetCoordinateX(testLight->GetCoordinateX() + 1);
-
-         if (increase)
-         {
-            time++;
-            if (time == 5) {
-               count++;
-               time = 0;
-            }
-
-            if (count == 240)
-               increase = false;
-         }
-         else
-         {
-            time++;
-            if (time == 5) {
-               count--;
-               time = 0;
-            }
-
-            if (count == 0)
-               increase = true;
-         }
-
-         shadowLayer->SetIntensity(200);
-         shadowLayer->Draw(graphics);
-         if (dialogBox != nullptr)
-            dialogBox->Draw(graphics);
-         
-         //al_destroy_bitmap(grassTile);
-         // Lighting Test - End
-         // Call to draw - End
+         mpCurrentState->Draw(graphics);
 
          // Flip the two screens (drawing unseen screen with the display screen) and clear the new drawing screen.
          al_flip_display();
@@ -409,11 +307,6 @@ void Game::GameLoop()
                                       0));
       }
    }
-
-   // TODO: Remove test code below.
-   delete shadowLayer;
-   delete testLight;
-   delete testLight2;
 }
 
 //***************************************************************************************************************************************************

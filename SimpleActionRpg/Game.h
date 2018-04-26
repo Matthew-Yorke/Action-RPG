@@ -14,6 +14,17 @@
 #ifndef Game_h
 #define Game_h
 
+#include "GameState.h"
+#include "PlayerCharacter.h" // TODO: Remove
+#include "Light.h" // TODO: Remove
+#include "ShadowLayer.h" // TODO: Remove
+#include "Clock.h" // TODO: Remove
+#include "Camera.h" // TODO: Remove
+#include "DialogBox.h" // TODO: Remove
+#include "DialogImage.h" // TODO: Remove
+#include "Rectangle.h" // TODO: Remove
+#include "Map.h" // TODO: Remove
+
 class Game
 {
    //************************************************************************************************************************************************
@@ -54,6 +65,22 @@ public:
    //
    //************************************************************************************************************************************************
    bool Initialize();
+
+   //************************************************************************************************************************************************
+   //
+   // Method Name: ChangeState
+   //
+   // Description:
+   //  TODO: Add description.
+   //
+   // Arguments:
+   //  theState - TODO: Add description.
+   //
+   // Return:
+   //  N/A
+   //
+   //************************************************************************************************************************************************
+   void ChangeState(GameState* theState);
 
    //************************************************************************************************************************************************
    //
@@ -124,6 +151,9 @@ private:
    // TODO: Add member variable description.
    // TODO: Move to somewhere more appropriate.
    const int mScreenHeight = 540;
+
+   // TODO: Add description.
+   GameState* mpCurrentState;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

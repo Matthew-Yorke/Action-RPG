@@ -40,71 +40,7 @@ class MeleeWeapon
       //  N/A
       //
       //************************************************************************************************************************************************
-      MeleeWeapon(Graphics& theGraphics, int theDamage, int theCoordinateX, int theCoordinateY, int theWidth, int theHeight);
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: GetCoordinateX
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A
-      //
-      // Return:
-      //  TODO: Add description.
-      //
-      //************************************************************************************************************************************************
-      float GetCoordinateX();
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: SetCoordinateX
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  theCoordinateX - TODO: Add description.
-      //
-      // Return:
-      //  N/A
-      //
-      //************************************************************************************************************************************************
-      void SetCoordinateX(float theCoordinateX);
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: GetCoordinateY
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A
-      //
-      // Return:
-      //  TODO: Add description.
-      //
-      //************************************************************************************************************************************************
-      float GetCoordinateY();
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: SetCoordinateY
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  theCoordinateY - TODO: Add description.
-      //
-      // Return:
-      //  N/A
-      //
-      //************************************************************************************************************************************************
-      void SetCoordinateY(float theCoordinateY);
+      MeleeWeapon(Graphics& theGraphics, int theDamage);
 
       //************************************************************************************************************************************************
       //
@@ -121,6 +57,18 @@ class MeleeWeapon
       //
       //************************************************************************************************************************************************
       void SetDirection(PlayerConstants::DIRECTION theDirection);
+
+      void SetHitBoxCoordinateX(int theCoordianteX) { mpHitBox->SetCoordinateX(theCoordianteX); };
+
+      void SetHitBoxCoordinateY(int theCoordianteY) { mpHitBox->SetCoordinateY(theCoordianteY); };
+
+      void SetHitBoxWidth(int theWidth) { mpHitBox->SetWidth(theWidth); };
+
+      void SetHitBoxHeight(int theHeight) { mpHitBox->SetHeight(theHeight); };
+
+      int GetWeaponWidth() { return mWeaponWidth; };
+
+      int GetWeaponHeight() { return mWeaponHeight; };
 
       //************************************************************************************************************************************************
       //
@@ -184,19 +132,16 @@ class MeleeWeapon
       int mDamage;
 
       // TODO: Add description.
-      float mCoordinateX;
-
-      // TODO: Add description.
-      float mCoordinateY;
-
-      // TODO: Add description.
       AnimatedSprite* mpSprite;
 
       // TODO: Add description.
-      Rectangle* mpHitbox;
-
-      // TODO: Add description.
       PlayerConstants::DIRECTION mDirection;
+
+      int mWeaponWidth;
+
+      int mWeaponHeight;
+
+      Rectangle* mpHitBox;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

@@ -42,16 +42,12 @@ RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
                                  64,
                                  6,
                                  4);
-   //mpHitbox = new Rectangle(theCoordinateX + 10,
-   //                         theCoordinateY,
-   //                         12,
-   //                         32);
+   mpHitbox = new Rectangle(theCoordinateX + 20,
+                            theCoordinateY + 1,
+                            25,
+                            63);
    mpMeleeWeapon = new MeleeWeapon(theGraphics,
-                                   1,
-                                   0,
-                                   0,
-                                   118,
-                                   160);
+                                   1);
    mpCurrentState = new IdleState(this);
    mDirection = PlayerConstants::DIRECTION::DOWN;
 }
@@ -95,7 +91,8 @@ PlayerConstants::DIRECTION PlayerCharacter::GetDirection()
 //************************************************************************************************************************************************
 void PlayerCharacter::SetDirection(PlayerConstants::DIRECTION theDirection)
 {
-   mDirection = theDirection; mpMeleeWeapon->SetDirection(theDirection);
+   mDirection = theDirection;
+   mpMeleeWeapon->SetDirection(theDirection);
 }
 
 //************************************************************************************************************************************************
@@ -182,6 +179,19 @@ AnimatedSprite* PlayerCharacter::GetSprite()
 
 //************************************************************************************************************************************************
 //
+// Method Name: GetHitBox
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+Rectangle* PlayerCharacter::GetHitBox()
+{
+   return mpHitbox;
+}
+
+//************************************************************************************************************************************************
+//
 // Method Name: GetMeleeWeapon
 //
 // Description:
@@ -244,6 +254,8 @@ void PlayerCharacter::KeyUp(ALLEGRO_EVENT theEvent)
 void PlayerCharacter::Update(float theTimeChange)
 {
    mpCurrentState->Update(theTimeChange);
+   mpHitbox->SetCoordinateX(GetCoordinateX() + 20);
+   mpHitbox->SetCoordinateY(GetCoordinateY() + 1);
 }
 
 //************************************************************************************************************************************************
@@ -257,6 +269,7 @@ void PlayerCharacter::Update(float theTimeChange)
 void PlayerCharacter::Draw(Graphics& theGraphics)
 {
    mpCurrentState->Draw(theGraphics);
+   al_draw_rectangle(mpHitbox->GetCoordinateX(), mpHitbox->GetCoordinateY(), mpHitbox->GetCoordinateX() + mpHitbox->GetWidth(), mpHitbox->GetCoordinateY()+ mpHitbox->GetHeight(), al_map_rgb(255,0,0), 1);
 }
 
 //************************************************************************************************************************************************

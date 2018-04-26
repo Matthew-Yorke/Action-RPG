@@ -26,77 +26,26 @@
 //  TODO: Add method description.
 //
 //***************************************************************************************************************************************************
-MeleeWeapon::MeleeWeapon(Graphics& theGraphics, int theDamage, int theCoordinateX, int theCoordinateY, int theWidth, int theHeight)
+MeleeWeapon::MeleeWeapon(Graphics& theGraphics, int theDamage)
 {
    mDamage = theDamage;
-   mCoordinateX = theCoordinateX;
-   mCoordinateY = theCoordinateY;
    mpSprite = new AnimatedSprite(theGraphics,
-                         "../Images/TestSword.png",
-                         theCoordinateX,
-                         theCoordinateY,
-                         theWidth,
-                         theHeight,
-                         6,
-                         3);
-   mpHitbox = new Rectangle(theCoordinateX,
-                            theCoordinateY,
-                            theWidth,
-                            theHeight);
+                                 "../Images/TestSword.png",
+                                 0,
+                                 0,
+                                 118,
+                                 160,
+                                 6,
+                                 3);
+
+   mWeaponWidth = 25;
+   mWeaponHeight = 48;
+
+   mpHitBox = new Rectangle(0,
+                            0,
+                            0,
+                            0);
    mDirection = PlayerConstants::DIRECTION::DOWN;
-}
-
-//************************************************************************************************************************************************
-//
-// Method Name: GetCoordinateX
-//
-// Description:
-//  TODO: Add description.
-//
-//************************************************************************************************************************************************
-float MeleeWeapon::GetCoordinateX()
-{
-   return mCoordinateX;
-}
-
-//************************************************************************************************************************************************
-//
-// Method Name: SetCoordinateX
-//
-// Description:
-//  TODO: Add description.
-//
-//************************************************************************************************************************************************
-void MeleeWeapon::SetCoordinateX(float theCoordinateX)
-{
-   mCoordinateX = theCoordinateX;
-}
-
-//************************************************************************************************************************************************
-//
-// Method Name: GetCoordinateY
-//
-// Description:
-//  TODO: Add description.
-//
-//************************************************************************************************************************************************
-float MeleeWeapon::GetCoordinateY()
-{
-   return mCoordinateY;
-}
-
-
-//************************************************************************************************************************************************
-//
-// Method Name: SetCoordinateY
-//
-// Description:
-//  TODO: Add description.
-//
-//************************************************************************************************************************************************
-void MeleeWeapon::SetCoordinateY(float theCoordinateY)
-{
-   mCoordinateY = theCoordinateY;
 }
 
 //************************************************************************************************************************************************
@@ -138,6 +87,13 @@ void MeleeWeapon::DrawSprite(Graphics& theGraphics, int theCoordianteX, int theC
       mpSprite->Draw(theGraphics,
                      theCoordianteX,
                      theCoordinateY);
+
+      al_draw_rectangle(mpHitBox->GetCoordinateX(),
+                        mpHitBox->GetCoordinateY(),
+                        mpHitBox->GetCoordinateX() + mpHitBox->GetWidth(),
+                        mpHitBox->GetCoordinateY() + mpHitBox->GetHeight(),
+                        al_map_rgb(0,255,0),
+                        1);
 }
 
 //***************************************************************************************************************************************************
