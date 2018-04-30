@@ -48,6 +48,9 @@
     <Filter Include="Code\Game\Objects\NPCs">
       <UniqueIdentifier>{2bbec233-e4f3-4f12-bca5-de191a7232a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Code\Engine\Events">
+      <UniqueIdentifier>{c87e8d71-6898-4fdd-bf0d-e4857f228d5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp">
@@ -127,6 +130,12 @@
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>Code\Game\Objects\NPCs</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Code\Engine\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangeMapEvent.cpp">
+      <Filter>Code\Engine\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +219,12 @@
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Code\Game\Objects\NPCs</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Code\Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangeMapEvent.h">
+      <Filter>Code\Engine\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

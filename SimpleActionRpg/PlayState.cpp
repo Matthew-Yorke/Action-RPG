@@ -138,7 +138,7 @@ void PlayState::Update(float theTimeChange)
    }
 
    PlayerAttackCollision();
-   MapEdgeCollision();
+   MapEventCollision();
 }
 
 //************************************************************************************************************************************************
@@ -266,63 +266,29 @@ void PlayState::PlayerAttackCollision()
 
 //************************************************************************************************************************************************
 //
-// Method Name: MapEdgeCollision
+// Method Name: MapEventCollision
 //
 // Description:
 //  TODO: Add description.
 //
 //************************************************************************************************************************************************
-void PlayState::MapEdgeCollision()
+void PlayState::MapEventCollision()
 {
    Map* temporaryMap = nullptr;
+   int playerCoordinateX = mpPlayer->GetCoordinateX();
+   int playerCoordinateY = mpPlayer->GetCoordinateY();
+   bool changeMap = mpCurrentMap->ChangeMapEventCollision(mpPlayer->GetHitBox(),
+                                                          temporaryMap,
+                                                          playerCoordinateX,
+                                                          playerCoordinateY);
 
-   // Top edge collision
-   if (mpPlayer->GetHitBox()->GetCoordinateY() < mpMapAreaBoundary->GetCoordinateY())
+   if(changeMap == true)
    {
-      if (mpCurrentMap->GetTopMap() != "")
-      {
-         temporaryMap = new Map(mpCurrentMap->GetTopMap());
-         delete mpCurrentMap;
-         mpCurrentMap = temporaryMap;
+      delete mpCurrentMap;
+      mpCurrentMap = temporaryMap;
 
-         mpPlayer->SetCoordinateY(mpCurrentMap->GetMapHeight() - mpPlayer->GetHitBox()->GetHeight());
-      }
-   }
-   // Bottom edge collision
-   else if ((mpPlayer->GetHitBox()->GetCoordinateY() + mpPlayer->GetHitBox()->GetHeight()) > (mpMapAreaBoundary->GetCoordinateY() + mpMapAreaBoundary->GetHeight()))
-   {
-      if (mpCurrentMap->GetBottomMap() != "")
-      {
-         temporaryMap = new Map(mpCurrentMap->GetBottomMap());
-         delete mpCurrentMap;
-         mpCurrentMap = temporaryMap;
-
-          mpPlayer->SetCoordinateY(0);
-      }
-   }
-   // Left edge collision
-   if (mpPlayer->GetHitBox()->GetCoordinateX() < mpMapAreaBoundary->GetCoordinateX())
-   {
-      if (mpCurrentMap->GetLeftMap() != "")
-      {
-         temporaryMap = new Map(mpCurrentMap->GetLeftMap());
-         delete mpCurrentMap;
-         mpCurrentMap = temporaryMap;
-
-         mpPlayer->SetCoordinateX(mpCurrentMap->GetMapWidth() - mpPlayer->GetHitBox()->GetWidth());
-      }
-   }
-   // Right edge collision
-   else if ((mpPlayer->GetHitBox()->GetCoordinateX() + mpPlayer->GetHitBox()->GetWidth()) > (mpMapAreaBoundary->GetCoordinateX() + mpMapAreaBoundary->GetWidth()))
-   {
-      if (mpCurrentMap->GetRightMap() != "")
-      {
-         temporaryMap = new Map(mpCurrentMap->GetRightMap());
-         delete mpCurrentMap;
-         mpCurrentMap = temporaryMap;
-
-         mpPlayer->SetCoordinateX(0);
-      }
+      mpPlayer->SetCoordinateX(playerCoordinateX);
+      mpPlayer->SetCoordinateY(playerCoordinateY);
    }
 }
 

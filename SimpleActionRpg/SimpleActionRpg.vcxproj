@@ -168,11 +168,13 @@
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ChangeMapEvent.cpp" />
     <ClCompile Include="CircleObject.cpp" />
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="DialogBox.cpp" />
     <ClCompile Include="DialogImage.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Event.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -196,11 +198,13 @@
   <ItemGroup>
     <ClInclude Include="AnimatedSprite.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="ChangeMapEvent.h" />
     <ClInclude Include="CircleObject.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="DialogBox.h" />
     <ClInclude Include="DialogImage.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Event.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Graphics.h" />

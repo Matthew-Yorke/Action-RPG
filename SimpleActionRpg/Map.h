@@ -17,7 +17,10 @@
 #include "allegro5/allegro.h"
 #include <allegro5/allegro_image.h>
 #include <vector>
+#include "ChangeMapEvent.h"
+#include "Rectangle.h"
 
+class ChangeMapEvent;
 class Map
 {
    //************************************************************************************************************************************************
@@ -90,10 +93,21 @@ class Map
       //************************************************************************************************************************************************
       int GetMapHeight();
 
-      std::string GetTopMap() { return TopMap; };
-      std::string GetBottomMap() { return BottomMap; };
-      std::string GetLeftMap() { return LeftMap; };
-      std::string GetRightMap() { return RightMap; };
+      //************************************************************************************************************************************************
+      //
+      // Method Name: ChangeMapEventCollision
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theObject - TODO: Add description.
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      bool ChangeMapEventCollision(Rectangle* theObject, Map*& theChangedMap, int& thePlayerCoordinateX, int& thePlayerCoordinateY);
 
       //************************************************************************************************************************************************
       //
@@ -132,23 +146,6 @@ class Map
       //
       //************************************************************************************************************************************************
       void LoadMap(std::string theMapFileLocation);
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: LoadAdjacentMapInformation
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  theAdjacentMapFileLocation - TODO: Add description.
-      //  theEdge - TODO: Add description.
-      //
-      // Return:
-      //  N/A
-      //
-      //************************************************************************************************************************************************
-      void LoadAdjacentMapInformation(std::string theAdjacentMapFileLocation, int theEdge);
 
       //************************************************************************************************************************************************
       //
@@ -199,6 +196,22 @@ class Map
       //************************************************************************************************************************************************
       bool SaveTileLocation(std::string theTileLocation, int theVectorRow);
 
+      //************************************************************************************************************************************************
+      //
+      // Method Name: LoadEvents
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theEventInformation - TODO: Add description.
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      void LoadEvents(std::string theEventInformation);
+
    //************************************************************************************************************************************************
    // End Method Declarations
    //************************************************************************************************************************************************
@@ -240,10 +253,7 @@ class Map
 
       int mMapHeight;
 
-      std::string TopMap;
-      std::string BottomMap;
-      std::string LeftMap;
-      std::string RightMap;
+      std::vector<ChangeMapEvent*> mpChangeMapEventList;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

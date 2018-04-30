@@ -14,7 +14,6 @@
 #include "Map.h"
 #include <iostream>
 #include <fstream>
-#include <vector>
 #include <string>
 #include <sstream>
 #include <algorithm>
@@ -39,10 +38,6 @@ Map::Map(std::string theSpriteSheetFilePath)
    mTileHeight = 0;
    mMapWidth = 0;
    mMapHeight = 0;
-   TopMap = "";
-   BottomMap = "";
-   LeftMap = "";
-   RightMap = "";
 
    LoadMap(theSpriteSheetFilePath);
 }
@@ -85,6 +80,39 @@ int Map::GetMapHeight()
 {
    return mMapHeight;
 }
+
+//************************************************************************************************************************************************
+//
+// Method Name: ChangeMapEventCollision
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+bool Map::ChangeMapEventCollision(Rectangle* theObject, Map*& theChangedMap, int& thePlayerCoordinateX, int& thePlayerCoordinateY)
+{
+   bool changeMap = false;
+
+   for (auto currentChangeMapEvent = mpChangeMapEventList.begin();
+        currentChangeMapEvent != mpChangeMapEventList.end();
+        currentChangeMapEvent++)
+   {
+      if (theObject->GetCoordinateX() < ((*currentChangeMapEvent)->GetArea()->GetCoordinateX() + (*currentChangeMapEvent)->GetArea()->GetWidth()) &&
+          (theObject->GetCoordinateX() + theObject->GetWidth()) > (*currentChangeMapEvent)->GetArea()->GetCoordinateX() &&
+          theObject->GetCoordinateY() < ((*currentChangeMapEvent)->GetArea()->GetCoordinateY() + (*currentChangeMapEvent)->GetArea()->GetHeight()) &&
+          (theObject->GetCoordinateY() + theObject->GetHeight()) > (*currentChangeMapEvent)->GetArea()->GetCoordinateY())
+      {
+         theChangedMap = (*currentChangeMapEvent)->Execute();
+         thePlayerCoordinateX = (*currentChangeMapEvent)->GetPlayerCoordinateX();
+         thePlayerCoordinateY = (*currentChangeMapEvent)->GetPlayerCoordinateY();
+         changeMap = true;
+         
+         break;
+      }
+   }
+
+   return changeMap;
+};
 
 //************************************************************************************************************************************************
 //
@@ -148,29 +176,29 @@ void Map::LoadMap(std::string theSpriteSheetFilePath)
    {
       getline(mapFile, parsedOutLine);
 
-      // Link map edges.
-      if (lineCount >= 0 && lineCount <= 3)
-      {
-         LoadAdjacentMapInformation(parsedOutLine, lineCount);
-      }
-
       // Load the tile sheet information.
-      if (lineCount == 4)
+      if (lineCount == 0)
       {
          LoadSpriteSheet(parsedOutLine);
       }
 
       // Load the tile dimensions.
-      if (lineCount == 5)
+      if (lineCount == 1)
       {
          SaveTileDimensions(parsedOutLine);
       }
 
       // Load the tile placements.
-      if (lineCount > 5 && SetMap == false)
+      if (lineCount > 1 && SetMap == false)
       {
          SetMap = SaveTileLocation(parsedOutLine, vectorCount);
          vectorCount++;
+      }
+
+      // Load events
+      if (lineCount > 1 && SetMap == true)
+      {
+         LoadEvents(parsedOutLine);
       }
 
       lineCount++;
@@ -180,44 +208,6 @@ void Map::LoadMap(std::string theSpriteSheetFilePath)
    mMapHeight = vectorCount * mTileHeight;
 
 	mapFile.close();
-}
-
-//************************************************************************************************************************************************
-//
-// Method Name: LoadAdjacentMapInformation
-//
-// Description:
-//  TODO: Add description.
-//
-//************************************************************************************************************************************************
-void Map::LoadAdjacentMapInformation(std::string theAdjacentMapFileLocation, int theEdge)
-{
-   if (theAdjacentMapFileLocation != "")
-   {
-      switch (theEdge)
-      {
-         case 0:
-         {
-            TopMap = theAdjacentMapFileLocation;
-            break;
-         }
-         case 1:
-         {
-           BottomMap = theAdjacentMapFileLocation;
-            break;
-         }
-         case 2:
-         {
-            LeftMap = theAdjacentMapFileLocation;
-            break;
-         }
-         case 3:
-         {
-            RightMap = theAdjacentMapFileLocation;
-            break;
-         }
-      }
-   }
 }
 
 //************************************************************************************************************************************************
@@ -341,6 +331,43 @@ bool Map::SaveTileLocation(std::string theTileLocation, int theVectorRow)
    }
 
    return finished;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: LoadEvents
+//
+// Description:
+//  TODO: Add description.
+//
+// Arguments:
+//  theEventInformation - TODO: Add description.
+//
+// Return:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void Map::LoadEvents(std::string theEventInformation)
+{
+   // Break the parsed line down further to individual tile components.
+   std::vector<std::string> parsedEventInformation;
+   std::string token = "";
+   std::istringstream stringStream(theEventInformation);
+   while(std::getline(stringStream, token, ','))
+   {
+      parsedEventInformation.push_back(token);
+   }
+
+   if(parsedEventInformation[0] == "CHANGE_MAP")
+   {
+      mpChangeMapEventList.push_back(new ChangeMapEvent(std::stoi(parsedEventInformation[1]),
+                                                        std::stoi(parsedEventInformation[2]),
+                                                        mTileWidth,
+                                                        mTileHeight,
+                                                        parsedEventInformation[3],
+                                                        std::stoi(parsedEventInformation[4]),
+                                                        std::stoi(parsedEventInformation[5])));
+   }
 }
 
 //***************************************************************************************************************************************************
