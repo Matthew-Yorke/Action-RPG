@@ -39,6 +39,10 @@ Map::Map(std::string theSpriteSheetFilePath)
    mTileHeight = 0;
    mMapWidth = 0;
    mMapHeight = 0;
+   TopMap = "";
+   BottomMap = "";
+   LeftMap = "";
+   RightMap = "";
 
    LoadMap(theSpriteSheetFilePath);
 }
@@ -53,6 +57,7 @@ Map::Map(std::string theSpriteSheetFilePath)
 //************************************************************************************************************************************************
 Map::~Map()
 {
+   al_destroy_bitmap(mpTileSheet);
 }
 
 //************************************************************************************************************************************************
@@ -143,20 +148,26 @@ void Map::LoadMap(std::string theSpriteSheetFilePath)
    {
       getline(mapFile, parsedOutLine);
 
+      // Link map edges.
+      if (lineCount >= 0 && lineCount <= 3)
+      {
+         LoadAdjacentMapInformation(parsedOutLine, lineCount);
+      }
+
       // Load the tile sheet information.
-      if (lineCount == 0)
+      if (lineCount == 4)
       {
          LoadSpriteSheet(parsedOutLine);
       }
 
       // Load the tile dimensions.
-      if (lineCount == 1)
+      if (lineCount == 5)
       {
          SaveTileDimensions(parsedOutLine);
       }
 
       // Load the tile placements.
-      if (lineCount > 1 && SetMap == false)
+      if (lineCount > 5 && SetMap == false)
       {
          SetMap = SaveTileLocation(parsedOutLine, vectorCount);
          vectorCount++;
@@ -169,6 +180,44 @@ void Map::LoadMap(std::string theSpriteSheetFilePath)
    mMapHeight = vectorCount * mTileHeight;
 
 	mapFile.close();
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: LoadAdjacentMapInformation
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void Map::LoadAdjacentMapInformation(std::string theAdjacentMapFileLocation, int theEdge)
+{
+   if (theAdjacentMapFileLocation != "")
+   {
+      switch (theEdge)
+      {
+         case 0:
+         {
+            TopMap = theAdjacentMapFileLocation;
+            break;
+         }
+         case 1:
+         {
+           BottomMap = theAdjacentMapFileLocation;
+            break;
+         }
+         case 2:
+         {
+            LeftMap = theAdjacentMapFileLocation;
+            break;
+         }
+         case 3:
+         {
+            RightMap = theAdjacentMapFileLocation;
+            break;
+         }
+      }
+   }
 }
 
 //************************************************************************************************************************************************

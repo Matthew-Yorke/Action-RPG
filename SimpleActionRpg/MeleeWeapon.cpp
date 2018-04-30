@@ -38,7 +38,7 @@ MeleeWeapon::MeleeWeapon(Graphics& theGraphics, int theDamage)
                                  6,
                                  3);
 
-   mWeaponWidth = 25;
+   mWeaponWidth = 35;
    mWeaponHeight = 48;
 
    mpHitBox = new Rectangle(0,

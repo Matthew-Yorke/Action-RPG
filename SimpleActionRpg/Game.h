@@ -15,15 +15,6 @@
 #define Game_h
 
 #include "GameState.h"
-#include "PlayerCharacter.h" // TODO: Remove
-#include "Light.h" // TODO: Remove
-#include "ShadowLayer.h" // TODO: Remove
-#include "Clock.h" // TODO: Remove
-#include "Camera.h" // TODO: Remove
-#include "DialogBox.h" // TODO: Remove
-#include "DialogImage.h" // TODO: Remove
-#include "Rectangle.h" // TODO: Remove
-#include "Map.h" // TODO: Remove
 
 class Game
 {

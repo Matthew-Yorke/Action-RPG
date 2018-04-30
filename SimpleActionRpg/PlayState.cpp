@@ -41,7 +41,7 @@ PlayState::PlayState(Graphics& theGraphics)
    
    mpGameClock = new Clock(6.0F);
 
-   mpTestEnemy = new Enemy(theGraphics, 50, 50);
+   mpEnemyList.push_back(new Enemy(theGraphics, 50, 50));
 }
 
 //***************************************************************************************************************************************************
@@ -116,9 +116,11 @@ void PlayState::KeyUp(ALLEGRO_EVENT theEvent)
 //************************************************************************************************************************************************
 void PlayState::Update(float theTimeChange)
 {
-   if (mpTestEnemy != nullptr)
+   for (auto currentEnemy = mpEnemyList.begin();
+        currentEnemy != mpEnemyList.end();
+        currentEnemy++)
    {
-      mpTestEnemy->Update(theTimeChange);
+      (*currentEnemy)->Update(theTimeChange);
    }
 
    mpPlayer->Update(theTimeChange);
@@ -135,30 +137,8 @@ void PlayState::Update(float theTimeChange)
       mpShadowLayer->SetIntensity(abs((0.28F * mpGameClock->GetTotalMinutes()) - 404));
    }
 
-   //Check player weapon collision
-   if (mpPlayer->GetMeleeWeapon()->GetIsWeaponSwinging() == true)
-   {
-      if (mpTestEnemy != nullptr &&
-          mpPlayer->GetMeleeWeapon()->GetHitBox()->GetCoordinateX() < (mpTestEnemy->GetCoordinateX() + mpTestEnemy->GetWidth()) &&
-          (mpPlayer->GetMeleeWeapon()->GetHitBox()->GetCoordinateX() + mpPlayer->GetMeleeWeapon()->GetHitBox()->GetWidth()) > mpTestEnemy->GetCoordinateX() &&
-          mpPlayer->GetMeleeWeapon()->GetHitBox()->GetCoordinateY() < (mpTestEnemy->GetCoordinateY() + mpTestEnemy->GetHeight()) &&
-          (mpPlayer->GetMeleeWeapon()->GetHitBox()->GetCoordinateY() + mpPlayer->GetMeleeWeapon()->GetHitBox()->GetHeight()) > mpTestEnemy->GetCoordinateY())
-      {
-          // collision detected!
-         if (mpTestEnemy->GetIsInvincible() == false)
-         {
-            mpTestEnemy->TakeDamage(mpPlayer->GetMeleeWeapon()->GetDamage());
-            mpTestEnemy->TemporaryInvincible();
-            std::cout << "hit\n";
-
-            if (mpTestEnemy->GetCurrentHealth() <= 0)
-            {
-               delete mpTestEnemy;
-               mpTestEnemy = nullptr;
-            }
-         }
-      }
-   }
+   PlayerAttackCollision();
+   MapEdgeCollision();
 }
 
 //************************************************************************************************************************************************
@@ -182,9 +162,11 @@ void PlayState::Draw(Graphics& theGraphics)
       mpCurrentMap->Draw();
    }
 
-   if (mpTestEnemy != nullptr)
+   for (auto currentEnemy = mpEnemyList.begin();
+        currentEnemy != mpEnemyList.end();
+        currentEnemy++)
    {
-      mpTestEnemy->Draw(theGraphics);
+      (*currentEnemy)->Draw(theGraphics);
    }
 
    if (mpPlayer != nullptr)
@@ -216,7 +198,133 @@ void PlayState::Draw(Graphics& theGraphics)
 // Start Private Method Definitions
 //***************************************************************************************************************************************************
 
+//************************************************************************************************************************************************
+//
+// Method Name: CollisionDeterction
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+bool PlayState::CollisionDetection(Rectangle* theRectangleOne, Rectangle* theRectangleTwo)
+{
+   bool collisionOccurred = false;
 
+   if (theRectangleOne->GetCoordinateX() < (theRectangleTwo->GetCoordinateX() + theRectangleTwo->GetWidth()) &&
+       (theRectangleOne->GetCoordinateX() + theRectangleOne->GetWidth()) > theRectangleTwo->GetCoordinateX() &&
+       theRectangleOne->GetCoordinateY() < (theRectangleTwo->GetCoordinateY() + theRectangleTwo->GetHeight()) &&
+       (theRectangleOne->GetCoordinateY() + theRectangleOne->GetHeight()) > theRectangleTwo->GetCoordinateY())
+   {
+      collisionOccurred = true;
+   }
+
+   return collisionOccurred;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: PlayerAttackCollision
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void PlayState::PlayerAttackCollision()
+{
+   // Determine if the player is attacking with their weapon.
+   if (mpPlayer->GetMeleeWeapon()->GetIsWeaponSwinging() == true)
+   {
+      // Traverse the list of enemy NPCs that can be hit by the player,
+      for (auto currentEnemy = mpEnemyList.begin();
+           currentEnemy != mpEnemyList.end();)
+      {
+         // Check if there is collision between the NPC that is not currently invincible and the weapon.
+         if ((*currentEnemy)->GetIsInvincible() == false &&
+             CollisionDetection(mpPlayer->GetMeleeWeapon()->GetHitBox(), (*currentEnemy)->GetHitBox()) == true)
+         {
+            (*currentEnemy)->TakeDamage(mpPlayer->GetMeleeWeapon()->GetDamage());
+            (*currentEnemy)->TemporaryInvincible();
+            
+            // Check if the enemy NPC has depleted their life
+            if ((*currentEnemy)->GetCurrentHealth() <= 0)
+            {
+               delete (*currentEnemy);
+               currentEnemy = mpEnemyList.erase(currentEnemy);
+            }
+            else
+            {
+               currentEnemy++;
+            }
+         }
+         else
+         {
+            currentEnemy++;
+         }
+      }
+   }
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: MapEdgeCollision
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void PlayState::MapEdgeCollision()
+{
+   Map* temporaryMap = nullptr;
+
+   // Top edge collision
+   if (mpPlayer->GetHitBox()->GetCoordinateY() < mpMapAreaBoundary->GetCoordinateY())
+   {
+      if (mpCurrentMap->GetTopMap() != "")
+      {
+         temporaryMap = new Map(mpCurrentMap->GetTopMap());
+         delete mpCurrentMap;
+         mpCurrentMap = temporaryMap;
+
+         mpPlayer->SetCoordinateY(mpCurrentMap->GetMapHeight() - mpPlayer->GetHitBox()->GetHeight());
+      }
+   }
+   // Bottom edge collision
+   else if ((mpPlayer->GetHitBox()->GetCoordinateY() + mpPlayer->GetHitBox()->GetHeight()) > (mpMapAreaBoundary->GetCoordinateY() + mpMapAreaBoundary->GetHeight()))
+   {
+      if (mpCurrentMap->GetBottomMap() != "")
+      {
+         temporaryMap = new Map(mpCurrentMap->GetBottomMap());
+         delete mpCurrentMap;
+         mpCurrentMap = temporaryMap;
+
+          mpPlayer->SetCoordinateY(0);
+      }
+   }
+   // Left edge collision
+   if (mpPlayer->GetHitBox()->GetCoordinateX() < mpMapAreaBoundary->GetCoordinateX())
+   {
+      if (mpCurrentMap->GetLeftMap() != "")
+      {
+         temporaryMap = new Map(mpCurrentMap->GetLeftMap());
+         delete mpCurrentMap;
+         mpCurrentMap = temporaryMap;
+
+         mpPlayer->SetCoordinateX(mpCurrentMap->GetMapWidth() - mpPlayer->GetHitBox()->GetWidth());
+      }
+   }
+   // Right edge collision
+   else if ((mpPlayer->GetHitBox()->GetCoordinateX() + mpPlayer->GetHitBox()->GetWidth()) > (mpMapAreaBoundary->GetCoordinateX() + mpMapAreaBoundary->GetWidth()))
+   {
+      if (mpCurrentMap->GetRightMap() != "")
+      {
+         temporaryMap = new Map(mpCurrentMap->GetRightMap());
+         delete mpCurrentMap;
+         mpCurrentMap = temporaryMap;
+
+         mpPlayer->SetCoordinateX(0);
+      }
+   }
+}
 
 //***************************************************************************************************************************************************
 // End Private Method Definitions

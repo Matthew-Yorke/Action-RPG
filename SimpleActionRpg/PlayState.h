@@ -132,7 +132,54 @@ class PlayState : public GameState
 
    private:
 
-      // There are currently no private methods for this class.
+      //************************************************************************************************************************************************
+      //
+      // Method Name: CollisionDetection
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theRectangleOne - TODO: Add description.
+      //  theRectangleTwo - TODO: Add description.
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      bool CollisionDetection(Rectangle* theRectangleOne, Rectangle* theRectangleTwo);
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: PlayerAttackCollision
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      void PlayerAttackCollision();
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: MapEdgeCollision
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      void MapEdgeCollision();
 
    //************************************************************************************************************************************************
    // End Method Declarations
@@ -164,7 +211,7 @@ class PlayState : public GameState
 
       Clock* mpGameClock;
 
-      Enemy* mpTestEnemy;
+      std::vector<Enemy*> mpEnemyList;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

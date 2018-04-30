@@ -90,6 +90,11 @@ class Map
       //************************************************************************************************************************************************
       int GetMapHeight();
 
+      std::string GetTopMap() { return TopMap; };
+      std::string GetBottomMap() { return BottomMap; };
+      std::string GetLeftMap() { return LeftMap; };
+      std::string GetRightMap() { return RightMap; };
+
       //************************************************************************************************************************************************
       //
       // Method Name: Draw
@@ -127,6 +132,23 @@ class Map
       //
       //************************************************************************************************************************************************
       void LoadMap(std::string theMapFileLocation);
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: LoadAdjacentMapInformation
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theAdjacentMapFileLocation - TODO: Add description.
+      //  theEdge - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      void LoadAdjacentMapInformation(std::string theAdjacentMapFileLocation, int theEdge);
 
       //************************************************************************************************************************************************
       //
@@ -217,6 +239,11 @@ class Map
       int mMapWidth;
 
       int mMapHeight;
+
+      std::string TopMap;
+      std::string BottomMap;
+      std::string LeftMap;
+      std::string RightMap;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations
