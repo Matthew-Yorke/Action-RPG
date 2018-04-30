@@ -53,6 +53,12 @@ Map::Map(std::string theSpriteSheetFilePath)
 Map::~Map()
 {
    al_destroy_bitmap(mpTileSheet);
+
+   for(auto currentChangeMapEvent = mpChangeMapEventList.begin(); currentChangeMapEvent != mpChangeMapEventList.end(); currentChangeMapEvent++)
+   {
+       delete *currentChangeMapEvent;
+   } 
+   mpChangeMapEventList.clear();
 }
 
 //************************************************************************************************************************************************
@@ -79,6 +85,36 @@ int Map::GetMapWidth()
 int Map::GetMapHeight()
 {
    return mMapHeight;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: NonTraverableTileCollision
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+bool Map::NonTraverableTileCollision(Rectangle* theObject)
+{
+   bool collisionHappened = false;
+
+   for (auto iterator = mMap.begin(); iterator != mMap.end(); iterator++)
+   {
+      if (iterator->Traversable == false)
+      {
+         if (theObject->GetCoordinateX() < ((iterator->TileCoordinateX * mTileWidth) + mTileWidth) &&
+             (theObject->GetCoordinateX() + theObject->GetWidth()) > (iterator->TileCoordinateX * mTileWidth) &&
+             theObject->GetCoordinateY() < ((iterator->TileCoordinateY * mTileHeight) + mTileHeight) &&
+             (theObject->GetCoordinateY() + theObject->GetHeight()) > (iterator->TileCoordinateY * mTileHeight))
+         {
+            collisionHappened = true;
+            break;
+         }
+      }
+   }
+
+   return collisionHappened;
 }
 
 //************************************************************************************************************************************************
@@ -290,6 +326,7 @@ bool Map::SaveTileLocation(std::string theTileLocation, int theVectorRow)
    int tileCoordinateX = 0;
    int spriteSheetCoordinateX = 0;
    int spriteSheetCoordinateY = 0;
+   bool traversable = false;
    for (auto iterator = parsedTileInformation.begin(); iterator != parsedTileInformation.end(); iterator++)
    {
       std::istringstream ss(*iterator);
@@ -306,9 +343,20 @@ bool Map::SaveTileLocation(std::string theTileLocation, int theVectorRow)
          {
             spriteSheetCoordinateX = stoi(token);
          }
-         else
+         else if (count == 1)
          {
             spriteSheetCoordinateY = stoi(token);
+         }
+         else
+         {
+            if(token == "T")
+            {
+               traversable = true;
+            }
+            else
+            {
+               traversable = false;
+            }
          }
          
          count++;
@@ -324,6 +372,7 @@ bool Map::SaveTileLocation(std::string theTileLocation, int theVectorRow)
       ti.SpriteSheetCoordinateY = spriteSheetCoordinateY;
       ti.TileCoordinateX = tileCoordinateX;
       ti.TileCoordinateY = theVectorRow;
+      ti.Traversable = traversable;
       mMap.push_back(ti);
 
       tileCoordinateX++;

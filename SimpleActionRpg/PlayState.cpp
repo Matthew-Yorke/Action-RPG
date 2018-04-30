@@ -31,7 +31,7 @@ PlayState::PlayState(Graphics& theGraphics)
 
    mpShadowLayer = new ShadowLayer("../Images/ShadowLayer.png");
    
-   mpPlayer = new PlayerCharacter(theGraphics, 0, 0);
+   mpPlayer = new PlayerCharacter(theGraphics, 64, 64);
    
    mpMapAreaBoundary = new Rectangle(0,
                                      0,
@@ -41,7 +41,7 @@ PlayState::PlayState(Graphics& theGraphics)
    
    mpGameClock = new Clock(6.0F);
 
-   mpEnemyList.push_back(new Enemy(theGraphics, 50, 50));
+   mpEnemyList.push_back(new Enemy(theGraphics, 256, 256));
 }
 
 //***************************************************************************************************************************************************
@@ -139,6 +139,7 @@ void PlayState::Update(float theTimeChange)
 
    PlayerAttackCollision();
    MapEventCollision();
+   MapNonTraverableMapTileCollision();
 }
 
 //************************************************************************************************************************************************
@@ -259,6 +260,52 @@ void PlayState::PlayerAttackCollision()
          else
          {
             currentEnemy++;
+         }
+      }
+   }
+}
+
+//*********************************************************************************************************************************************
+//
+// Method Name: MapNonTraverableMapTileCollision
+//
+// Description:
+//  TODO: Add description.
+//
+// Arguments:
+//  N/A
+//
+// Return:
+//  N/A
+//
+//*********************************************************************************************************************************************
+void PlayState::MapNonTraverableMapTileCollision()
+{
+   bool nonTraversableTileCollision = mpCurrentMap->NonTraverableTileCollision(mpPlayer->GetHitBox());
+
+   if (nonTraversableTileCollision)
+   {
+      switch(mpPlayer->GetDirection())
+      {
+         case PlayerConstants::DIRECTION::DOWN:
+         {
+            mpPlayer->SetCoordinateY(mpPlayer->GetCoordinateY() - mpPlayer->GetVelocity()->GetComponentY());
+            break;
+         }
+         case PlayerConstants::DIRECTION::UP:
+         {
+            mpPlayer->SetCoordinateY(mpPlayer->GetCoordinateY() + mpPlayer->GetVelocity()->GetComponentY());
+            break;
+         }
+         case PlayerConstants::DIRECTION::LEFT:
+         {
+            mpPlayer->SetCoordinateX(mpPlayer->GetCoordinateX() + mpPlayer->GetVelocity()->GetComponentY());
+            break;
+         }
+         case PlayerConstants::DIRECTION::RIGHT:
+         {
+            mpPlayer->SetCoordinateX(mpPlayer->GetCoordinateX() - mpPlayer->GetVelocity()->GetComponentY());
+            break;
          }
       }
    }

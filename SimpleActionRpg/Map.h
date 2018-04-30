@@ -95,6 +95,22 @@ class Map
 
       //************************************************************************************************************************************************
       //
+      // Method Name: NonTraverableTileCollision
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theObject - TODO: Add description.
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      bool NonTraverableTileCollision(Rectangle* theObject);
+
+      //************************************************************************************************************************************************
+      //
       // Method Name: ChangeMapEventCollision
       //
       // Description:
@@ -245,6 +261,7 @@ class Map
          int SpriteSheetCoordinateY;
          int TileCoordinateX;
          int TileCoordinateY;
+         bool Traversable;
       };
 
       std::vector<TileInformation> mMap;
