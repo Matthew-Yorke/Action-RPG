@@ -31,14 +31,15 @@
 //  TODO: Add method description.
 //
 //***************************************************************************************************************************************************
-Map::Map(std::string theSpriteSheetFilePath)
+Map::Map(Graphics* theGraphics, std::string theSpriteSheetFilePath)
 {
    mpTileSheet = nullptr;
    mTileWidth = 0;
    mTileHeight = 0;
    mMapWidth = 0;
    mMapHeight = 0;
-
+   mpGraphics = theGraphics;
+   mEventsLoaded = false;
    LoadMap(theSpriteSheetFilePath);
 }
 
@@ -59,6 +60,12 @@ Map::~Map()
        delete *currentChangeMapEvent;
    } 
    mpChangeMapEventList.clear();
+
+   for(auto currentEnemy = mpEnemyList.begin(); currentEnemy != mpEnemyList.end(); currentEnemy++)
+   {
+       delete *currentEnemy;
+   } 
+   mpEnemyList.clear();
 }
 
 //************************************************************************************************************************************************
@@ -85,6 +92,25 @@ int Map::GetMapWidth()
 int Map::GetMapHeight()
 {
    return mMapHeight;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: GetEnemyList
+//
+// Description:
+//  TODO: Add description.
+//
+// Arguments:
+//  N/A
+//
+// Return:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+std::vector<Enemy*> Map::GetEnemyList()
+{
+   return mpEnemyList;
 }
 
 //************************************************************************************************************************************************
@@ -217,24 +243,26 @@ void Map::LoadMap(std::string theSpriteSheetFilePath)
       {
          LoadSpriteSheet(parsedOutLine);
       }
-
       // Load the tile dimensions.
-      if (lineCount == 1)
+      else if (lineCount == 1)
       {
          SaveTileDimensions(parsedOutLine);
       }
-
       // Load the tile placements.
-      if (lineCount > 1 && SetMap == false)
+      else if (lineCount > 1 && SetMap == false)
       {
          SetMap = SaveTileLocation(parsedOutLine, vectorCount);
          vectorCount++;
       }
-
       // Load events
-      if (lineCount > 1 && SetMap == true)
+      else if (mEventsLoaded == false)
       {
          LoadEvents(parsedOutLine);
+      }
+      // Load enemies
+      else
+      {
+         LoadEnemies(parsedOutLine);
       }
 
       lineCount++;
@@ -318,6 +346,8 @@ bool Map::SaveTileLocation(std::string theTileLocation, int theVectorRow)
       mMapWidth++;
    }
    
+   // Subtract one for the ending symbol "!"
+   mMapWidth--;
    // Multiply the current map width (number of tiles) by the tile width to get the total screen width.
    mMapWidth *= mTileWidth;
 
@@ -389,16 +419,10 @@ bool Map::SaveTileLocation(std::string theTileLocation, int theVectorRow)
 // Description:
 //  TODO: Add description.
 //
-// Arguments:
-//  theEventInformation - TODO: Add description.
-//
-// Return:
-//  TODO: Add description.
-//
 //************************************************************************************************************************************************
 void Map::LoadEvents(std::string theEventInformation)
 {
-   // Break the parsed line down further to individual tile components.
+   // Break the parsed line down further to individual event components.
    std::vector<std::string> parsedEventInformation;
    std::string token = "";
    std::istringstream stringStream(theEventInformation);
@@ -409,7 +433,8 @@ void Map::LoadEvents(std::string theEventInformation)
 
    if(parsedEventInformation[0] == "CHANGE_MAP")
    {
-      mpChangeMapEventList.push_back(new ChangeMapEvent(std::stoi(parsedEventInformation[1]),
+      mpChangeMapEventList.push_back(new ChangeMapEvent(mpGraphics,
+                                                        std::stoi(parsedEventInformation[1]),
                                                         std::stoi(parsedEventInformation[2]),
                                                         mTileWidth,
                                                         mTileHeight,
@@ -417,6 +442,35 @@ void Map::LoadEvents(std::string theEventInformation)
                                                         std::stoi(parsedEventInformation[4]),
                                                         std::stoi(parsedEventInformation[5])));
    }
+
+   if (parsedEventInformation.size() == 7 && parsedEventInformation[6] == "!")
+   {
+      mEventsLoaded = true;
+   }
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: LoadEnemies
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void Map::LoadEnemies(std::string theEnemyInformation)
+{
+   // Break the parsed line down further to individual enemy components.
+   std::vector<std::string> parsedEventInformation;
+   std::string token = "";
+   std::istringstream stringStream(theEnemyInformation);
+   while(std::getline(stringStream, token, ','))
+   {
+      parsedEventInformation.push_back(token);
+   }
+
+   mpEnemyList.push_back(new Enemy(*mpGraphics,
+                                   std::stoi(parsedEventInformation[0]),
+                                   std::stoi(parsedEventInformation[1])));
 }
 
 //***************************************************************************************************************************************************

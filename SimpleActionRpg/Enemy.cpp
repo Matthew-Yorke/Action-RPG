@@ -29,7 +29,7 @@
 Enemy::Enemy(Graphics& theGraphics, int theCoordinateX, int theCoordinateY) :
 RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
 {
-   mCurrentHealth = mMaxHealth = 10;
+   mCurrentHealth = mMaxHealth = 1;
    mpSprite = new AnimatedSprite(theGraphics,
                                  "../Images/TestEnemy.png",
                                  0,

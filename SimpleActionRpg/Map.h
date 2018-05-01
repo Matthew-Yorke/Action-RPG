@@ -19,6 +19,8 @@
 #include <vector>
 #include "ChangeMapEvent.h"
 #include "Rectangle.h"
+#include "Enemy.h"
+#include "Graphics.h"
 
 class ChangeMapEvent;
 class Map
@@ -43,7 +45,7 @@ class Map
       //  N/A
       //
       //************************************************************************************************************************************************
-      Map(std::string theMapFileLocation);
+      Map(Graphics* theGraphics, std::string theMapFileLocation);
 
       //************************************************************************************************************************************************
       //
@@ -92,6 +94,27 @@ class Map
       //
       //************************************************************************************************************************************************
       int GetMapHeight();
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: GetEnemyList
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      std::vector<Enemy*> GetEnemyList();
+
+      void UpdateEnemyList(std::vector<Enemy*> theNewList)
+      {
+         mpEnemyList = theNewList;
+      }
 
       //************************************************************************************************************************************************
       //
@@ -223,10 +246,26 @@ class Map
       //  theEventInformation - TODO: Add description.
       //
       // Return:
-      //  TODO: Add description.
+      //  N/A
       //
       //************************************************************************************************************************************************
       void LoadEvents(std::string theEventInformation);
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: LoadEnemies
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theEnemyInformation - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      void LoadEnemies(std::string theEnemyInformation);
 
    //************************************************************************************************************************************************
    // End Method Declarations
@@ -271,6 +310,12 @@ class Map
       int mMapHeight;
 
       std::vector<ChangeMapEvent*> mpChangeMapEventList;
+
+      std::vector<Enemy*> mpEnemyList;
+
+      Graphics* mpGraphics;
+
+      bool mEventsLoaded;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

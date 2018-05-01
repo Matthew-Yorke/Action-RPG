@@ -19,6 +19,7 @@
 #include "Map.h"
 
 class Map;
+class Graphics;
 
 class ChangeMapEvent : public Event
 {
@@ -28,7 +29,7 @@ class ChangeMapEvent : public Event
 
    public:
 
-      ChangeMapEvent(int theCoordinateX, int theCoordianteY, int theWidth, int theHeight, std::string theMapFileLocation, int thePlayerCoordinateX, int thePlayerCoordinateY);
+      ChangeMapEvent(Graphics* theGraphics, int theCoordinateX, int theCoordianteY, int theWidth, int theHeight, std::string theMapFileLocation, int thePlayerCoordinateX, int thePlayerCoordinateY);
 
       ~ChangeMapEvent();
 
@@ -69,6 +70,8 @@ class ChangeMapEvent : public Event
       int mPlayerCoordinateX;
 
       int mPlayerCoordinateY;
+
+      Graphics* mpGraphics;
 };
 
 #endif

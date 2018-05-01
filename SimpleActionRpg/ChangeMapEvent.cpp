@@ -25,9 +25,10 @@
 //  TODO: Add method description.
 //
 //***************************************************************************************************************************************************
-ChangeMapEvent::ChangeMapEvent(int theCoordinateX, int theCoordianteY, int theWidth, int theHeight, std::string theMapFileLocation, int thePlayerCoordinateX, int thePlayerCoordinateY) :
+ChangeMapEvent::ChangeMapEvent(Graphics* theGraphics, int theCoordinateX, int theCoordianteY, int theWidth, int theHeight, std::string theMapFileLocation, int thePlayerCoordinateX, int thePlayerCoordinateY) :
 Event(theCoordinateX, theCoordianteY, theWidth, theHeight)
 {
+   mpGraphics = theGraphics;
    mMapFileLocation = theMapFileLocation;
    mPlayerCoordinateX = thePlayerCoordinateX;
    mPlayerCoordinateY = thePlayerCoordinateY;
@@ -81,7 +82,7 @@ int ChangeMapEvent::GetPlayerCoordinateY()
 //************************************************************************************************************************************************
 Map* ChangeMapEvent::Execute()
 {
-   return new Map(mMapFileLocation);
+   return new Map(mpGraphics, mMapFileLocation);
 }
 
 

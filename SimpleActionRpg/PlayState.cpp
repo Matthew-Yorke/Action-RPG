@@ -27,7 +27,7 @@
 //***************************************************************************************************************************************************
 PlayState::PlayState(Graphics& theGraphics)
 {
-   mpCurrentMap = new Map("../Maps/TestMap.txt");
+   mpCurrentMap = new Map(&theGraphics, "../Maps/TestMap.txt");
 
    mpShadowLayer = new ShadowLayer("../Images/ShadowLayer.png");
    
@@ -40,8 +40,6 @@ PlayState::PlayState(Graphics& theGraphics)
    mpCamera = new Camera(mpMapAreaBoundary, mpPlayer);
    
    mpGameClock = new Clock(6.0F);
-
-   mpEnemyList.push_back(new Enemy(theGraphics, 256, 256));
 }
 
 //***************************************************************************************************************************************************
@@ -116,8 +114,9 @@ void PlayState::KeyUp(ALLEGRO_EVENT theEvent)
 //************************************************************************************************************************************************
 void PlayState::Update(float theTimeChange)
 {
-   for (auto currentEnemy = mpEnemyList.begin();
-        currentEnemy != mpEnemyList.end();
+   std::vector<Enemy*> temporaryEnemyList = mpCurrentMap->GetEnemyList();
+   for (auto currentEnemy = temporaryEnemyList.begin();
+        currentEnemy != temporaryEnemyList.end();
         currentEnemy++)
    {
       (*currentEnemy)->Update(theTimeChange);
@@ -163,8 +162,9 @@ void PlayState::Draw(Graphics& theGraphics)
       mpCurrentMap->Draw();
    }
 
-   for (auto currentEnemy = mpEnemyList.begin();
-        currentEnemy != mpEnemyList.end();
+   std::vector<Enemy*> temporaryEnemyList = mpCurrentMap->GetEnemyList();
+   for (auto currentEnemy = temporaryEnemyList.begin();
+        currentEnemy != temporaryEnemyList.end();
         currentEnemy++)
    {
       (*currentEnemy)->Draw(theGraphics);
@@ -235,9 +235,10 @@ void PlayState::PlayerAttackCollision()
    // Determine if the player is attacking with their weapon.
    if (mpPlayer->GetMeleeWeapon()->GetIsWeaponSwinging() == true)
    {
+      std::vector<Enemy*> temporaryEnemyList = mpCurrentMap->GetEnemyList();
       // Traverse the list of enemy NPCs that can be hit by the player,
-      for (auto currentEnemy = mpEnemyList.begin();
-           currentEnemy != mpEnemyList.end();)
+      for (auto currentEnemy = temporaryEnemyList.begin();
+           currentEnemy != temporaryEnemyList.end();)
       {
          // Check if there is collision between the NPC that is not currently invincible and the weapon.
          if ((*currentEnemy)->GetIsInvincible() == false &&
@@ -250,7 +251,8 @@ void PlayState::PlayerAttackCollision()
             if ((*currentEnemy)->GetCurrentHealth() <= 0)
             {
                delete (*currentEnemy);
-               currentEnemy = mpEnemyList.erase(currentEnemy);
+               currentEnemy = temporaryEnemyList.erase(currentEnemy);
+               mpCurrentMap->UpdateEnemyList(temporaryEnemyList);
             }
             else
             {
@@ -281,7 +283,7 @@ void PlayState::PlayerAttackCollision()
 //*********************************************************************************************************************************************
 void PlayState::MapNonTraverableMapTileCollision()
 {
-   bool nonTraversableTileCollision = mpCurrentMap->NonTraverableTileCollision(mpPlayer->GetHitBox());
+   bool nonTraversableTileCollision = mpCurrentMap->NonTraverableTileCollision(mpPlayer->GetMovementHitBox());
 
    if (nonTraversableTileCollision)
    {
@@ -324,7 +326,7 @@ void PlayState::MapEventCollision()
    Map* temporaryMap = nullptr;
    int playerCoordinateX = mpPlayer->GetCoordinateX();
    int playerCoordinateY = mpPlayer->GetCoordinateY();
-   bool changeMap = mpCurrentMap->ChangeMapEventCollision(mpPlayer->GetHitBox(),
+   bool changeMap = mpCurrentMap->ChangeMapEventCollision(mpPlayer->GetMovementHitBox(),
                                                           temporaryMap,
                                                           playerCoordinateX,
                                                           playerCoordinateY);

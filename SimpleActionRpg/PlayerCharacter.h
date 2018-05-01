@@ -212,6 +212,22 @@ class PlayerCharacter : public RectangleObject
 
       //************************************************************************************************************************************************
       //
+      // Method Name: GetMovementHitBox
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      Rectangle* GetMovementHitBox();
+
+      //************************************************************************************************************************************************
+      //
       // Method Name: GetMeleeWeapon
       //
       // Description:
@@ -360,6 +376,9 @@ class PlayerCharacter : public RectangleObject
 
       // TODO: Add description.
       Rectangle* mpHitbox;
+
+      // TODO: Add description.
+      Rectangle* mpMovementHitbox;
 
       // TODO: Add description.
       MeleeWeapon* mpMeleeWeapon;

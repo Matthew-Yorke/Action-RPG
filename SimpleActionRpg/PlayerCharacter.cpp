@@ -46,6 +46,10 @@ RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
                             theCoordinateY + 1,
                             25,
                             63);
+   mpMovementHitbox = new Rectangle(theCoordinateX + 20,
+                                    theCoordinateY + 33,
+                                    25,
+                                    31);
    mpMeleeWeapon = new MeleeWeapon(theGraphics,
                                    1);
    mpCurrentState = new IdleState(this);
@@ -65,6 +69,7 @@ PlayerCharacter::~PlayerCharacter()
    delete mpVelocity;
    delete mpSprite;
    delete mpHitbox;
+   delete mpMovementHitbox;
    delete mpMeleeWeapon;
 }
 
@@ -192,6 +197,19 @@ Rectangle* PlayerCharacter::GetHitBox()
 
 //************************************************************************************************************************************************
 //
+// Method Name: GetMovementHitBox
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+Rectangle* PlayerCharacter::GetMovementHitBox()
+{
+   return mpMovementHitbox;
+}
+
+//************************************************************************************************************************************************
+//
 // Method Name: GetMeleeWeapon
 //
 // Description:
@@ -256,6 +274,8 @@ void PlayerCharacter::Update(float theTimeChange)
    mpCurrentState->Update(theTimeChange);
    mpHitbox->SetCoordinateX(GetCoordinateX() + 20);
    mpHitbox->SetCoordinateY(GetCoordinateY() + 1);
+   mpMovementHitbox->SetCoordinateX(GetCoordinateX() + 20);
+   mpMovementHitbox->SetCoordinateY(GetCoordinateY() + 33);
 }
 
 //************************************************************************************************************************************************
@@ -270,6 +290,7 @@ void PlayerCharacter::Draw(Graphics& theGraphics)
 {
    mpCurrentState->Draw(theGraphics);
    al_draw_rectangle(mpHitbox->GetCoordinateX(), mpHitbox->GetCoordinateY(), mpHitbox->GetCoordinateX() + mpHitbox->GetWidth(), mpHitbox->GetCoordinateY()+ mpHitbox->GetHeight(), al_map_rgb(255,0,0), 1);
+   al_draw_rectangle(mpMovementHitbox->GetCoordinateX(), mpMovementHitbox->GetCoordinateY(), mpMovementHitbox->GetCoordinateX() + mpMovementHitbox->GetWidth(), mpMovementHitbox->GetCoordinateY()+ mpMovementHitbox->GetHeight(), al_map_rgb(255,0,0), 1);
 }
 
 //************************************************************************************************************************************************
