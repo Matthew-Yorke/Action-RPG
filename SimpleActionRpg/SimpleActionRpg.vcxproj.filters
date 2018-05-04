@@ -137,6 +137,9 @@
     <ClCompile Include="ChangeMapEvent.cpp">
       <Filter>Code\Engine\Events</Filter>
     </ClCompile>
+    <ClCompile Include="Pathfinding.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -226,6 +229,7 @@
     <ClInclude Include="Tile.h">
       <Filter>Code\Engine\Maps</Filter>
     </ClInclude>
+    <ClInclude Include="Pathfinding.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -23,6 +23,7 @@
 #include "Enemy.h"
 #include "Graphics.h"
 #include "Tile.h"
+#include "Pathfinding.h"
 
 class ChangeMapEvent;
 class Map
@@ -167,8 +168,6 @@ class Map
       //
       //************************************************************************************************************************************************
       void Draw();
-
-      void Draw2();
 
    protected:
 
@@ -329,6 +328,10 @@ class Map
       Graphics* mpGraphics;
 
       bool mEventsLoaded;
+
+      Pathfinding* mpPathfinder;
+
+      std::vector<TileInformation*> mpPath;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

@@ -41,6 +41,8 @@ Map::Map(Graphics* theGraphics, std::string theSpriteSheetFilePath)
    mpGraphics = theGraphics;
    mEventsLoaded = false;
    LoadMap(theSpriteSheetFilePath);
+
+   mpPathfinder = new Pathfinding(mpMap);
 }
 
 //************************************************************************************************************************************************
@@ -221,6 +223,18 @@ void Map::Draw()
                             (*iterator)->TileCoordinateX * mTileWidth,
                             (*iterator)->TileCoordinateY * mTileHeight,
                             0);
+   }
+
+   mpPath = mpPathfinder->FindPath(mpEnemyList[0]->GetCurrentTile(), mpMap[35]);
+   
+   for (auto iterator = mpPath.begin(); iterator != mpPath.end(); iterator++)
+   {
+      al_draw_rectangle((*iterator)->TileCoordinateX * mTileWidth,
+                        (*iterator)->TileCoordinateY * mTileHeight,
+                        ((*iterator)->TileCoordinateX * mTileWidth) + mTileWidth,
+                        ((*iterator)->TileCoordinateY * mTileHeight) + mTileHeight,
+                        al_map_rgb(255, 0, 255),
+                        1);
    }
 }
 
@@ -424,14 +438,12 @@ bool Map::SaveTileLocation(std::string theTileLocation, int theVectorRow)
          break;
       }
 
-      TileInformation* ti = new TileInformation
-      {
-         spriteSheetCoordinateX,
-         spriteSheetCoordinateY,
-         tileCoordinateX,
-         theVectorRow,
-         traversable
-      };
+      TileInformation* ti = new TileInformation();
+      ti->SpriteSheetCoordinateX = spriteSheetCoordinateX;
+      ti->SpriteSheetCoordinateY = spriteSheetCoordinateY;
+      ti->TileCoordinateX = tileCoordinateX;
+      ti->TileCoordinateY = theVectorRow;
+      ti->Traversable =   traversable;
       mpMap.push_back(ti);
 
       tileCoordinateX++;
@@ -555,49 +567,6 @@ void Map::LoadEnemies(std::string theEnemyInformation)
    mpEnemyList.push_back(new Enemy(*mpGraphics,
                                    std::stoi(parsedEventInformation[0]),
                                    std::stoi(parsedEventInformation[1])));
-}
-
-void Map::Draw2()
-{
-   for (auto currentTile = mpMap.begin(); currentTile != mpMap.end(); currentTile++)
-   {
-      if ((*currentTile)->pTopNeighbor != nullptr)
-      {
-         al_draw_line(((*currentTile)->TileCoordinateX * mTileWidth) + 16,
-                      ((*currentTile)->TileCoordinateY * mTileHeight) + 4,
-                      ((*currentTile)->pTopNeighbor->TileCoordinateX * mTileWidth) + 16,
-                      ((*currentTile)->pTopNeighbor->TileCoordinateY * mTileHeight) + (32 - 4),
-                      al_map_rgb(0, 255, 0),
-                      1);
-      }
-      if ((*currentTile)->pBottomNeighbor != nullptr)
-      {
-         al_draw_line(((*currentTile)->TileCoordinateX * mTileWidth) + 16,
-                      ((*currentTile)->TileCoordinateY * mTileHeight) + (32 - 4),
-                      ((*currentTile)->pBottomNeighbor->TileCoordinateX * mTileWidth) + 16,
-                      ((*currentTile)->pBottomNeighbor->TileCoordinateY * mTileHeight) + 4,
-                      al_map_rgb(0, 255, 0),
-                      2);
-      }
-      if ((*currentTile)->pLeftNeighbor != nullptr)
-      {
-         al_draw_line(((*currentTile)->TileCoordinateX * mTileWidth) + 4,
-                      ((*currentTile)->TileCoordinateY * mTileHeight) + 16,
-                      ((*currentTile)->pLeftNeighbor->TileCoordinateX * mTileWidth) + (32 - 4),
-                      ((*currentTile)->pLeftNeighbor->TileCoordinateY * mTileHeight) + 16,
-                      al_map_rgb(0, 255, 0),
-                      1);
-      }
-      if ((*currentTile)->pRightNeighbor != nullptr)
-      {
-         al_draw_line(((*currentTile)->TileCoordinateX * mTileWidth) + (32 - 4),
-                      ((*currentTile)->TileCoordinateY * mTileHeight) + 16,
-                      ((*currentTile)->pRightNeighbor->TileCoordinateX * mTileWidth) + 4,
-                      ((*currentTile)->pRightNeighbor->TileCoordinateY * mTileHeight) + 16,
-                      al_map_rgb(0, 255, 0),
-                      1);
-      }
-   }
 }
 //***************************************************************************************************************************************************
 // End Private Method Definitions
