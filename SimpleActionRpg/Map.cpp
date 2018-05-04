@@ -296,6 +296,8 @@ void Map::LoadMap(std::string theSpriteSheetFilePath)
    // Multiply the vector count representing as the number of tiles height-wise by the tile height to get the total height of the map.
    mMapHeight = vectorCount * mTileHeight;
 
+   ConnectTiles();
+
 	mapFile.close();
 }
 
@@ -441,6 +443,61 @@ bool Map::SaveTileLocation(std::string theTileLocation, int theVectorRow)
 
 //************************************************************************************************************************************************
 //
+// Method Name: ConnectTiles
+//
+// Description:
+//  TODO: Add description.
+//
+// Arguments:
+//  N/A
+//
+// Return:
+//  N/A
+//
+//************************************************************************************************************************************************
+void Map::ConnectTiles()
+{
+   for (auto currentTile = mpMap.begin(); currentTile != mpMap.end(); currentTile++)
+   {
+      // Add top neighbor if not first row.
+      if ((*currentTile)->TileCoordinateY != 0)
+      {
+         auto topNeighbor = currentTile;
+         for (int count = 0; count < (mMapWidth / mTileWidth); count++)
+         {
+            topNeighbor--;
+         }
+         (*currentTile)->pTopNeighbor = *topNeighbor;
+      }
+      // Add bottom neighbor if not last row.
+      if ((*currentTile)->TileCoordinateY != (mMapHeight / mTileHeight) - 1)
+      {
+         auto bottomNeighbor = currentTile;
+         for (int count = 0; count < (mMapWidth / mTileWidth); count++)
+         {
+            bottomNeighbor++;
+         }
+         (*currentTile)->pBottomNeighbor = *bottomNeighbor;
+      }
+      // Add left neighbor if not first column.
+      if ((*currentTile)->TileCoordinateX != 0)
+      {
+         auto leftNeighbor = currentTile;
+         leftNeighbor--;
+         (*currentTile)->pLeftNeighbor = *leftNeighbor;
+      }
+      // Add right neighbor if not last column.
+      if ((*currentTile)->TileCoordinateX != (mMapWidth / mTileWidth) - 1)
+      {
+         auto rightNeighbor = currentTile;
+         rightNeighbor++;
+         (*currentTile)->pRightNeighbor = *rightNeighbor;
+      }
+   }
+}
+
+//************************************************************************************************************************************************
+//
 // Method Name: LoadEvents
 //
 // Description:
@@ -500,6 +557,48 @@ void Map::LoadEnemies(std::string theEnemyInformation)
                                    std::stoi(parsedEventInformation[1])));
 }
 
+void Map::Draw2()
+{
+   for (auto currentTile = mpMap.begin(); currentTile != mpMap.end(); currentTile++)
+   {
+      if ((*currentTile)->pTopNeighbor != nullptr)
+      {
+         al_draw_line(((*currentTile)->TileCoordinateX * mTileWidth) + 16,
+                      ((*currentTile)->TileCoordinateY * mTileHeight) + 4,
+                      ((*currentTile)->pTopNeighbor->TileCoordinateX * mTileWidth) + 16,
+                      ((*currentTile)->pTopNeighbor->TileCoordinateY * mTileHeight) + (32 - 4),
+                      al_map_rgb(0, 255, 0),
+                      1);
+      }
+      if ((*currentTile)->pBottomNeighbor != nullptr)
+      {
+         al_draw_line(((*currentTile)->TileCoordinateX * mTileWidth) + 16,
+                      ((*currentTile)->TileCoordinateY * mTileHeight) + (32 - 4),
+                      ((*currentTile)->pBottomNeighbor->TileCoordinateX * mTileWidth) + 16,
+                      ((*currentTile)->pBottomNeighbor->TileCoordinateY * mTileHeight) + 4,
+                      al_map_rgb(0, 255, 0),
+                      2);
+      }
+      if ((*currentTile)->pLeftNeighbor != nullptr)
+      {
+         al_draw_line(((*currentTile)->TileCoordinateX * mTileWidth) + 4,
+                      ((*currentTile)->TileCoordinateY * mTileHeight) + 16,
+                      ((*currentTile)->pLeftNeighbor->TileCoordinateX * mTileWidth) + (32 - 4),
+                      ((*currentTile)->pLeftNeighbor->TileCoordinateY * mTileHeight) + 16,
+                      al_map_rgb(0, 255, 0),
+                      1);
+      }
+      if ((*currentTile)->pRightNeighbor != nullptr)
+      {
+         al_draw_line(((*currentTile)->TileCoordinateX * mTileWidth) + (32 - 4),
+                      ((*currentTile)->TileCoordinateY * mTileHeight) + 16,
+                      ((*currentTile)->pRightNeighbor->TileCoordinateX * mTileWidth) + 4,
+                      ((*currentTile)->pRightNeighbor->TileCoordinateY * mTileHeight) + 16,
+                      al_map_rgb(0, 255, 0),
+                      1);
+      }
+   }
+}
 //***************************************************************************************************************************************************
 // End Private Method Definitions
 //***************************************************************************************************************************************************

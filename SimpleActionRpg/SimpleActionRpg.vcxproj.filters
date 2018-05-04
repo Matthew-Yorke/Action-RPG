@@ -51,6 +51,9 @@
     <Filter Include="Code\Engine\Events">
       <UniqueIdentifier>{c87e8d71-6898-4fdd-bf0d-e4857f228d5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Code\Engine\Pathfinding">
+      <UniqueIdentifier>{ec10b5fc-911a-4caa-817b-c253464f4e15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp">

@@ -169,6 +169,7 @@ void PlayState::Draw(Graphics& theGraphics)
    if (mpCurrentMap != nullptr)
    {
       mpCurrentMap->Draw();
+      mpCurrentMap->Draw2();
    }
 
    std::vector<Enemy*> temporaryEnemyList = mpCurrentMap->GetEnemyList();

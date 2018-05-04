@@ -8,6 +8,10 @@ struct TileInformation
    int TileCoordinateX;
    int TileCoordinateY;
    bool Traversable;
+   TileInformation* pTopNeighbor = nullptr;
+   TileInformation* pBottomNeighbor = nullptr;
+   TileInformation* pLeftNeighbor = nullptr;
+   TileInformation* pRightNeighbor = nullptr;
 };
 
 #endif
