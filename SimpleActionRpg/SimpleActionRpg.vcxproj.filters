@@ -220,6 +220,9 @@
     <ClInclude Include="ChangeMapEvent.h">
       <Filter>Code\Engine\Events</Filter>
     </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Code\Engine\Maps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

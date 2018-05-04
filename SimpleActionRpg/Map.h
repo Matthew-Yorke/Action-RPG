@@ -21,15 +21,7 @@
 #include "RectangleObject.h"
 #include "Enemy.h"
 #include "Graphics.h"
-
-struct TileInformation
-{
-   int SpriteSheetCoordinateX;
-   int SpriteSheetCoordinateY;
-   int TileCoordinateX;
-   int TileCoordinateY;
-   bool Traversable;
-};
+#include "Tile.h"
 
 class ChangeMapEvent;
 class Map

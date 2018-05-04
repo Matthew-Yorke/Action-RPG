@@ -24,6 +24,7 @@
 #include <vector>
 #include <algorithm>
 #include "RectangleObject.h"
+#include "Tile.h"
 
 class Enemy : public RectangleObject
 {
@@ -96,6 +97,54 @@ class Enemy : public RectangleObject
       //
       //************************************************************************************************************************************************
       RectangleObject* GetHitBox();
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: GetMovementHitBox
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      RectangleObject* GetMovementHitBox();
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: SetCurrentTile
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theCurrentTile - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      void SetCurrentTile(TileInformation* theCurrentTile);
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: GetCurrentTile
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A.
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      TileInformation* GetCurrentTile();
 
       //************************************************************************************************************************************************
       //
@@ -239,9 +288,14 @@ class Enemy : public RectangleObject
       // TODO: Add description.
       RectangleObject* mpHitbox;
 
+      // TODO: Add description.
+      RectangleObject* mpMovementHitbox;
+
       bool mInvincible;
 
       float mInvincibleTime;
+
+      TileInformation* mpCurrentTile;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

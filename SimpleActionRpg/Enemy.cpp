@@ -42,6 +42,10 @@ RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
                                   theCoordinateY + 1,
                                   25,
                                   63);
+   mpMovementHitbox = new RectangleObject(theCoordinateX + 20,
+                                          theCoordinateY + 33,
+                                          25,
+                                          31);
    mInvincible = false;
    mInvincibleTime = 0.0F;
 }
@@ -58,6 +62,7 @@ Enemy::~Enemy()
 {
    delete mpSprite;
    delete mpHitbox;
+   delete mpMovementHitbox;
 }
 
 //************************************************************************************************************************************************
@@ -84,6 +89,47 @@ AnimatedSprite* Enemy::GetSprite()
 RectangleObject* Enemy::GetHitBox()
 {
    return mpHitbox;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: GetMovementHitBox
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+RectangleObject* Enemy::GetMovementHitBox()
+{
+   return mpMovementHitbox;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: SetCurrentTile
+//
+// Description:
+//  TODO: Add description.
+//
+
+//************************************************************************************************************************************************
+void Enemy::SetCurrentTile(TileInformation* theCurrentTile)
+{
+   mpCurrentTile = theCurrentTile;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: GetCurrentTile
+//
+// Description:
+//  TODO: Add description.
+//
+
+//************************************************************************************************************************************************
+TileInformation* Enemy::GetCurrentTile()
+{
+   return mpCurrentTile;
 }
 
 //************************************************************************************************************************************************
@@ -151,6 +197,8 @@ void Enemy::Update(float theTimeChange)
 {
    mpHitbox->SetCoordinateX(GetCoordinateX() + 20);
    mpHitbox->SetCoordinateY(GetCoordinateY() + 1);
+   mpMovementHitbox->SetCoordinateX(GetCoordinateX() + 20);
+   mpMovementHitbox->SetCoordinateY(GetCoordinateY() + 33);
 
    if (mInvincible == true)
    {
@@ -175,6 +223,17 @@ void Enemy::Draw(Graphics& theGraphics)
 {
    DrawSprite(theGraphics);
    al_draw_rectangle(mpHitbox->GetCoordinateX(), mpHitbox->GetCoordinateY(), mpHitbox->GetCoordinateX() + mpHitbox->GetWidth(), mpHitbox->GetCoordinateY()+ mpHitbox->GetHeight(), al_map_rgb(255,0,0), 1);
+   al_draw_rectangle(mpMovementHitbox->GetCoordinateX(), mpMovementHitbox->GetCoordinateY(), mpMovementHitbox->GetCoordinateX() + mpMovementHitbox->GetWidth(), mpMovementHitbox->GetCoordinateY()+ mpMovementHitbox->GetHeight(), al_map_rgb(0,0,255), 1);
+
+   if (mpCurrentTile != nullptr)
+   {
+      al_draw_rectangle(mpCurrentTile->TileCoordinateX * 32,
+                        mpCurrentTile->TileCoordinateY * 32,
+                        (mpCurrentTile->TileCoordinateX * 32) + 32,
+                        (mpCurrentTile->TileCoordinateY * 32) + 32,
+                        al_map_rgb(255, 255, 0),
+                        1);
+   }
 }
 
 //************************************************************************************************************************************************

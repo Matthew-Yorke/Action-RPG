@@ -125,6 +125,13 @@ void PlayState::Update(float theTimeChange)
    mpPlayer->Update(theTimeChange);
    mpPlayer->SetCurrentTile(mpCurrentMap->GetClosestTile(mpPlayer->GetMovementHitBox()->GetCoordinateX() + mpPlayer->GetMovementHitBox()->GetWidthCenterPoint(),
                                                          mpPlayer->GetMovementHitBox()->GetCoordinateY() + mpPlayer->GetMovementHitBox()->GetHeightCenterPoint()));
+   auto enemyList = mpCurrentMap->GetEnemyList();
+   for (auto iterator = enemyList.begin(); iterator != enemyList.end(); iterator++)
+   {
+      (*iterator)->SetCurrentTile(mpCurrentMap->GetClosestTile((*iterator)->GetMovementHitBox()->GetCoordinateX() + (*iterator)->GetMovementHitBox()->GetWidthCenterPoint(),
+                                                               (*iterator)->GetMovementHitBox()->GetCoordinateY() + (*iterator)->GetMovementHitBox()->GetHeightCenterPoint()));
+   }
+
    mpGameClock->Update(theTimeChange);
    mpCamera->Update();
    mpShadowLayer->CameraUpdate(mpCamera);

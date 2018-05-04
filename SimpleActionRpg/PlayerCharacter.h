@@ -24,7 +24,7 @@
 #include "PlayerConstants.h"
 #include <vector>
 #include <algorithm>
-#include "Map.h" // TODO: Only included for TileInformation
+#include "Tile.h"
 
 class PlayerCharacter : public RectangleObject
 {
