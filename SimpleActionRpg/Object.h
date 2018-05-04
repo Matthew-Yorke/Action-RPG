@@ -123,7 +123,7 @@ class Object
 
       //*********************************************************************************************************************************************
       //
-      // Method Name: SetWidth
+      // Method Name: SetWidthCenterPoint
       //
       // Description:
       //  This method updates the width center point of the object based on the passed in value.
@@ -135,7 +135,7 @@ class Object
       //  N/A
       //
       //*********************************************************************************************************************************************
-      void SetWidth(int theWidthCenterPoint);
+      void SetWidthCenterPoint(int theWidthCenterPoint);
 
       //*********************************************************************************************************************************************
       //

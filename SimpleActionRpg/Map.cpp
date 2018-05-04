@@ -55,6 +55,12 @@ Map::~Map()
 {
    al_destroy_bitmap(mpTileSheet);
 
+   for(auto currentTile = mpMap.begin(); currentTile != mpMap.end(); currentTile++)
+   {
+       delete *currentTile;
+   } 
+   mpMap.clear();
+
    for(auto currentChangeMapEvent = mpChangeMapEventList.begin(); currentChangeMapEvent != mpChangeMapEventList.end(); currentChangeMapEvent++)
    {
        delete *currentChangeMapEvent;
@@ -94,6 +100,25 @@ int Map::GetMapHeight()
    return mMapHeight;
 }
 
+TileInformation* Map::GetClosestTile(int theCoordinateX, int theCoordinateY)
+{
+   TileInformation* closestTile = nullptr;
+
+   for (auto iterator = mpMap.begin(); iterator != mpMap.end(); iterator++)
+   {
+      if (theCoordinateX >= ((*iterator)->TileCoordinateX * mTileWidth) &&
+          theCoordinateX <= (((*iterator)->TileCoordinateX * mTileWidth) + mTileWidth) &&
+          theCoordinateY >= ((*iterator)->TileCoordinateY * mTileHeight) &&
+          theCoordinateY <= (((*iterator)->TileCoordinateY * mTileHeight) + mTileHeight))
+      {
+         closestTile = *iterator;
+         break;
+      }
+   }
+
+   return closestTile;
+}
+
 //************************************************************************************************************************************************
 //
 // Method Name: GetEnemyList
@@ -121,18 +146,18 @@ std::vector<Enemy*> Map::GetEnemyList()
 //  TODO: Add description.
 //
 //************************************************************************************************************************************************
-bool Map::NonTraverableTileCollision(Rectangle* theObject)
+bool Map::NonTraverableTileCollision(RectangleObject* theObject)
 {
    bool collisionHappened = false;
 
-   for (auto iterator = mMap.begin(); iterator != mMap.end(); iterator++)
+   for (auto iterator = mpMap.begin(); iterator != mpMap.end(); iterator++)
    {
-      if (iterator->Traversable == false)
+      if ((*iterator)->Traversable == false)
       {
-         if (theObject->GetCoordinateX() < ((iterator->TileCoordinateX * mTileWidth) + mTileWidth) &&
-             (theObject->GetCoordinateX() + theObject->GetWidth()) > (iterator->TileCoordinateX * mTileWidth) &&
-             theObject->GetCoordinateY() < ((iterator->TileCoordinateY * mTileHeight) + mTileHeight) &&
-             (theObject->GetCoordinateY() + theObject->GetHeight()) > (iterator->TileCoordinateY * mTileHeight))
+         if (theObject->GetCoordinateX() < (((*iterator)->TileCoordinateX * mTileWidth) + mTileWidth) &&
+             (theObject->GetCoordinateX() + theObject->GetWidth()) > ((*iterator)->TileCoordinateX * mTileWidth) &&
+             theObject->GetCoordinateY() < (((*iterator)->TileCoordinateY * mTileHeight) + mTileHeight) &&
+             (theObject->GetCoordinateY() + theObject->GetHeight()) > ((*iterator)->TileCoordinateY * mTileHeight))
          {
             collisionHappened = true;
             break;
@@ -151,7 +176,7 @@ bool Map::NonTraverableTileCollision(Rectangle* theObject)
 //  TODO: Add description.
 //
 //************************************************************************************************************************************************
-bool Map::ChangeMapEventCollision(Rectangle* theObject, Map*& theChangedMap, int& thePlayerCoordinateX, int& thePlayerCoordinateY)
+bool Map::ChangeMapEventCollision(RectangleObject* theObject, Map*& theChangedMap, int& thePlayerCoordinateX, int& thePlayerCoordinateY)
 {
    bool changeMap = false;
 
@@ -186,15 +211,15 @@ bool Map::ChangeMapEventCollision(Rectangle* theObject, Map*& theChangedMap, int
 //************************************************************************************************************************************************
 void Map::Draw()
 {
-   for (auto iterator = mMap.begin(); iterator != mMap.end(); iterator++)
+   for (auto iterator = mpMap.begin(); iterator != mpMap.end(); iterator++)
    {
       al_draw_bitmap_region(mpTileSheet,
-                            (*iterator).SpriteSheetCoordinateX * mTileWidth,
-                            (*iterator).SpriteSheetCoordinateY * mTileHeight,
+                            (*iterator)->SpriteSheetCoordinateX * mTileWidth,
+                            (*iterator)->SpriteSheetCoordinateY * mTileHeight,
                             mTileWidth,
                             mTileHeight,
-                            (*iterator).TileCoordinateX * mTileWidth,
-                            (*iterator).TileCoordinateY * mTileHeight,
+                            (*iterator)->TileCoordinateX * mTileWidth,
+                            (*iterator)->TileCoordinateY * mTileHeight,
                             0);
    }
 }
@@ -397,13 +422,15 @@ bool Map::SaveTileLocation(std::string theTileLocation, int theVectorRow)
          break;
       }
 
-      TileInformation ti;
-      ti.SpriteSheetCoordinateX = spriteSheetCoordinateX;
-      ti.SpriteSheetCoordinateY = spriteSheetCoordinateY;
-      ti.TileCoordinateX = tileCoordinateX;
-      ti.TileCoordinateY = theVectorRow;
-      ti.Traversable = traversable;
-      mMap.push_back(ti);
+      TileInformation* ti = new TileInformation
+      {
+         spriteSheetCoordinateX,
+         spriteSheetCoordinateY,
+         tileCoordinateX,
+         theVectorRow,
+         traversable
+      };
+      mpMap.push_back(ti);
 
       tileCoordinateX++;
       count = 0;

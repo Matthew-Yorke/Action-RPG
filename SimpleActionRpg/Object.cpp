@@ -100,13 +100,13 @@ int Object::GetWidthCenterPoint()
 
 //*********************************************************************************************************************************************
 //
-// Method Name: SetWidth
+// Method Name: SetWidthCenterPoint
 //
 // Description:
 //  Store the width center point of the object based on the passed in value.
 //
 //*********************************************************************************************************************************************
-void Object::SetWidth(int theWidthCenterPoint)
+void Object::SetWidthCenterPoint(int theWidthCenterPoint)
 {
    mWidthCenterPoint = theWidthCenterPoint;
 }

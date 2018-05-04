@@ -27,7 +27,7 @@
 //  Set member to default values and call to update the camera position.
 //
 //***************************************************************************************************************************************************
-Camera::Camera(Rectangle* thepBoundaries, Object* thepObject)
+Camera::Camera(RectangleObject* thepBoundaries, Object* thepObject)
 {
    mCoordinateX = 0;
    mCoordinateY = 0;
@@ -85,7 +85,7 @@ int Camera::GetCoordinateY()
 //  Store the boundary limits of the passed in rectangle.
 //
 //************************************************************************************************************************************************
-void Camera::SetBoundaries(Rectangle* thepBoundaries)
+void Camera::SetBoundaries(RectangleObject* thepBoundaries)
 {
    mpBoundaries = thepBoundaries;
 }

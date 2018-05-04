@@ -33,10 +33,10 @@ PlayState::PlayState(Graphics& theGraphics)
    
    mpPlayer = new PlayerCharacter(theGraphics, 64, 64);
    
-   mpMapAreaBoundary = new Rectangle(0,
-                                     0,
-                                     mpCurrentMap->GetMapWidth(),
-                                     mpCurrentMap->GetMapHeight());
+   mpMapAreaBoundary = new RectangleObject(0,
+                                           0,
+                                           mpCurrentMap->GetMapWidth(),
+                                           mpCurrentMap->GetMapHeight());
    mpCamera = new Camera(mpMapAreaBoundary, mpPlayer);
    
    mpGameClock = new Clock(6.0F);
@@ -123,6 +123,8 @@ void PlayState::Update(float theTimeChange)
    }
 
    mpPlayer->Update(theTimeChange);
+   mpPlayer->SetCurrentTile(mpCurrentMap->GetClosestTile(mpPlayer->GetMovementHitBox()->GetCoordinateX() + mpPlayer->GetMovementHitBox()->GetWidthCenterPoint(),
+                                                         mpPlayer->GetMovementHitBox()->GetCoordinateY() + mpPlayer->GetMovementHitBox()->GetHeightCenterPoint()));
    mpGameClock->Update(theTimeChange);
    mpCamera->Update();
    mpShadowLayer->CameraUpdate(mpCamera);
@@ -207,7 +209,7 @@ void PlayState::Draw(Graphics& theGraphics)
 //  TODO: Add description.
 //
 //************************************************************************************************************************************************
-bool PlayState::CollisionDetection(Rectangle* theRectangleOne, Rectangle* theRectangleTwo)
+bool PlayState::CollisionDetection(RectangleObject* theRectangleOne, RectangleObject* theRectangleTwo)
 {
    bool collisionOccurred = false;
 

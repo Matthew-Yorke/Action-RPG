@@ -189,7 +189,7 @@ class ShadowLayer
 
       std::vector<Light*> mLightList;
 
-      Rectangle* mpDimensions;
+      RectangleObject* mpDimensions;
 
       float mCoordinateX;
 

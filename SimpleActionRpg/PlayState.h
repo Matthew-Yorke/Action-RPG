@@ -147,7 +147,7 @@ class PlayState : public GameState
       //  TODO: Add description.
       //
       //*********************************************************************************************************************************************
-      bool CollisionDetection(Rectangle* theRectangleOne, Rectangle* theRectangleTwo);
+      bool CollisionDetection(RectangleObject* theRectangleOne, RectangleObject* theRectangleTwo);
 
       //*********************************************************************************************************************************************
       //
@@ -221,7 +221,7 @@ class PlayState : public GameState
 
       PlayerCharacter* mpPlayer;
 
-      Rectangle* mpMapAreaBoundary;
+      RectangleObject* mpMapAreaBoundary;
 
       Camera* mpCamera;
 

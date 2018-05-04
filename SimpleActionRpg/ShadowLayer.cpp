@@ -30,10 +30,10 @@ ShadowLayer::ShadowLayer(std::string theFileLocation)
 {
    mBitmap = al_load_bitmap(theFileLocation.c_str());
    mIntensity = 0;
-   mpDimensions = new Rectangle(0,
-                                0,
-                                al_get_bitmap_width(mBitmap),
-                                al_get_bitmap_height(mBitmap));
+   mpDimensions = new RectangleObject(0,
+                                      0,
+                                      al_get_bitmap_width(mBitmap),
+                                      al_get_bitmap_height(mBitmap));
    mCoordinateX = 0;
    mCoordinateY = 0;
 }

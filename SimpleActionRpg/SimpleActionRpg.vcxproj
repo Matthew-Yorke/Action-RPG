@@ -188,7 +188,6 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="PlayState.cpp" />
-    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RectangleObject.cpp" />
     <ClCompile Include="ShadowLayer.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -219,7 +218,6 @@
     <ClInclude Include="MovingState.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="PlayState.h" />
-    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RectangleObject.h" />
     <ClInclude Include="ShadowLayer.h" />
     <ClInclude Include="Sprite.h" />

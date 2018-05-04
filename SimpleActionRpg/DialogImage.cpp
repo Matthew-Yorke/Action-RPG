@@ -28,7 +28,7 @@
 DialogImage::DialogImage(Graphics& theGraphics, std::string theFilePath, int theCoordinateX, int theCoordinateY, int theWidth, int theHeight)
 {
    mpImage = new Sprite(theGraphics, theFilePath, 0, 0, theWidth, theHeight);
-   mpDimensions = new Rectangle(theCoordinateX, theCoordinateY, theWidth, theHeight);
+   mpDimensions = new RectangleObject(theCoordinateX, theCoordinateY, theWidth, theHeight);
 }
 
 //*********************************************************************************************************************************************

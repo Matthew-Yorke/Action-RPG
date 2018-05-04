@@ -89,9 +89,6 @@
     <ClCompile Include="Clock.cpp">
       <Filter>Code\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Rectangle.cpp">
-      <Filter>Code\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Vector2D.cpp">
       <Filter>Code\Engine</Filter>
     </ClCompile>
@@ -173,9 +170,6 @@
       <Filter>Code\Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Clock.h">
-      <Filter>Code\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Rectangle.h">
       <Filter>Code\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Vector2D.h">

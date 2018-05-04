@@ -16,7 +16,7 @@
 
 #include "Sprite.h"
 #include "Graphics.h"
-#include "Rectangle.h"
+#include "RectangleObject.h"
 
 class DialogImage
 {
@@ -140,7 +140,7 @@ class DialogImage
       Sprite* mpImage;
 
       // Pointer to the rectangle describing the dimensions including the X-Coordinate, Y-Coordinate, width, and height.
-      Rectangle* mpDimensions;
+      RectangleObject* mpDimensions;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

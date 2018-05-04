@@ -18,9 +18,18 @@
 #include <allegro5/allegro_image.h>
 #include <vector>
 #include "ChangeMapEvent.h"
-#include "Rectangle.h"
+#include "RectangleObject.h"
 #include "Enemy.h"
 #include "Graphics.h"
+
+struct TileInformation
+{
+   int SpriteSheetCoordinateX;
+   int SpriteSheetCoordinateY;
+   int TileCoordinateX;
+   int TileCoordinateY;
+   bool Traversable;
+};
 
 class ChangeMapEvent;
 class Map
@@ -95,6 +104,8 @@ class Map
       //************************************************************************************************************************************************
       int GetMapHeight();
 
+      TileInformation* GetClosestTile(int theCoordinateX, int theCoordinateY);
+
       //************************************************************************************************************************************************
       //
       // Method Name: GetEnemyList
@@ -130,7 +141,7 @@ class Map
       //  TODO: Add description.
       //
       //************************************************************************************************************************************************
-      bool NonTraverableTileCollision(Rectangle* theObject);
+      bool NonTraverableTileCollision(RectangleObject* theObject);
 
       //************************************************************************************************************************************************
       //
@@ -146,7 +157,7 @@ class Map
       //  TODO: Add description.
       //
       //************************************************************************************************************************************************
-      bool ChangeMapEventCollision(Rectangle* theObject, Map*& theChangedMap, int& thePlayerCoordinateX, int& thePlayerCoordinateY);
+      bool ChangeMapEventCollision(RectangleObject* theObject, Map*& theChangedMap, int& thePlayerCoordinateX, int& thePlayerCoordinateY);
 
       //************************************************************************************************************************************************
       //
@@ -294,16 +305,7 @@ class Map
       // The number of tiles for the height of the map.
       int mTileHeight;
 
-      struct TileInformation
-      {
-         int SpriteSheetCoordinateX;
-         int SpriteSheetCoordinateY;
-         int TileCoordinateX;
-         int TileCoordinateY;
-         bool Traversable;
-      };
-
-      std::vector<TileInformation> mMap;
+      std::vector<TileInformation*> mpMap;
 
       int mMapWidth;
 

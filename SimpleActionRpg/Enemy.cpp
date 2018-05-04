@@ -38,10 +38,10 @@ RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
                                  64,
                                  6,
                                  1);
-   mpHitbox = new Rectangle(theCoordinateX + 20,
-                            theCoordinateY + 1,
-                            25,
-                            63);
+   mpHitbox = new RectangleObject(theCoordinateX + 20,
+                                  theCoordinateY + 1,
+                                  25,
+                                  63);
    mInvincible = false;
    mInvincibleTime = 0.0F;
 }
@@ -81,7 +81,7 @@ AnimatedSprite* Enemy::GetSprite()
 //  TODO: Add description.
 //
 //************************************************************************************************************************************************
-Rectangle* Enemy::GetHitBox()
+RectangleObject* Enemy::GetHitBox()
 {
    return mpHitbox;
 }

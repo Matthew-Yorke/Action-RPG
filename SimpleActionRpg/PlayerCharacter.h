@@ -19,12 +19,12 @@
 #include "Vector2D.h"
 #include "AnimatedSprite.h"
 #include "MeleeWeapon.h"
-#include "Rectangle.h"
+#include "RectangleObject.h"
 #include "State.h"
 #include "PlayerConstants.h"
 #include <vector>
 #include <algorithm>
-#include "RectangleObject.h"
+#include "Map.h" // TODO: Only included for TileInformation
 
 class PlayerCharacter : public RectangleObject
 {
@@ -81,6 +81,38 @@ class PlayerCharacter : public RectangleObject
       //
       //************************************************************************************************************************************************
       PlayerConstants::DIRECTION GetDirection();
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: SetCurrentTile
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theCurrentTile - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      void SetCurrentTile(TileInformation* theCurrentTile);
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: GetCurrentTile
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A.
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      TileInformation* GetCurrentTile();
 
       //************************************************************************************************************************************************
       //
@@ -208,7 +240,7 @@ class PlayerCharacter : public RectangleObject
       //  TODO: Add description.
       //
       //************************************************************************************************************************************************
-      Rectangle* GetHitBox();
+      RectangleObject* GetHitBox();
 
       //************************************************************************************************************************************************
       //
@@ -224,7 +256,7 @@ class PlayerCharacter : public RectangleObject
       //  TODO: Add description.
       //
       //************************************************************************************************************************************************
-      Rectangle* GetMovementHitBox();
+      RectangleObject* GetMovementHitBox();
 
       //************************************************************************************************************************************************
       //
@@ -375,10 +407,10 @@ class PlayerCharacter : public RectangleObject
       AnimatedSprite* mpSprite;
 
       // TODO: Add description.
-      Rectangle* mpHitbox;
+      RectangleObject* mpHitbox;
 
       // TODO: Add description.
-      Rectangle* mpMovementHitbox;
+      RectangleObject* mpMovementHitbox;
 
       // TODO: Add description.
       MeleeWeapon* mpMeleeWeapon;
@@ -391,6 +423,8 @@ class PlayerCharacter : public RectangleObject
 
       // TODO: Add description.
       std::vector<PlayerConstants::DIRECTION> mMovingDirectionVector;
+
+      TileInformation* mpCurrentTile;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

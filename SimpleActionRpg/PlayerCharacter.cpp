@@ -42,18 +42,19 @@ RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
                                  64,
                                  6,
                                  4);
-   mpHitbox = new Rectangle(theCoordinateX + 20,
-                            theCoordinateY + 1,
-                            25,
-                            63);
-   mpMovementHitbox = new Rectangle(theCoordinateX + 20,
-                                    theCoordinateY + 33,
-                                    25,
-                                    31);
+   mpHitbox = new RectangleObject(theCoordinateX + 20,
+                                  theCoordinateY + 1,
+                                  25,
+                                  63);
+   mpMovementHitbox = new RectangleObject(theCoordinateX + 20,
+                                          theCoordinateY + 33,
+                                          25,
+                                          31);
    mpMeleeWeapon = new MeleeWeapon(theGraphics,
                                    1);
    mpCurrentState = new IdleState(this);
    mDirection = PlayerConstants::DIRECTION::DOWN;
+   mpCurrentTile = nullptr;
 }
 
 //***************************************************************************************************************************************************
@@ -84,6 +85,34 @@ PlayerCharacter::~PlayerCharacter()
 PlayerConstants::DIRECTION PlayerCharacter::GetDirection()
 {
    return mDirection;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: SetCurrentTile
+//
+// Description:
+//  TODO: Add description.
+//
+
+//************************************************************************************************************************************************
+void PlayerCharacter::SetCurrentTile(TileInformation* theCurrentTile)
+{
+   mpCurrentTile = theCurrentTile;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: GetCurrentTile
+//
+// Description:
+//  TODO: Add description.
+//
+
+//************************************************************************************************************************************************
+TileInformation* PlayerCharacter::GetCurrentTile()
+{
+   return mpCurrentTile;
 }
 
 //************************************************************************************************************************************************
@@ -190,7 +219,7 @@ AnimatedSprite* PlayerCharacter::GetSprite()
 //  TODO: Add description.
 //
 //************************************************************************************************************************************************
-Rectangle* PlayerCharacter::GetHitBox()
+RectangleObject* PlayerCharacter::GetHitBox()
 {
    return mpHitbox;
 }
@@ -203,7 +232,7 @@ Rectangle* PlayerCharacter::GetHitBox()
 //  TODO: Add description.
 //
 //************************************************************************************************************************************************
-Rectangle* PlayerCharacter::GetMovementHitBox()
+RectangleObject* PlayerCharacter::GetMovementHitBox()
 {
    return mpMovementHitbox;
 }
@@ -312,6 +341,15 @@ void PlayerCharacter::DrawSprite(Graphics& theGraphics)
    mpSprite->Draw(theGraphics,
                   GetCoordinateX(),
                   GetCoordinateY());
+   if (mpCurrentTile != nullptr)
+   {
+      al_draw_rectangle(mpCurrentTile->TileCoordinateX * 32,
+                        mpCurrentTile->TileCoordinateY * 32,
+                        (mpCurrentTile->TileCoordinateX * 32) + 32,
+                        (mpCurrentTile->TileCoordinateY * 32) + 32,
+                        al_map_rgb(255, 255, 0),
+                        1);
+   }
 }
 
 //***************************************************************************************************************************************************

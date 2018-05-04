@@ -19,7 +19,7 @@
 #include <vector>
 #include "Sprite.h"
 #include "DialogImage.h"
-#include "Rectangle.h"
+#include "RectangleObject.h"
 #include "Camera.h"
 
 class DialogBox
@@ -46,7 +46,7 @@ class DialogBox
       //  N/A
       //
       //*********************************************************************************************************************************************
-      DialogBox(std::string theSpeakerName, std::string theSpeakerText, Rectangle* theDimensions);
+      DialogBox(std::string theSpeakerName, std::string theSpeakerText, RectangleObject* theDimensions);
 
       //*********************************************************************************************************************************************
       //
@@ -207,7 +207,7 @@ class DialogBox
       std::string mSpeakerText;
 
       // The dimensions of the dialog box. The X and Y Coordinates are where on the visible screen to start the dialog box.
-      Rectangle* mpDimensions;
+      RectangleObject* mpDimensions;
 
       // The X-Coordinate to display the dialog box relative to the camera position.
       int mCoordianteX;

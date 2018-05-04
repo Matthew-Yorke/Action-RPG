@@ -41,10 +41,10 @@ MeleeWeapon::MeleeWeapon(Graphics& theGraphics, int theDamage)
    mWeaponWidth = 35;
    mWeaponHeight = 48;
 
-   mpHitBox = new Rectangle(0,
-                            0,
-                            0,
-                            0);
+   mpHitBox = new RectangleObject(0,
+                                  0,
+                                  0,
+                                  0);
    mDirection = PlayerConstants::DIRECTION::DOWN;
    mIsSwinging = false;
 }

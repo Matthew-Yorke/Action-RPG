@@ -15,7 +15,7 @@
 #define Camera_h
 
 #include "Object.h"
-#include "Rectangle.h"
+#include "RectangleObject.h"
 
 class Camera
 {
@@ -40,7 +40,7 @@ class Camera
       //  N/A
       //
       //************************************************************************************************************************************************
-      Camera(Rectangle* thepBoundaries, Object* thepObject);
+      Camera(RectangleObject* thepBoundaries, Object* thepObject);
 
       //************************************************************************************************************************************************
       //
@@ -104,7 +104,7 @@ class Camera
       //  N/A
       //
       //************************************************************************************************************************************************
-      void SetBoundaries(Rectangle* thepBoundaries);
+      void SetBoundaries(RectangleObject* thepBoundaries);
 
       //************************************************************************************************************************************************
       //
@@ -158,7 +158,7 @@ class Camera
       int mCoordinateY;
 
       // Holds the world boundary values for area that the camera be within.
-      Rectangle* mpBoundaries;
+      RectangleObject* mpBoundaries;
 
       // The object the camera follows.
       Object* mpFollowingObject;

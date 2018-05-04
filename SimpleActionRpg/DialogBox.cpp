@@ -26,7 +26,7 @@
 //  Set the parameters of the dialog box with the passed in values. Also sets other text to default values.
 //
 //***************************************************************************************************************************************************
-DialogBox::DialogBox(std::string theSpeakerName, std::string theSpeakerText, Rectangle* theDimensions)
+DialogBox::DialogBox(std::string theSpeakerName, std::string theSpeakerText, RectangleObject* theDimensions)
 {
    mSpeakerName = theSpeakerName;
    mSpeakerText = theSpeakerText;

@@ -16,7 +16,7 @@
 
 #include "PlayerConstants.h"
 #include "AnimatedSprite.h"
-#include "Rectangle.h"
+#include "RectangleObject.h"
 
 class MeleeWeapon
 {
@@ -76,7 +76,7 @@ class MeleeWeapon
 
       int GetDamage() { return mDamage; };
 
-      Rectangle* GetHitBox() { return mpHitBox; };
+      RectangleObject* GetHitBox() { return mpHitBox; };
 
       //************************************************************************************************************************************************
       //
@@ -149,7 +149,7 @@ class MeleeWeapon
 
       int mWeaponHeight;
 
-      Rectangle* mpHitBox;
+      RectangleObject* mpHitBox;
 
       bool mIsSwinging;
 

@@ -19,7 +19,6 @@
 #include "Vector2D.h"
 #include "AnimatedSprite.h"
 #include "MeleeWeapon.h"
-#include "Rectangle.h"
 #include "State.h"
 #include "PlayerConstants.h"
 #include <vector>
@@ -96,7 +95,7 @@ class Enemy : public RectangleObject
       //  TODO: Add description.
       //
       //************************************************************************************************************************************************
-      Rectangle* GetHitBox();
+      RectangleObject* GetHitBox();
 
       //************************************************************************************************************************************************
       //
@@ -238,7 +237,7 @@ class Enemy : public RectangleObject
       AnimatedSprite* mpSprite;
 
       // TODO: Add description.
-      Rectangle* mpHitbox;
+      RectangleObject* mpHitbox;
 
       bool mInvincible;
 
