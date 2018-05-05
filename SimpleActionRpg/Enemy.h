@@ -258,6 +258,11 @@ class Enemy : public RectangleObject
       //************************************************************************************************************************************************
       void DrawSprite(Graphics& theGraphics);
 
+      void SetPath(std::vector<TileInformation*> thePath)
+      {
+         mpPath = thePath;
+      }
+
    protected:
 
    private:
@@ -296,6 +301,8 @@ class Enemy : public RectangleObject
       float mInvincibleTime;
 
       TileInformation* mpCurrentTile;
+
+      std::vector<TileInformation*> mpPath;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

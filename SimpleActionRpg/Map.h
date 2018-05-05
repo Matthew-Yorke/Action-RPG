@@ -169,6 +169,14 @@ class Map
       //************************************************************************************************************************************************
       void Draw();
 
+      void FindPaths(TileInformation* theEnd)
+      {
+         for (auto iterator = mpEnemyList.begin(); iterator != mpEnemyList.end(); iterator++)
+         {
+            (*iterator)->SetPath(mpPathfinder->FindPath((*iterator)->GetCurrentTile(), theEnd));
+         }
+      }
+
    protected:
 
    // There are currently no protected methods for this class.
@@ -330,8 +338,6 @@ class Map
       bool mEventsLoaded;
 
       Pathfinding* mpPathfinder;
-
-      std::vector<TileInformation*> mpPath;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

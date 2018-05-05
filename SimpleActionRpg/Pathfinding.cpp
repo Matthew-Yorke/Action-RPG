@@ -70,7 +70,7 @@ std::vector<TileInformation*> Pathfinding::FindPath(TileInformation* theStart, T
 
    mOpenList.push_back(theStart);
 
-   while (mOpenList.empty() == false)
+   while (mOpenList.empty() == false && currentTile != theEnd)
    {
       mOpenList.sort([](const TileInformation* lhs, const TileInformation* rhs) { return lhs->GlobalGoal < rhs->GlobalGoal; });
 

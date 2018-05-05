@@ -224,18 +224,6 @@ void Map::Draw()
                             (*iterator)->TileCoordinateY * mTileHeight,
                             0);
    }
-
-   mpPath = mpPathfinder->FindPath(mpEnemyList[0]->GetCurrentTile(), mpMap[35]);
-   
-   for (auto iterator = mpPath.begin(); iterator != mpPath.end(); iterator++)
-   {
-      al_draw_rectangle((*iterator)->TileCoordinateX * mTileWidth,
-                        (*iterator)->TileCoordinateY * mTileHeight,
-                        ((*iterator)->TileCoordinateX * mTileWidth) + mTileWidth,
-                        ((*iterator)->TileCoordinateY * mTileHeight) + mTileHeight,
-                        al_map_rgb(255, 0, 255),
-                        1);
-   }
 }
 
 //***************************************************************************************************************************************************

@@ -40,6 +40,8 @@ PlayState::PlayState(Graphics& theGraphics)
    mpCamera = new Camera(mpMapAreaBoundary, mpPlayer);
    
    mpGameClock = new Clock(6.0F);
+
+   PathUpdateTime = 0.2F;
 }
 
 //***************************************************************************************************************************************************
@@ -143,6 +145,13 @@ void PlayState::Update(float theTimeChange)
    else
    {
       mpShadowLayer->SetIntensity(abs((0.28F * mpGameClock->GetTotalMinutes()) - 404));
+   }
+
+   PathUpdateTime -= theTimeChange;
+   if (mpCurrentMap != nullptr && PathUpdateTime < 0)
+   {
+      mpCurrentMap->FindPaths(mpPlayer->GetCurrentTile());
+      PathUpdateTime = 0.2F;
    }
 
    PlayerAttackCollision();

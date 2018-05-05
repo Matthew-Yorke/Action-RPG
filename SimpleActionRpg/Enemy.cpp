@@ -255,6 +255,16 @@ void Enemy::DrawSprite(Graphics& theGraphics)
    mpSprite->Draw(theGraphics,
                   GetCoordinateX(),
                   GetCoordinateY());
+
+   for (auto iterator = mpPath.begin(); iterator != mpPath.end(); iterator++)
+   {
+      al_draw_rectangle((*iterator)->TileCoordinateX * 32,
+                        (*iterator)->TileCoordinateY * 32,
+                        ((*iterator)->TileCoordinateX * 32) + 32,
+                        ((*iterator)->TileCoordinateY * 32) + 32,
+                        al_map_rgb(255, 0, 255),
+                        1);
+   }
 }
 
 //***************************************************************************************************************************************************
