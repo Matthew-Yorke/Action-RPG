@@ -25,19 +25,92 @@ class Pathfinding
 
    public:
 
+      //************************************************************************************************************************************************
+      //
+      // Method Name: Pathfinding
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theMap - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
       Pathfinding(std::vector<TileInformation*> theMap);
 
+      //************************************************************************************************************************************************
+      //
+      // Method Name: ~Pathfinding
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
       ~Pathfinding();
 
+      //************************************************************************************************************************************************
+      //
+      // Method Name: FindPath
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theStart - TODO: Add description.
+      //  theEnd - TODO: Add description.
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
       std::vector<TileInformation*> FindPath(TileInformation* theStart, TileInformation* theEnd);
 
    protected:
 
    private:
 
+      //************************************************************************************************************************************************
+      //
+      // Method Name: Distance
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theStart - TODO: Add description.
+      //  theEnd - TODO: Add description.
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
       float Distance(TileInformation* theStart, TileInformation* theEnd);
 
-      float Heurisitic(TileInformation* theStart, TileInformation* theEnd);
+      //************************************************************************************************************************************************
+      //
+      // Method Name: Heuristic
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theStart - TODO: Add description.
+      //  theEnd - TODO: Add description.
+      //
+      // Return:
+      //  TODO: Add description.
+      //
+      //************************************************************************************************************************************************
+      float Heuristic(TileInformation* theStart, TileInformation* theEnd);
 
    //************************************************************************************************************************************************
    // End Method Declarations

@@ -13,6 +13,15 @@
 
 #include "Pathfinding.h"
 #include <list>
+#include <queue>
+
+struct CompareGlobalGoal
+{
+   bool operator()(TileInformation*  lhs, TileInformation* rhs)
+   {
+      return lhs->GlobalGoal > rhs->GlobalGoal;
+   }
+};
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -54,7 +63,7 @@ Pathfinding::~Pathfinding()
 std::vector<TileInformation*> Pathfinding::FindPath(TileInformation* theStart, TileInformation* theEnd)
 {
    std::vector<TileInformation*> mpShortestPath;
-   std::list<TileInformation*> mOpenList;
+   std::priority_queue<TileInformation*, std::vector<TileInformation*>, CompareGlobalGoal> mOpenList;
 
    for (auto iterator = mpMap.begin(); iterator != mpMap.end(); iterator++)
    {
@@ -66,17 +75,15 @@ std::vector<TileInformation*> Pathfinding::FindPath(TileInformation* theStart, T
 
    TileInformation* currentTile = theStart;
    theStart->LocalGoal = 0.0F;
-   theStart->GlobalGoal = Heurisitic(theStart, theEnd);
+   theStart->GlobalGoal = Heuristic(theStart, theEnd);
 
-   mOpenList.push_back(theStart);
+   mOpenList.push(theStart);
 
    while (mOpenList.empty() == false && currentTile != theEnd)
    {
-      mOpenList.sort([](const TileInformation* lhs, const TileInformation* rhs) { return lhs->GlobalGoal < rhs->GlobalGoal; });
-
-      while (mOpenList.empty() == false && mOpenList.front()->Visited == true)
+      while (mOpenList.empty() == false && mOpenList.top()->Visited == true)
       {
-         mOpenList.pop_front();
+         mOpenList.pop();
       }
 
       if (mOpenList.empty() == true)
@@ -84,25 +91,25 @@ std::vector<TileInformation*> Pathfinding::FindPath(TileInformation* theStart, T
          break;
       }
 
-      currentTile = mOpenList.front();
+      currentTile = mOpenList.top();
       currentTile->Visited = true;
 
       float possibleLowerGoal = 0.0F;
       if (currentTile->pTopNeighbor != nullptr && currentTile->pTopNeighbor->Visited == false && currentTile->pTopNeighbor->Traversable == true)
       {
-         mOpenList.push_back(currentTile->pTopNeighbor);
+         mOpenList.push(currentTile->pTopNeighbor);
          possibleLowerGoal = currentTile->LocalGoal + Distance(currentTile, currentTile->pTopNeighbor);
 
          if (possibleLowerGoal < currentTile->pTopNeighbor->LocalGoal)
          {
             currentTile->pTopNeighbor->pParent = currentTile;
             currentTile->pTopNeighbor->LocalGoal = possibleLowerGoal;
-            currentTile->pTopNeighbor->GlobalGoal = currentTile->pTopNeighbor->LocalGoal + Heurisitic(currentTile->pTopNeighbor, theEnd);
+            currentTile->pTopNeighbor->GlobalGoal = currentTile->pTopNeighbor->LocalGoal + Heuristic(currentTile->pTopNeighbor, theEnd);
          }
       }
       if (currentTile->pBottomNeighbor != nullptr && currentTile->pBottomNeighbor->Visited == false && currentTile->pBottomNeighbor->Traversable == true)
       {
-         mOpenList.push_back(currentTile->pBottomNeighbor);
+         mOpenList.push(currentTile->pBottomNeighbor);
 
          possibleLowerGoal = currentTile->LocalGoal + Distance(currentTile, currentTile->pBottomNeighbor);
 
@@ -110,12 +117,12 @@ std::vector<TileInformation*> Pathfinding::FindPath(TileInformation* theStart, T
          {
             currentTile->pBottomNeighbor->pParent = currentTile;
             currentTile->pBottomNeighbor->LocalGoal = possibleLowerGoal;
-            currentTile->pBottomNeighbor->GlobalGoal = currentTile->pBottomNeighbor->LocalGoal + Heurisitic(currentTile->pBottomNeighbor, theEnd);
+            currentTile->pBottomNeighbor->GlobalGoal = currentTile->pBottomNeighbor->LocalGoal + Heuristic(currentTile->pBottomNeighbor, theEnd);
          }
       }
       if (currentTile->pLeftNeighbor != nullptr && currentTile->pLeftNeighbor->Visited == false && currentTile->pLeftNeighbor->Traversable == true)
       {
-         mOpenList.push_back(currentTile->pLeftNeighbor);
+         mOpenList.push(currentTile->pLeftNeighbor);
 
          possibleLowerGoal = currentTile->LocalGoal + Distance(currentTile, currentTile->pLeftNeighbor);
 
@@ -123,12 +130,12 @@ std::vector<TileInformation*> Pathfinding::FindPath(TileInformation* theStart, T
          {
             currentTile->pLeftNeighbor->pParent = currentTile;
             currentTile->pLeftNeighbor->LocalGoal = possibleLowerGoal;
-            currentTile->pLeftNeighbor->GlobalGoal = currentTile->pLeftNeighbor->LocalGoal + Heurisitic(currentTile->pLeftNeighbor, theEnd);
+            currentTile->pLeftNeighbor->GlobalGoal = currentTile->pLeftNeighbor->LocalGoal + Heuristic(currentTile->pLeftNeighbor, theEnd);
          }
       }
       if (currentTile->pRightNeighbor != nullptr && currentTile->pRightNeighbor->Visited == false && currentTile->pRightNeighbor->Traversable == true)
       {
-         mOpenList.push_back(currentTile->pRightNeighbor);
+         mOpenList.push(currentTile->pRightNeighbor);
 
          possibleLowerGoal = currentTile->LocalGoal + Distance(currentTile, currentTile->pRightNeighbor);
 
@@ -136,7 +143,7 @@ std::vector<TileInformation*> Pathfinding::FindPath(TileInformation* theStart, T
          {
             currentTile->pRightNeighbor->pParent = currentTile;
             currentTile->pRightNeighbor->LocalGoal = possibleLowerGoal;
-            currentTile->pRightNeighbor->GlobalGoal = currentTile->pRightNeighbor->LocalGoal + Heurisitic(currentTile->pRightNeighbor, theEnd);
+            currentTile->pRightNeighbor->GlobalGoal = currentTile->pRightNeighbor->LocalGoal + Heuristic(currentTile->pRightNeighbor, theEnd);
          }
       }
    }
@@ -169,13 +176,29 @@ std::vector<TileInformation*> Pathfinding::FindPath(TileInformation* theStart, T
 // Start Private Method Definitions
 //***************************************************************************************************************************************************
 
+//***************************************************************************************************************************************************
+//
+// Method Name: Distance
+//
+// Description:
+//  TODO: Add method description.
+//
+//***************************************************************************************************************************************************
 float Pathfinding::Distance(TileInformation* theStart, TileInformation* theEnd)
 {
    return sqrtf((theStart->TileCoordinateX - theEnd->TileCoordinateX)*(theStart->TileCoordinateX - theEnd->TileCoordinateX) +
                 (theStart->TileCoordinateY - theEnd->TileCoordinateY)* (theStart->TileCoordinateY - theEnd->TileCoordinateY));
 }
 
-float Pathfinding::Heurisitic(TileInformation* theStart, TileInformation* theEnd)
+//***************************************************************************************************************************************************
+//
+// Method Name: Heuristic
+//
+// Description:
+//  TODO: Add method description.
+//
+//***************************************************************************************************************************************************
+float Pathfinding::Heuristic(TileInformation* theStart, TileInformation* theEnd)
 {
    return Distance(theStart, theEnd);
 }

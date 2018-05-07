@@ -102,6 +102,14 @@ int Map::GetMapHeight()
    return mMapHeight;
 }
 
+//************************************************************************************************************************************************
+//
+// Method Name: GetClosestTile
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
 TileInformation* Map::GetClosestTile(int theCoordinateX, int theCoordinateY)
 {
    TileInformation* closestTile = nullptr;
@@ -128,16 +136,40 @@ TileInformation* Map::GetClosestTile(int theCoordinateX, int theCoordinateY)
 // Description:
 //  TODO: Add description.
 //
-// Arguments:
-//  N/A
-//
-// Return:
-//  TODO: Add description.
-//
 //************************************************************************************************************************************************
 std::vector<Enemy*> Map::GetEnemyList()
 {
    return mpEnemyList;
+}
+
+ //************************************************************************************************************************************************
+//
+// Method Name: UpdateEnemyList
+//
+// Description:
+//  TODO: Add description.
+//
+
+//************************************************************************************************************************************************
+void Map::UpdateEnemyList(std::vector<Enemy*> theNewList)
+{
+   mpEnemyList = theNewList;
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: FindPaths
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
+void Map::FindPaths(TileInformation* theEnd)
+{
+   for (auto iterator = mpEnemyList.begin(); iterator != mpEnemyList.end(); iterator++)
+   {
+      (*iterator)->SetPath(mpPathfinder->FindPath((*iterator)->GetCurrentTile(), theEnd));
+   }
 }
 
 //************************************************************************************************************************************************

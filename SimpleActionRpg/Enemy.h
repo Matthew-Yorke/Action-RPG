@@ -212,6 +212,22 @@ class Enemy : public RectangleObject
 
       //************************************************************************************************************************************************
       //
+      // Method Name: SetPath
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  thePath - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      void SetPath(std::vector<TileInformation*> thePath);
+
+      //************************************************************************************************************************************************
+      //
       // Method Name: Update
       //
       // Description:
@@ -257,11 +273,6 @@ class Enemy : public RectangleObject
       //
       //************************************************************************************************************************************************
       void DrawSprite(Graphics& theGraphics);
-
-      void SetPath(std::vector<TileInformation*> thePath)
-      {
-         mpPath = thePath;
-      }
 
    protected:
 

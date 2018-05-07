@@ -1,2 +1,3 @@
-﻿  PlayState.cpp
+﻿  Pathfinding.cpp
+c:\users\yorke\source\projects\action rpg\action-rpg\simpleactionrpg\pathfinding.cpp(189): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   SimpleActionRpg.vcxproj -> C:\Users\Yorke\source\projects\Action RPG\Action-RPG\x64\Debug\SimpleActionRpg.exe

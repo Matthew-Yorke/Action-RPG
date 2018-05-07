@@ -138,7 +138,7 @@
       <Filter>Code\Engine\Events</Filter>
     </ClCompile>
     <ClCompile Include="Pathfinding.cpp">
-      <Filter>Code</Filter>
+      <Filter>Code\Engine\Pathfinding</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
