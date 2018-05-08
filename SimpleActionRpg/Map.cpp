@@ -459,6 +459,8 @@ bool Map::SaveTileLocation(std::string theTileLocation, int theVectorRow)
       }
 
       TileInformation* ti = new TileInformation();
+      ti->TileWidth = mTileWidth;
+      ti->TileHeight = mTileHeight;
       ti->SpriteSheetCoordinateX = spriteSheetCoordinateX;
       ti->SpriteSheetCoordinateY = spriteSheetCoordinateY;
       ti->TileCoordinateX = tileCoordinateX;

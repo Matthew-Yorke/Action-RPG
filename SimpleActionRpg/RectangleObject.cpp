@@ -30,7 +30,7 @@ RectangleObject::RectangleObject(int theCoordinateX, int theCoordinateY, int the
 Object(theCoordinateX,
        theCoordinateY,
        (theWidth / MathConstants::HALF),
-       (theWidth / MathConstants::HALF))
+       (theHeight / MathConstants::HALF))
 {
    mWidth = theWidth;
    mHeight = theHeight;

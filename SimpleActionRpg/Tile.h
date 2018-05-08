@@ -3,6 +3,8 @@
 
 struct TileInformation
 {
+   int TileWidth = 0;
+   int TileHeight = 0;
    int SpriteSheetCoordinateX = 0;
    int SpriteSheetCoordinateY = 0;
    int TileCoordinateX = 0;

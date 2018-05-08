@@ -13,6 +13,7 @@
 
 #include <allegro5/allegro_primitives.h>
 #include "Enemy.h"
+#include "ChaseEnemyState.h"
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -48,6 +49,7 @@ RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
                                           31);
    mInvincible = false;
    mInvincibleTime = 0.0F;
+   mpState = new ChaseEnemyState(this);
 }
 
 //***************************************************************************************************************************************************
@@ -198,6 +200,21 @@ void Enemy::SetPath(std::vector<TileInformation*> thePath)
    mpPath = thePath;
 }
 
+TileInformation* Enemy::GetNextPathTile()
+{
+   TileInformation* nextPathTile = nullptr;
+   if (mpPath.empty() == false)
+   {
+      nextPathTile = *mpPath.begin();
+   }
+   return nextPathTile;
+}
+
+void Enemy::RemoveTopPathTile()
+{
+   mpPath.erase(mpPath.begin());
+}
+
 //************************************************************************************************************************************************
 //
 // Method Name: Update
@@ -208,6 +225,8 @@ void Enemy::SetPath(std::vector<TileInformation*> thePath)
 //************************************************************************************************************************************************
 void Enemy::Update(float theTimeChange)
 {
+   mpState->Update(theTimeChange);
+
    mpHitbox->SetCoordinateX(GetCoordinateX() + 20);
    mpHitbox->SetCoordinateY(GetCoordinateY() + 1);
    mpMovementHitbox->SetCoordinateX(GetCoordinateX() + 20);

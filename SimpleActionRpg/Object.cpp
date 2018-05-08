@@ -25,11 +25,11 @@
 //  TODO: Add method description.
 //
 //***************************************************************************************************************************************************
-Object::Object(int theCoordinateX, int theCoordinateY, int theWdithCenterPoint, int theHeightCenterPoint)
+Object::Object(int theCoordinateX, int theCoordinateY, int theWidthCenterPoint, int theHeightCenterPoint)
 {
    mCoordinateX = theCoordinateX;
    mCoordinateY = theCoordinateY;
-   mWidthCenterPoint = theWdithCenterPoint;
+   mWidthCenterPoint = theWidthCenterPoint;
    mHeightCenterPoint = theHeightCenterPoint;
 }
 

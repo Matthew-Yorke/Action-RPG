@@ -54,6 +54,12 @@
     <Filter Include="Code\Engine\Pathfinding">
       <UniqueIdentifier>{ec10b5fc-911a-4caa-817b-c253464f4e15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Code\Game\Objects\NPCs\Enemy">
+      <UniqueIdentifier>{b7c3fb7a-22b4-4c4d-ae86-db127d4d132c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Game\Objects\NPCs\Enemy\States">
+      <UniqueIdentifier>{ce0c2c02-efa9-445b-ae1f-1e8359d8e4fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp">
@@ -128,9 +134,6 @@
     <ClCompile Include="PlayState.cpp">
       <Filter>Code\Game\Game States</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Code\Game\Objects\NPCs</Filter>
-    </ClCompile>
     <ClCompile Include="Event.cpp">
       <Filter>Code\Engine\Events</Filter>
     </ClCompile>
@@ -139,6 +142,15 @@
     </ClCompile>
     <ClCompile Include="Pathfinding.cpp">
       <Filter>Code\Engine\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Code\Game\Objects\NPCs\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyState.cpp">
+      <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
+    </ClCompile>
+    <ClCompile Include="ChaseEnemyState.cpp">
+      <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -217,9 +229,6 @@
     <ClInclude Include="PlayState.h">
       <Filter>Code\Game\Game States</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Code\Game\Objects\NPCs</Filter>
-    </ClInclude>
     <ClInclude Include="Event.h">
       <Filter>Code\Engine\Events</Filter>
     </ClInclude>
@@ -229,7 +238,18 @@
     <ClInclude Include="Tile.h">
       <Filter>Code\Engine\Maps</Filter>
     </ClInclude>
-    <ClInclude Include="Pathfinding.h" />
+    <ClInclude Include="Pathfinding.h">
+      <Filter>Code\Engine\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Code\Game\Objects\NPCs\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyState.h">
+      <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
+    </ClInclude>
+    <ClInclude Include="ChaseEnemyState.h">
+      <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

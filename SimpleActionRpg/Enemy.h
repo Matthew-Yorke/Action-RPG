@@ -25,6 +25,7 @@
 #include <algorithm>
 #include "RectangleObject.h"
 #include "Tile.h"
+#include "EnemyState.h"
 
 class Enemy : public RectangleObject
 {
@@ -226,6 +227,18 @@ class Enemy : public RectangleObject
       //************************************************************************************************************************************************
       void SetPath(std::vector<TileInformation*> thePath);
 
+      TileInformation* GetTargetTile()
+      {
+         if (mpPath.empty() == false)
+            return mpPath.back();
+         else
+            return nullptr;
+      }
+
+      TileInformation* GetNextPathTile();
+
+      void RemoveTopPathTile();
+
       //************************************************************************************************************************************************
       //
       // Method Name: Update
@@ -314,6 +327,8 @@ class Enemy : public RectangleObject
       TileInformation* mpCurrentTile;
 
       std::vector<TileInformation*> mpPath;
+
+      EnemyState* mpState;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations
