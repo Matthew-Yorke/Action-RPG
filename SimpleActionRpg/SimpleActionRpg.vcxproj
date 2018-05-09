@@ -177,9 +177,11 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="Event.cpp" />
+    <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="IdleEnemyState.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -209,9 +211,11 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyState.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="IdleEnemyState.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MathConstants.h" />
     <ClInclude Include="Object.h" />

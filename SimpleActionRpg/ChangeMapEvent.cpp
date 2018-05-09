@@ -22,69 +22,56 @@
 // Method Name: ChangeMapEvent
 //
 // Description:
-//  TODO: Add method description.
+//  Initialize the base class and member variables with passed in values.
 //
 //***************************************************************************************************************************************************
-ChangeMapEvent::ChangeMapEvent(Graphics* theGraphics, int theCoordinateX, int theCoordianteY, int theWidth, int theHeight, std::string theMapFileLocation, int thePlayerCoordinateX, int thePlayerCoordinateY) :
+ChangeMapEvent::ChangeMapEvent(int theCoordinateX, int theCoordianteY, int theWidth, int theHeight, std::string theMapFileLocation,
+                               int theObjectDestinationCoordinateX, int theObjectDestinationCoordinateY) :
 Event(theCoordinateX, theCoordianteY, theWidth, theHeight)
 {
-   mpGraphics = theGraphics;
    mMapFileLocation = theMapFileLocation;
-   mPlayerCoordinateX = thePlayerCoordinateX;
-   mPlayerCoordinateY = thePlayerCoordinateY;
+   mObjectDestinationCoordinateX = theObjectDestinationCoordinateX;
+   mObjectDestinationCoordinateY = theObjectDestinationCoordinateY;
 }
 
 //************************************************************************************************************************************************
 //
-// Method Name: ~ChangeMapEvent
+// Method Name: GetObjectDestinationCoordinateX
 //
 // Description:
-//  TODO: Add description/A
+//  Return the X-Coordinate the object is to be placed at.
 //
 //************************************************************************************************************************************************
-ChangeMapEvent::~ChangeMapEvent()
+int ChangeMapEvent::GetObjectDestinationCoordinateX()
 {
+   return mObjectDestinationCoordinateX;
 }
 
 //************************************************************************************************************************************************
 //
-// Method Name: GetPlayerCoordinateX
+// Method Name: GetObjectDestinationCoordinateY
 //
 // Description:
-//  TODO: Add description/A
+//  Return the Y-Coordinate the object is to be placed at.
 //
 //************************************************************************************************************************************************
-int ChangeMapEvent::GetPlayerCoordinateX()
+int ChangeMapEvent::GetObjectDestinationCoordinateY()
 {
-   return mPlayerCoordinateX;
+   return mObjectDestinationCoordinateY;
 }
 
 //************************************************************************************************************************************************
 //
-// Method Name: GetPlayerCoordinateY
+// Method Name: GetMapFileLocation
 //
 // Description:
-//  TODO: Add description/A
+//  Return the map file location.
 //
 //************************************************************************************************************************************************
-int ChangeMapEvent::GetPlayerCoordinateY()
+std::string ChangeMapEvent::GetMapFileLocation()
 {
-   return mPlayerCoordinateY;
+   return mMapFileLocation;
 }
-
-//************************************************************************************************************************************************
-//
-// Method Name: Execute()
-//
-// Description:
-//  TODO: Add description/A
-//
-//************************************************************************************************************************************************
-Map* ChangeMapEvent::Execute()
-{
-   return new Map(mpGraphics, mMapFileLocation);
-}
-
 
 //***************************************************************************************************************************************************
 // End Public Method Definitions

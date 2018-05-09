@@ -40,6 +40,7 @@ Map::Map(Graphics* theGraphics, std::string theSpriteSheetFilePath)
    mMapHeight = 0;
    mpGraphics = theGraphics;
    mEventsLoaded = false;
+   mpEventManager = mpEventManager->GetInstance();
    LoadMap(theSpriteSheetFilePath);
 
    mpPathfinder = new Pathfinding(mpMap);
@@ -63,17 +64,13 @@ Map::~Map()
    } 
    mpMap.clear();
 
-   for(auto currentChangeMapEvent = mpChangeMapEventList.begin(); currentChangeMapEvent != mpChangeMapEventList.end(); currentChangeMapEvent++)
-   {
-       delete *currentChangeMapEvent;
-   } 
-   mpChangeMapEventList.clear();
-
    for(auto currentEnemy = mpEnemyList.begin(); currentEnemy != mpEnemyList.end(); currentEnemy++)
    {
        delete *currentEnemy;
    } 
    mpEnemyList.clear();
+
+   mpEventManager->ReleaseInstance();
 }
 
 //************************************************************************************************************************************************
@@ -201,39 +198,6 @@ bool Map::NonTraverableTileCollision(RectangleObject* theObject)
 
    return collisionHappened;
 }
-
-//************************************************************************************************************************************************
-//
-// Method Name: ChangeMapEventCollision
-//
-// Description:
-//  TODO: Add description.
-//
-//************************************************************************************************************************************************
-bool Map::ChangeMapEventCollision(RectangleObject* theObject, Map*& theChangedMap, int& thePlayerCoordinateX, int& thePlayerCoordinateY)
-{
-   bool changeMap = false;
-
-   for (auto currentChangeMapEvent = mpChangeMapEventList.begin();
-        currentChangeMapEvent != mpChangeMapEventList.end();
-        currentChangeMapEvent++)
-   {
-      if (theObject->GetCoordinateX() < ((*currentChangeMapEvent)->GetArea()->GetCoordinateX() + (*currentChangeMapEvent)->GetArea()->GetWidth()) &&
-          (theObject->GetCoordinateX() + theObject->GetWidth()) > (*currentChangeMapEvent)->GetArea()->GetCoordinateX() &&
-          theObject->GetCoordinateY() < ((*currentChangeMapEvent)->GetArea()->GetCoordinateY() + (*currentChangeMapEvent)->GetArea()->GetHeight()) &&
-          (theObject->GetCoordinateY() + theObject->GetHeight()) > (*currentChangeMapEvent)->GetArea()->GetCoordinateY())
-      {
-         theChangedMap = (*currentChangeMapEvent)->Execute();
-         thePlayerCoordinateX = (*currentChangeMapEvent)->GetPlayerCoordinateX();
-         thePlayerCoordinateY = (*currentChangeMapEvent)->GetPlayerCoordinateY();
-         changeMap = true;
-         
-         break;
-      }
-   }
-
-   return changeMap;
-};
 
 //************************************************************************************************************************************************
 //
@@ -551,14 +515,13 @@ void Map::LoadEvents(std::string theEventInformation)
 
    if(parsedEventInformation[0] == "CHANGE_MAP")
    {
-      mpChangeMapEventList.push_back(new ChangeMapEvent(mpGraphics,
-                                                        std::stoi(parsedEventInformation[1]),
-                                                        std::stoi(parsedEventInformation[2]),
-                                                        mTileWidth,
-                                                        mTileHeight,
-                                                        parsedEventInformation[3],
-                                                        std::stoi(parsedEventInformation[4]),
-                                                        std::stoi(parsedEventInformation[5])));
+      mpEventManager->AddChangeMapEvent(new ChangeMapEvent(std::stoi(parsedEventInformation[1]),
+                                                           std::stoi(parsedEventInformation[2]),
+                                                           mTileWidth,
+                                                           mTileHeight,
+                                                           parsedEventInformation[3],
+                                                           std::stoi(parsedEventInformation[4]),
+                                                           std::stoi(parsedEventInformation[5])));
    }
 
    if (parsedEventInformation.size() == 7 && parsedEventInformation[6] == "!")

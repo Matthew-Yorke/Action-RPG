@@ -21,6 +21,7 @@
 #include "Camera.h"
 #include "Clock.h"
 #include "Enemy.h"
+#include "EventManager.h"
 
 class PlayState : public GameState
 {
@@ -215,6 +216,8 @@ class PlayState : public GameState
 
    private:
 
+      Graphics* mpGraphics;
+
       Map* mpCurrentMap;
 
       ShadowLayer* mpShadowLayer;
@@ -228,6 +231,8 @@ class PlayState : public GameState
       Clock* mpGameClock;
 
       float PathUpdateTime; 
+
+      EventManager* mpEventManager;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

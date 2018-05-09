@@ -26,6 +26,7 @@
 #include "RectangleObject.h"
 #include "Tile.h"
 #include "EnemyState.h"
+#include "CircleObject.h"
 
 class Enemy : public RectangleObject
 {
@@ -114,6 +115,25 @@ class Enemy : public RectangleObject
       //
       //************************************************************************************************************************************************
       RectangleObject* GetMovementHitBox();
+
+      CircleObject* GetPathReachedRange();
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: ChangeState
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theState - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      void ChangeState(EnemyState* theState);
+
 
       //************************************************************************************************************************************************
       //
@@ -333,6 +353,8 @@ class Enemy : public RectangleObject
       std::vector<TileInformation*> mpPath;
 
       EnemyState* mpState;
+
+      CircleObject* PathReachedRange;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

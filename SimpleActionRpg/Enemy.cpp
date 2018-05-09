@@ -47,6 +47,9 @@ RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
                                           theCoordinateY + 33,
                                           25,
                                           31);
+   PathReachedRange = new CircleObject(theCoordinateX + 32,
+                                       theCoordinateY + 32,
+                                       64);
    mInvincible = false;
    mInvincibleTime = 0.0F;
    mpState = new ChaseEnemyState(this);
@@ -104,6 +107,25 @@ RectangleObject* Enemy::GetHitBox()
 RectangleObject* Enemy::GetMovementHitBox()
 {
    return mpMovementHitbox;
+}
+
+CircleObject* Enemy::GetPathReachedRange()
+{
+   return PathReachedRange;
+}
+
+//************************************************************************************************************************************************
+ //
+ // Method Name: ChangeState
+ //
+ // Description:
+ //  TODO: Add description.
+ //
+ //************************************************************************************************************************************************
+ void Enemy::ChangeState(EnemyState* theState)
+{
+   delete mpState;
+   mpState = theState;
 }
 
 //************************************************************************************************************************************************
@@ -234,6 +256,8 @@ void Enemy::Update(float theTimeChange)
    mpHitbox->SetCoordinateY(GetCoordinateY() + 1);
    mpMovementHitbox->SetCoordinateX(GetCoordinateX() + 20);
    mpMovementHitbox->SetCoordinateY(GetCoordinateY() + 33);
+   PathReachedRange->SetCoordinateX(GetCoordinateX() + 32);
+   PathReachedRange->SetCoordinateY(GetCoordinateY() + 32);
 
    if (mInvincible == true)
    {
@@ -259,6 +283,7 @@ void Enemy::Draw(Graphics& theGraphics)
    DrawSprite(theGraphics);
    al_draw_rectangle(mpHitbox->GetCoordinateX(), mpHitbox->GetCoordinateY(), mpHitbox->GetCoordinateX() + mpHitbox->GetWidth(), mpHitbox->GetCoordinateY()+ mpHitbox->GetHeight(), al_map_rgb(255,0,0), 1);
    al_draw_rectangle(mpMovementHitbox->GetCoordinateX(), mpMovementHitbox->GetCoordinateY(), mpMovementHitbox->GetCoordinateX() + mpMovementHitbox->GetWidth(), mpMovementHitbox->GetCoordinateY()+ mpMovementHitbox->GetHeight(), al_map_rgb(0,0,255), 1);
+   al_draw_circle(PathReachedRange->GetCoordinateX(), PathReachedRange->GetCoordinateY(), PathReachedRange->GetRadius(), al_map_rgb(0,255,255), 1);
 
    if (mpCurrentTile != nullptr)
    {

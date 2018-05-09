@@ -24,10 +24,55 @@ class Event
 
    public:
 
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: Event
+      //
+      // Description:
+      //  Constructor that initializes member variables.
+      //
+      // Arguments:
+      //  theCoordinateX - The X-Coordinate where the event exists.
+      //  theCoordinateY - The Y-Coordinate where the event exists.
+      //  theWidth - The width of the area of the event.
+      //  theHeight  - The height of the area of the event.
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
       Event(int theCoordinateX, int theCoordinateY, int theWidth, int theHeight);
 
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: ~Event
+      //
+      // Description:
+      //  Destructor that cleans up allocated memory.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
       ~Event();
 
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: GetArea
+      //
+      // Description:
+      //  Returns the area where the event resides.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  Returns the rectangular area of where the event resides.
+      //
+      //*********************************************************************************************************************************************
       RectangleObject* GetArea();
 
    protected:
@@ -56,7 +101,7 @@ class Event
 
    private:
 
-      // TODO: Add description.
+      // Holds the area where the event resides.
       RectangleObject* mpArea;
 
 };

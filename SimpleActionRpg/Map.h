@@ -18,14 +18,14 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
 #include <vector>
-#include "ChangeMapEvent.h"
 #include "RectangleObject.h"
 #include "Enemy.h"
 #include "Graphics.h"
 #include "Tile.h"
 #include "Pathfinding.h"
+#include "EventManager.h"
 
-class ChangeMapEvent;
+class EventManager;
 class Map
 {
    //************************************************************************************************************************************************
@@ -178,22 +178,6 @@ class Map
       //
       //************************************************************************************************************************************************
       bool NonTraverableTileCollision(RectangleObject* theObject);
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: ChangeMapEventCollision
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  theObject - TODO: Add description.
-      //
-      // Return:
-      //  TODO: Add description.
-      //
-      //************************************************************************************************************************************************
-      bool ChangeMapEventCollision(RectangleObject* theObject, Map*& theChangedMap, int& thePlayerCoordinateX, int& thePlayerCoordinateY);
 
       //************************************************************************************************************************************************
       //
@@ -363,8 +347,6 @@ class Map
 
       int mMapHeight;
 
-      std::vector<ChangeMapEvent*> mpChangeMapEventList;
-
       std::vector<Enemy*> mpEnemyList;
 
       Graphics* mpGraphics;
@@ -372,6 +354,8 @@ class Map
       bool mEventsLoaded;
 
       Pathfinding* mpPathfinder;
+
+      EventManager* mpEventManager;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

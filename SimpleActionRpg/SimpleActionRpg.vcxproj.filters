@@ -60,6 +60,9 @@
     <Filter Include="Code\Game\Objects\NPCs\Enemy\States">
       <UniqueIdentifier>{ce0c2c02-efa9-445b-ae1f-1e8359d8e4fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Code\Engine\Events\Event Types">
+      <UniqueIdentifier>{08954bed-dc20-4a8e-be05-f2d5c7b85b16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp">
@@ -134,12 +137,6 @@
     <ClCompile Include="PlayState.cpp">
       <Filter>Code\Game\Game States</Filter>
     </ClCompile>
-    <ClCompile Include="Event.cpp">
-      <Filter>Code\Engine\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="ChangeMapEvent.cpp">
-      <Filter>Code\Engine\Events</Filter>
-    </ClCompile>
     <ClCompile Include="Pathfinding.cpp">
       <Filter>Code\Engine\Pathfinding</Filter>
     </ClCompile>
@@ -151,6 +148,18 @@
     </ClCompile>
     <ClCompile Include="ChaseEnemyState.cpp">
       <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleEnemyState.cpp">
+      <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Code\Engine\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangeMapEvent.cpp">
+      <Filter>Code\Engine\Events\Event Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Code\Engine\Events\Event Types</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -229,12 +238,6 @@
     <ClInclude Include="PlayState.h">
       <Filter>Code\Game\Game States</Filter>
     </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>Code\Engine\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="ChangeMapEvent.h">
-      <Filter>Code\Engine\Events</Filter>
-    </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Code\Engine\Maps</Filter>
     </ClInclude>
@@ -249,6 +252,18 @@
     </ClInclude>
     <ClInclude Include="ChaseEnemyState.h">
       <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleEnemyState.h">
+      <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Code\Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangeMapEvent.h">
+      <Filter>Code\Engine\Events\Event Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Code\Engine\Events\Event Types</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

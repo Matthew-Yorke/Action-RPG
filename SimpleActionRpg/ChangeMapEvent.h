@@ -16,10 +16,6 @@
 
 #include <string>
 #include "Event.h"
-#include "Map.h"
-
-class Map;
-class Graphics;
 
 class ChangeMapEvent : public Event
 {
@@ -29,15 +25,76 @@ class ChangeMapEvent : public Event
 
    public:
 
-      ChangeMapEvent(Graphics* theGraphics, int theCoordinateX, int theCoordianteY, int theWidth, int theHeight, std::string theMapFileLocation, int thePlayerCoordinateX, int thePlayerCoordinateY);
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: ChangeMapEvent
+      //
+      // Description:
+      //  Constructor of the change map event to retain the event location and the event execution parameters.
+      //
+      // Arguments:
+      //  theCoordinateX - The X-Coordinate where the event exists.
+      //  theCoordinateY - The Y-Coordinate where the event exists.
+      //  theWidth - The width of the area of the event.
+      //  theHeight - The height of the area of the event.
+      //  theMapFileLocation - The string containing the file path of the map to load when the event activates.
+      //  theObjectDestinationCoordinateX - The X-Coordinate the object will be placed when the event occurs.
+      //  theObjectDestinationCoordinateY - The Y-Coordinate the object will be placed when the event occurs.
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      ChangeMapEvent(int theCoordinateX, int theCoordianteY, int theWidth, int theHeight, std::string theMapFileLocation,
+                     int theObjectDestinationCoordinateX, int theObjectDestinationCoordinateY);
 
-      ~ChangeMapEvent();
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: GetObjectDestinationCoordinateX
+      //
+      // Description:
+      //  Returns the X-Coordinate the object is to be placed at when the event occurs.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  Return an integer value depicting the X-Coordinate the object is to be placed when the event occurs.
+      //
+      //*********************************************************************************************************************************************
+      int GetObjectDestinationCoordinateX();
 
-      int GetPlayerCoordinateX();
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: GetObjectDestinationCoordinateY
+      //
+      // Description:
+      //  Returns the Y-Coordinate the object is to be placed at when the event occurs.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  Return an integer value depicting the Y-Coordinate the object is to be placed when the event occurs.
+      //
+      //*********************************************************************************************************************************************
+      int GetObjectDestinationCoordinateY();
 
-      int GetPlayerCoordinateY();
-
-      Map* Execute();
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: GetMapFileLocation
+      //
+      // Description:
+      //  Returns the file location of the map to load when the event occurs.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  Returns a string value depicting the file location of the map to load when the event occurs.
+      //
+      //*********************************************************************************************************************************************
+      std::string GetMapFileLocation();
 
    protected:
 
@@ -65,13 +122,14 @@ class ChangeMapEvent : public Event
 
    private:
 
+      // Holds the map file location to load when the event occurs.
       std::string mMapFileLocation;
 
-      int mPlayerCoordinateX;
+      // Holds the X-Coordinate the player is moved to when the event occurs.
+      int mObjectDestinationCoordinateX;
 
-      int mPlayerCoordinateY;
-
-      Graphics* mpGraphics;
+      // Holds the Y-Coordinate the player is moved to when the event occurs.
+      int mObjectDestinationCoordinateY;
 };
 
 #endif

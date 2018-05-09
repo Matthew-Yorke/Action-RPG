@@ -27,6 +27,8 @@
 //***************************************************************************************************************************************************
 PlayState::PlayState(Graphics& theGraphics)
 {
+   mpGraphics = &theGraphics;
+
    mpCurrentMap = new Map(&theGraphics, "../Maps/TestMap.txt");
 
    mpShadowLayer = new ShadowLayer("../Images/ShadowLayer.png");
@@ -42,6 +44,8 @@ PlayState::PlayState(Graphics& theGraphics)
    mpGameClock = new Clock(6.0F);
 
    PathUpdateTime = 0.2F;
+
+   mpEventManager = mpEventManager->GetInstance();
 }
 
 //***************************************************************************************************************************************************
@@ -60,6 +64,7 @@ PlayState::~PlayState()
    delete mpMapAreaBoundary;
    delete mpCamera;
    delete mpGameClock;
+   mpEventManager->ReleaseInstance();
 }
 
 //************************************************************************************************************************************************
@@ -127,6 +132,7 @@ void PlayState::Update(float theTimeChange)
    mpPlayer->Update(theTimeChange);
    mpPlayer->SetCurrentTile(mpCurrentMap->GetClosestTile(mpPlayer->GetMovementHitBox()->GetCoordinateX() + mpPlayer->GetMovementHitBox()->GetWidthCenterPoint(),
                                                          mpPlayer->GetMovementHitBox()->GetCoordinateY() + mpPlayer->GetMovementHitBox()->GetHeightCenterPoint()));
+
    auto enemyList = mpCurrentMap->GetEnemyList();
    for (auto iterator = enemyList.begin(); iterator != enemyList.end(); iterator++)
    {
@@ -341,13 +347,29 @@ void PlayState::MapNonTraverableMapTileCollision()
 //************************************************************************************************************************************************
 void PlayState::MapEventCollision()
 {
+   std::string mapFileLocation = "";
    Map* temporaryMap = nullptr;
    int playerCoordinateX = mpPlayer->GetCoordinateX();
    int playerCoordinateY = mpPlayer->GetCoordinateY();
-   bool changeMap = mpCurrentMap->ChangeMapEventCollision(mpPlayer->GetMovementHitBox(),
-                                                          temporaryMap,
-                                                          playerCoordinateX,
-                                                          playerCoordinateY);
+   bool changeMap = false;
+
+   std::vector<ChangeMapEvent*> changeMapList = mpEventManager->GetChangeMapEvents();
+   for (auto pCurrentChangeMapEvent = changeMapList.begin();
+        pCurrentChangeMapEvent != changeMapList.end();
+        pCurrentChangeMapEvent++)
+   {
+      changeMap = CollisionDetection(mpPlayer->GetMovementHitBox(), (*pCurrentChangeMapEvent)->GetArea());
+
+      if (changeMap == true)
+      {
+         playerCoordinateX = (*pCurrentChangeMapEvent)->GetObjectDestinationCoordinateX();
+         playerCoordinateY = (*pCurrentChangeMapEvent)->GetObjectDestinationCoordinateY();
+         mapFileLocation = (*pCurrentChangeMapEvent)->GetMapFileLocation();
+         mpEventManager->ClearEvents();
+         temporaryMap = new Map(mpGraphics, mapFileLocation);
+         break;
+      }
+   }
 
    if(changeMap == true)
    {
