@@ -13,15 +13,6 @@
 
 #include "Pathfinding.h"
 #include <list>
-#include <queue>
-
-struct CompareGlobalGoal
-{
-   bool operator()(TileInformation* lhs, TileInformation* rhs)
-   {
-      return lhs->GlobalGoal > rhs->GlobalGoal;
-   }
-};
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions

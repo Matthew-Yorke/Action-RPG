@@ -1,6 +1,9 @@
-﻿  EventStorage.cpp
+﻿  Camera.cpp
+  Clock.cpp
+  DialogBox.cpp
   Game.cpp
-  Map.cpp
+  Light.cpp
   PlayState.cpp
+  ShadowLayer.cpp
   Generating Code...
   SimpleActionRpg.vcxproj -> C:\Users\Yorke\source\projects\Action RPG\Action-RPG\x64\Debug\SimpleActionRpg.exe

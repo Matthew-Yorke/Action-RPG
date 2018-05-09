@@ -14,6 +14,7 @@
 #ifndef Camera_h
 #define Camera_h
 
+#include "allegro5/allegro.h"
 #include "Object.h"
 #include "RectangleObject.h"
 

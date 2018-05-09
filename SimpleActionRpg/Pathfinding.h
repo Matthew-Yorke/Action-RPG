@@ -15,7 +15,16 @@
 #define Pathfinding_h
 
 #include <vector>
+#include <queue>
 #include "Tile.h"
+
+struct CompareGlobalGoal
+{
+   bool operator()(TileInformation* lhs, TileInformation* rhs)
+   {
+      return lhs->GlobalGoal > rhs->GlobalGoal;
+   }
+};
 
 class Pathfinding
 {
