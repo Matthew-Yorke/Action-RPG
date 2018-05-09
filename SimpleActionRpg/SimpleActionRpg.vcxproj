@@ -177,7 +177,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="Event.cpp" />
-    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="EventStorage.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -211,7 +211,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyState.h" />
     <ClInclude Include="Event.h" />
-    <ClInclude Include="EventManager.h" />
+    <ClInclude Include="EventStorage.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Graphics.h" />

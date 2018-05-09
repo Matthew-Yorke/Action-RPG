@@ -17,7 +17,7 @@
 
 struct CompareGlobalGoal
 {
-   bool operator()(TileInformation*  lhs, TileInformation* rhs)
+   bool operator()(TileInformation* lhs, TileInformation* rhs)
    {
       return lhs->GlobalGoal > rhs->GlobalGoal;
    }
@@ -32,24 +32,12 @@ struct CompareGlobalGoal
 // Method Name: Pathfinding
 //
 // Description:
-//  TODO: Add method description.
+//  Retain the list of tiles in the map.
 //
 //***************************************************************************************************************************************************
 Pathfinding::Pathfinding(std::vector<TileInformation*> theMap)
 {
-   mpMap = theMap;
-}
-
-//***************************************************************************************************************************************************
-//
-// Method Name: ~Pathfinding
-//
-// Description:
-//  TODO: Add method description.
-//
-//***************************************************************************************************************************************************
-Pathfinding::~Pathfinding()
-{
+   mMap = theMap;
 }
 
 //***************************************************************************************************************************************************
@@ -57,15 +45,24 @@ Pathfinding::~Pathfinding()
 // Method Name: FindPath
 //
 // Description:
-//  TODO: Add method description.
+//  Using the A* pathfinding algorithm, determines the shortest path from the starting tile to the ending tile. The path is determined by defining
+//  the local and global cost between tiles. The lowest cost to another tile will be the parent tile. The path retraces the parent tiles from the
+//  ending tile to determine the shortest path. The path is returned.
 //
 //***************************************************************************************************************************************************
-std::vector<TileInformation*> Pathfinding::FindPath(TileInformation* theStart, TileInformation* theEnd)
+std::vector<TileInformation*> Pathfinding::FindPath(TileInformation* pTheStart, TileInformation* pTheEnd)
 {
+   // The vector of the shortest path from the start to end tile.
    std::vector<TileInformation*> mpShortestPath;
-   std::priority_queue<TileInformation*, std::vector<TileInformation*>, CompareGlobalGoal> mOpenList;
+   // Holds an open list of tiles to check ordered by lowest to highest global goal values.
+   std::priority_queue<TileInformation*, std::vector<TileInformation*>, CompareGlobalGoal> mOpenList;;
+   // Holds the possible goal value that may be lower then a previous goal value.
+   float possibleLowerGoal = 0.0F;
 
-   for (auto iterator = mpMap.begin(); iterator != mpMap.end(); iterator++)
+   // Reset all tile pathfinding parameters.
+   for (auto iterator = mMap.begin();
+        iterator != mMap.end();
+        iterator++)
    {
       (*iterator)->Visited = false;
       (*iterator)->GlobalGoal = INFINITY;
@@ -73,88 +70,56 @@ std::vector<TileInformation*> Pathfinding::FindPath(TileInformation* theStart, T
       (*iterator)->pParent = nullptr;
    }
 
-   TileInformation* currentTile = theStart;
-   theStart->LocalGoal = 0.0F;
-   theStart->GlobalGoal = Heuristic(theStart, theEnd);
+   // Determine the starting tile as the first current tile to look at.
+   TileInformation* currentTile = pTheStart;
+   // Set the local goal to be 0 as there is no cost to move into itself.
+   pTheStart->LocalGoal = 0.0F;
+   // Determine the global goal by checking the heuristic between the start and end tile.
+   pTheStart->GlobalGoal = Heuristic(pTheStart,
+                                     pTheEnd);
+   // Add the start tile as the first tile in the open list
+   mOpenList.push(pTheStart);
 
-   mOpenList.push(theStart);
-
-   while (mOpenList.empty() == false && currentTile != theEnd)
+   // Keep calculating the path until there is no more items in the open list or the current tile is the end tile.
+   while (mOpenList.empty() == false &&
+          currentTile != pTheEnd)
    {
-      while (mOpenList.empty() == false && mOpenList.top()->Visited == true)
+      // Remove any top items in the open list that have already been visited.
+      while (mOpenList.empty() == false &&
+             mOpenList.top()->Visited == true)
       {
          mOpenList.pop();
       }
 
+      // If the open list is empty after removing already visited tile, then break out as there is no more calculating to do.
       if (mOpenList.empty() == true)
       {
          break;
       }
 
+      // Set the current tile as the top item in the open list and set that tile to have been visited.
       currentTile = mOpenList.top();
       currentTile->Visited = true;
 
-      float possibleLowerGoal = 0.0F;
-      if (currentTile->pTopNeighbor != nullptr && currentTile->pTopNeighbor->Visited == false && currentTile->pTopNeighbor->Traversable == true)
-      {
-         mOpenList.push(currentTile->pTopNeighbor);
-         possibleLowerGoal = currentTile->LocalGoal + Distance(currentTile, currentTile->pTopNeighbor);
 
-         if (possibleLowerGoal < currentTile->pTopNeighbor->LocalGoal)
-         {
-            currentTile->pTopNeighbor->pParent = currentTile;
-            currentTile->pTopNeighbor->LocalGoal = possibleLowerGoal;
-            currentTile->pTopNeighbor->GlobalGoal = currentTile->pTopNeighbor->LocalGoal + Heuristic(currentTile->pTopNeighbor, theEnd);
-         }
-      }
-      if (currentTile->pBottomNeighbor != nullptr && currentTile->pBottomNeighbor->Visited == false && currentTile->pBottomNeighbor->Traversable == true)
-      {
-         mOpenList.push(currentTile->pBottomNeighbor);
-
-         possibleLowerGoal = currentTile->LocalGoal + Distance(currentTile, currentTile->pBottomNeighbor);
-
-         if (possibleLowerGoal < currentTile->pBottomNeighbor->LocalGoal)
-         {
-            currentTile->pBottomNeighbor->pParent = currentTile;
-            currentTile->pBottomNeighbor->LocalGoal = possibleLowerGoal;
-            currentTile->pBottomNeighbor->GlobalGoal = currentTile->pBottomNeighbor->LocalGoal + Heuristic(currentTile->pBottomNeighbor, theEnd);
-         }
-      }
-      if (currentTile->pLeftNeighbor != nullptr && currentTile->pLeftNeighbor->Visited == false && currentTile->pLeftNeighbor->Traversable == true)
-      {
-         mOpenList.push(currentTile->pLeftNeighbor);
-
-         possibleLowerGoal = currentTile->LocalGoal + Distance(currentTile, currentTile->pLeftNeighbor);
-
-         if (possibleLowerGoal < currentTile->pLeftNeighbor->LocalGoal)
-         {
-            currentTile->pLeftNeighbor->pParent = currentTile;
-            currentTile->pLeftNeighbor->LocalGoal = possibleLowerGoal;
-            currentTile->pLeftNeighbor->GlobalGoal = currentTile->pLeftNeighbor->LocalGoal + Heuristic(currentTile->pLeftNeighbor, theEnd);
-         }
-      }
-      if (currentTile->pRightNeighbor != nullptr && currentTile->pRightNeighbor->Visited == false && currentTile->pRightNeighbor->Traversable == true)
-      {
-         mOpenList.push(currentTile->pRightNeighbor);
-
-         possibleLowerGoal = currentTile->LocalGoal + Distance(currentTile, currentTile->pRightNeighbor);
-
-         if (possibleLowerGoal < currentTile->pRightNeighbor->LocalGoal)
-         {
-            currentTile->pRightNeighbor->pParent = currentTile;
-            currentTile->pRightNeighbor->LocalGoal = possibleLowerGoal;
-            currentTile->pRightNeighbor->GlobalGoal = currentTile->pRightNeighbor->LocalGoal + Heuristic(currentTile->pRightNeighbor, theEnd);
-         }
-      }
+      // Determine for each neighbor if the movement cost to it is lower to move to it from the current tile.
+      DetermineNeighborMovementCost(currentTile, currentTile->pTopNeighbor, pTheEnd, mOpenList);
+      DetermineNeighborMovementCost(currentTile, currentTile->pBottomNeighbor, pTheEnd, mOpenList);
+      DetermineNeighborMovementCost(currentTile, currentTile->pLeftNeighbor, pTheEnd, mOpenList);
+      DetermineNeighborMovementCost(currentTile, currentTile->pRightNeighbor, pTheEnd, mOpenList);
    }
 
-   TileInformation* temporary = theEnd;
+   // Calculate the path from the end tile to the start tile by iterating the parent tile and adding that tile to the beginning of the shortest path
+   // vector.
+   TileInformation* temporary = pTheEnd;
    while (temporary->pParent != nullptr)
    {
-      mpShortestPath.insert(mpShortestPath.begin(), temporary);
+      mpShortestPath.insert(mpShortestPath.begin(),
+                            temporary);
       temporary = temporary->pParent;
    }
 
+   // Return the vector for the shortest path.
    return mpShortestPath;
 }
 
@@ -178,16 +143,58 @@ std::vector<TileInformation*> Pathfinding::FindPath(TileInformation* theStart, T
 
 //***************************************************************************************************************************************************
 //
+// Method Name: DetermineNeighborMovementCost
+//
+// Description:
+//  Determine if the neighbor can be traversed to if it hasn't already. Add the neighbor to the open list if it can be visited. Determine the cost
+//  from the current tile to the neighbor tile. If the cost is lower then a previous cost to the neighbor then the current tile is now the shortest
+//  path to that neighbor. Calculate the global cost from the neighbor to the end tile that the neighbor has been updated.
+//
+//***************************************************************************************************************************************************
+void Pathfinding::DetermineNeighborMovementCost(TileInformation* pTheCurrentTile, TileInformation* pTheNeighborTile, TileInformation* pTheEndTile,
+                                                std::priority_queue<TileInformation*, std::vector<TileInformation*>, CompareGlobalGoal>& theOpenList)
+{
+   // Determines the possible lower cost from the current tile to the neighbor tile.
+   float possibleLowerGoal = 0.0F;
+   
+   // Make sure the neighbor tile hasn't been visited and can be traveled to.
+   if (pTheNeighborTile != nullptr &&
+       pTheNeighborTile->Visited == false &&
+       pTheNeighborTile->Traversable == true)
+   {
+      // Add the neighbor tile into the open list to be examined on another loop.
+      theOpenList.push(pTheNeighborTile);
+      
+      // Determine the total cost (current tile total cost plus the cost to the next tile) from the current tile to the neighbor tile.
+      possibleLowerGoal = pTheCurrentTile->LocalGoal + Distance(pTheCurrentTile,
+                                                                pTheNeighborTile);
+      
+      // If the cost is lower then a previous cost to the neighbor tile.
+      if (possibleLowerGoal < pTheNeighborTile->LocalGoal)
+      {
+         // Update the neighbors parent to be the current tile as it is now the shortest path.
+         pTheNeighborTile->pParent = pTheCurrentTile;
+         // Updated the neighbors local goal as the total cost calculated above.
+         pTheNeighborTile->LocalGoal = possibleLowerGoal;
+         // Recalculate the global goal from the neighbor tile to the end tile.
+         pTheNeighborTile->GlobalGoal = pTheNeighborTile->LocalGoal + Heuristic(pTheNeighborTile,
+                                                                                pTheEndTile);
+      }
+   }
+}
+
+//***************************************************************************************************************************************************
+//
 // Method Name: Distance
 //
 // Description:
 //  TODO: Add method description.
 //
 //***************************************************************************************************************************************************
-float Pathfinding::Distance(TileInformation* theStart, TileInformation* theEnd)
+float Pathfinding::Distance(TileInformation* pTheStart, TileInformation* pTheEnd)
 {
-   return sqrtf((theStart->TileCoordinateX - theEnd->TileCoordinateX)*(theStart->TileCoordinateX - theEnd->TileCoordinateX) +
-                (theStart->TileCoordinateY - theEnd->TileCoordinateY)* (theStart->TileCoordinateY - theEnd->TileCoordinateY));
+   return sqrtf((pTheStart->TileCoordinateX - pTheEnd->TileCoordinateX) * (pTheStart->TileCoordinateX - pTheEnd->TileCoordinateX) +
+                (pTheStart->TileCoordinateY - pTheEnd->TileCoordinateY) * (pTheStart->TileCoordinateY - pTheEnd->TileCoordinateY));
 }
 
 //***************************************************************************************************************************************************
@@ -198,9 +205,10 @@ float Pathfinding::Distance(TileInformation* theStart, TileInformation* theEnd)
 //  TODO: Add method description.
 //
 //***************************************************************************************************************************************************
-float Pathfinding::Heuristic(TileInformation* theStart, TileInformation* theEnd)
+float Pathfinding::Heuristic(TileInformation* pTheStart, TileInformation* pTheEnd)
 {
-   return Distance(theStart, theEnd);
+   return Distance(pTheStart,
+                   pTheEnd);
 }
 
 //***************************************************************************************************************************************************

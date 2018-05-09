@@ -23,9 +23,11 @@
 #include "Graphics.h"
 #include "Tile.h"
 #include "Pathfinding.h"
-#include "EventManager.h"
+#include "EventStorage.h"
 
-class EventManager;
+// Forward Declarations
+class EventStorage;
+
 class Map
 {
    //************************************************************************************************************************************************
@@ -355,7 +357,7 @@ class Map
 
       Pathfinding* mpPathfinder;
 
-      EventManager* mpEventManager;
+      EventStorage* mpEventStorage;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

@@ -12,7 +12,6 @@
 //***************************************************************************************************************************************************
 
 #include "DialogBox.h"
-#include <vector>
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -23,14 +22,15 @@
 // Method Name: DialogBox
 //
 // Description:
-//  Set the parameters of the dialog box with the passed in values. Also sets other text to default values.
+//  Set the parameters of the dialog box with the passed in values. Also sets other text to default values. Determine the number characters and
+//  number of lines that will fit in the dialog box.
 //
 //***************************************************************************************************************************************************
-DialogBox::DialogBox(std::string theSpeakerName, std::string theSpeakerText, RectangleObject* theDimensions)
+DialogBox::DialogBox(std::string theSpeakerName, std::string theSpeakerText, RectangleObject* thepDimensions)
 {
    mSpeakerName = theSpeakerName;
    mSpeakerText = theSpeakerText;
-   mpDimensions = theDimensions;
+   mpDimensions = thepDimensions;
    mCoordianteX = mpDimensions->GetCoordinateX();
    mCoordianteY = mpDimensions->GetCoordinateY();
    mpOverlayImage = nullptr;
@@ -60,12 +60,13 @@ void DialogBox::AddOverlay(DialogImage* theOverlayImage)
 // Method Name: AddCharacterImage
 //
 // Description:
-//  Changes the character image pointer.
+//  Changes the character image pointer. Redetermine the number of characters in a line as the text area is now different.
 //
 //*********************************************************************************************************************************************
-void DialogBox::AddCharacterImage(DialogImage* theCharacterImage)
+void DialogBox::AddCharacterImage(DialogImage* thepCharacterImage)
 {
-   mpCharacterImage = theCharacterImage; DetermineNumberCharactersInLine();
+   mpCharacterImage = thepCharacterImage;
+   DetermineNumberCharactersInLine();
 }
 
 //*********************************************************************************************************************************************
@@ -76,11 +77,11 @@ void DialogBox::AddCharacterImage(DialogImage* theCharacterImage)
 //  Update the dialog pieces coordinates relative to the camera coordinates.
 //
 //*********************************************************************************************************************************************
-void DialogBox::CameraUpdate(Camera* theCamera)
+void DialogBox::CameraUpdate(Camera* thepCamera)
 {
    // Update the entire dialog coordinates based on the dialog screen coordinates and camera coordinates.
-   mCoordianteX = mpDimensions->GetCoordinateX() + theCamera->GetCoordinateX();
-   mCoordianteY = mpDimensions->GetCoordinateY() + theCamera->GetCoordinateY();
+   mCoordianteX = mpDimensions->GetCoordinateX() + thepCamera->GetCoordinateX();
+   mCoordianteY = mpDimensions->GetCoordinateY() + thepCamera->GetCoordinateY();
    
    // Update the overlay image coordinates based on the update dialog coordinates.
    if (mpOverlayImage != nullptr)
@@ -321,7 +322,6 @@ void DialogBox::BreakUpTextIntoLines()
    {
       mTextLine.push_back(lineText);
    }
-
 }
 
 //***************************************************************************************************************************************************

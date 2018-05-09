@@ -27,8 +27,32 @@
 //***************************************************************************************************************************************************
 DialogImage::DialogImage(Graphics& theGraphics, std::string theFilePath, int theCoordinateX, int theCoordinateY, int theWidth, int theHeight)
 {
-   mpImage = new Sprite(theGraphics, theFilePath, 0, 0, theWidth, theHeight);
-   mpDimensions = new RectangleObject(theCoordinateX, theCoordinateY, theWidth, theHeight);
+   mpImage = new Sprite(theGraphics,
+                        theFilePath,
+                        0,
+                        0,
+                        theWidth,
+                        theHeight);
+   mpDimensions = new RectangleObject(theCoordinateX,
+                                      theCoordinateY,
+                                      theWidth,
+                                      theHeight);
+}
+
+//***************************************************************************************************************************************************
+//
+// Method Name: ~DialogImage
+//
+// Description:
+//  Free any allocated memory that is managed by this class.
+//
+//***************************************************************************************************************************************************
+DialogImage::~DialogImage()
+{
+   delete mpImage;
+   mpImage = nullptr;
+   delete mpDimensions;
+   mpDimensions = nullptr;
 }
 
 //*********************************************************************************************************************************************

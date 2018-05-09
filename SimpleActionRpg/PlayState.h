@@ -21,7 +21,7 @@
 #include "Camera.h"
 #include "Clock.h"
 #include "Enemy.h"
-#include "EventManager.h"
+#include "EventStorage.h"
 
 class PlayState : public GameState
 {
@@ -232,7 +232,7 @@ class PlayState : public GameState
 
       float PathUpdateTime; 
 
-      EventManager* mpEventManager;
+      EventStorage* mpEventStorage;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

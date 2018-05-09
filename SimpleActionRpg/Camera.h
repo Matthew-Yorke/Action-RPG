@@ -30,11 +30,11 @@ class Camera
       // Method Name: Camera
       //
       // Description:
-      //  TODO: Add description.
+      //  Constructor that sets member variables to default values.
       //
       // Arguments:
       //  thepBoundaries - Pointer to a rectangle depicting the world coordinate boundary limits of the camera.
-      //  theObject - Pointer to the initial object for the camera to follow.
+      //  thepObject - Pointer to the initial object for the camera to follow.
       //
       // Return:
       //  N/A
@@ -50,13 +50,13 @@ class Camera
       //  This method changes what object to point at for the camera to follow.
       //
       // Arguments:
-      //  theObject - Pointer to the object for the camera to follow.
+      //  thepObject - Pointer to the object for the camera to follow.
       //
       // Return:
       //  N/A
       //
       //************************************************************************************************************************************************
-      void ChangeFollowingObject(Object* theObject);
+      void ChangeFollowingObject(Object* thepObject);
 
       //************************************************************************************************************************************************
       //

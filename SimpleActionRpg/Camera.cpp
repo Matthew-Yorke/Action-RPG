@@ -11,9 +11,9 @@
 //
 //***************************************************************************************************************************************************
 
+#include "Camera.h"
 #include "allegro5/allegro.h"
 #include "MathConstants.h"
-#include "Camera.h"
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -45,9 +45,9 @@ Camera::Camera(RectangleObject* thepBoundaries, Object* thepObject)
 //  Store the new object being tracked and call to update the camera position.
 //
 //************************************************************************************************************************************************
-void Camera::ChangeFollowingObject(Object* theObject)
+void Camera::ChangeFollowingObject(Object* thepObject)
 {
-   mpFollowingObject = theObject;
+   mpFollowingObject = thepObject;
    Update();
 }
 
@@ -106,10 +106,8 @@ void Camera::Update()
    // If there is an object being followed, update the camera coordinates to place the followed object center of the camera.
    if (mpFollowingObject != nullptr)
    {
-      mCoordinateX = (-960 / MathConstants::HALF) +
-                     (mpFollowingObject->GetCoordinateX() + mpFollowingObject->GetWidthCenterPoint()); 
-      mCoordinateY = (-540 / MathConstants::HALF) +
-                     (mpFollowingObject->GetCoordinateY() + mpFollowingObject->GetHeightCenterPoint()); 
+      mCoordinateX = (-960 / MathConstants::HALF) + (mpFollowingObject->GetCoordinateX() + mpFollowingObject->GetWidthCenterPoint()); 
+      mCoordinateY = (-540 / MathConstants::HALF) + (mpFollowingObject->GetCoordinateY() + mpFollowingObject->GetHeightCenterPoint()); 
    }
 
    // Prevent the camera from scrolling past the world coordinate origin point for the left side of the screen.

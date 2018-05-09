@@ -63,6 +63,12 @@
     <Filter Include="Code\Engine\Events\Event Types">
       <UniqueIdentifier>{08954bed-dc20-4a8e-be05-f2d5c7b85b16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Code\Engine\Clock">
+      <UniqueIdentifier>{2d37cd4b-c5b4-440c-b20c-1307ef8e4657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Engine\Vector">
+      <UniqueIdentifier>{9f0dcafb-fadb-4149-9024-d42da536e79c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp">
@@ -97,12 +103,6 @@
     </ClCompile>
     <ClCompile Include="ShadowLayer.cpp">
       <Filter>Code\Engine\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Clock.cpp">
-      <Filter>Code\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector2D.cpp">
-      <Filter>Code\Engine</Filter>
     </ClCompile>
     <ClCompile Include="DialogBox.cpp">
       <Filter>Code\Engine\Dialog</Filter>
@@ -152,14 +152,20 @@
     <ClCompile Include="IdleEnemyState.cpp">
       <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
     </ClCompile>
-    <ClCompile Include="EventManager.cpp">
-      <Filter>Code\Engine\Events</Filter>
-    </ClCompile>
     <ClCompile Include="ChangeMapEvent.cpp">
       <Filter>Code\Engine\Events\Event Types</Filter>
     </ClCompile>
     <ClCompile Include="Event.cpp">
       <Filter>Code\Engine\Events\Event Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Clock.cpp">
+      <Filter>Code\Engine\Clock</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2D.cpp">
+      <Filter>Code\Engine\Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="EventStorage.cpp">
+      <Filter>Code\Engine\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -195,12 +201,6 @@
     </ClInclude>
     <ClInclude Include="ShadowLayer.h">
       <Filter>Code\Engine\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Clock.h">
-      <Filter>Code\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2D.h">
-      <Filter>Code\Engine</Filter>
     </ClInclude>
     <ClInclude Include="PlayerConstants.h">
       <Filter>Code\Game\Objects</Filter>
@@ -256,14 +256,20 @@
     <ClInclude Include="IdleEnemyState.h">
       <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
     </ClInclude>
-    <ClInclude Include="EventManager.h">
-      <Filter>Code\Engine\Events</Filter>
-    </ClInclude>
     <ClInclude Include="ChangeMapEvent.h">
       <Filter>Code\Engine\Events\Event Types</Filter>
     </ClInclude>
     <ClInclude Include="Event.h">
       <Filter>Code\Engine\Events\Event Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Clock.h">
+      <Filter>Code\Engine\Clock</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>Code\Engine\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="EventStorage.h">
+      <Filter>Code\Engine\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -40,7 +40,7 @@ Map::Map(Graphics* theGraphics, std::string theSpriteSheetFilePath)
    mMapHeight = 0;
    mpGraphics = theGraphics;
    mEventsLoaded = false;
-   mpEventManager = mpEventManager->GetInstance();
+   mpEventStorage = mpEventStorage->GetInstance();
    LoadMap(theSpriteSheetFilePath);
 
    mpPathfinder = new Pathfinding(mpMap);
@@ -70,7 +70,7 @@ Map::~Map()
    } 
    mpEnemyList.clear();
 
-   mpEventManager->ReleaseInstance();
+   mpEventStorage->ReleaseInstance();
 }
 
 //************************************************************************************************************************************************
@@ -515,7 +515,7 @@ void Map::LoadEvents(std::string theEventInformation)
 
    if(parsedEventInformation[0] == "CHANGE_MAP")
    {
-      mpEventManager->AddChangeMapEvent(new ChangeMapEvent(std::stoi(parsedEventInformation[1]),
+      mpEventStorage->AddChangeMapEvent(new ChangeMapEvent(std::stoi(parsedEventInformation[1]),
                                                            std::stoi(parsedEventInformation[2]),
                                                            mTileWidth,
                                                            mTileHeight,

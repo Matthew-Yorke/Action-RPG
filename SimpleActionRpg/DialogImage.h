@@ -32,7 +32,7 @@ class DialogImage
       //
       // Description:
       //  Constructor that set the member variables based on the passed in attributes. This loads the sprite image and save the dimensions of the
-      // dialog image.
+      //  dialog image.
       //
       // Arguments:
       //  theGraphics - Reference to the graphics to draw the image to the screen.
@@ -47,6 +47,22 @@ class DialogImage
       //
       //*********************************************************************************************************************************************
       DialogImage(Graphics& theGraphics, std::string theFilePath, int theCoordinateX, int theCoordianteY, int theWidth, int theHeight);
+
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: ~DialogImage
+      //
+      // Description:
+      //  Deconstructor that fees any allocated memory. 
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      ~DialogImage();
 
       //*********************************************************************************************************************************************
       //

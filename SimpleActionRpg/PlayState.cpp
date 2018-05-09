@@ -45,7 +45,7 @@ PlayState::PlayState(Graphics& theGraphics)
 
    PathUpdateTime = 0.2F;
 
-   mpEventManager = mpEventManager->GetInstance();
+   mpEventStorage = mpEventStorage->GetInstance();
 }
 
 //***************************************************************************************************************************************************
@@ -64,7 +64,7 @@ PlayState::~PlayState()
    delete mpMapAreaBoundary;
    delete mpCamera;
    delete mpGameClock;
-   mpEventManager->ReleaseInstance();
+   mpEventStorage->ReleaseInstance();
 }
 
 //************************************************************************************************************************************************
@@ -353,7 +353,7 @@ void PlayState::MapEventCollision()
    int playerCoordinateY = mpPlayer->GetCoordinateY();
    bool changeMap = false;
 
-   std::vector<ChangeMapEvent*> changeMapList = mpEventManager->GetChangeMapEvents();
+   std::vector<ChangeMapEvent*> changeMapList = mpEventStorage->GetChangeMapEvents();
    for (auto pCurrentChangeMapEvent = changeMapList.begin();
         pCurrentChangeMapEvent != changeMapList.end();
         pCurrentChangeMapEvent++)
@@ -365,7 +365,7 @@ void PlayState::MapEventCollision()
          playerCoordinateX = (*pCurrentChangeMapEvent)->GetObjectDestinationCoordinateX();
          playerCoordinateY = (*pCurrentChangeMapEvent)->GetObjectDestinationCoordinateY();
          mapFileLocation = (*pCurrentChangeMapEvent)->GetMapFileLocation();
-         mpEventManager->ClearEvents();
+         mpEventStorage->ClearEvents();
          temporaryMap = new Map(mpGraphics, mapFileLocation);
          break;
       }

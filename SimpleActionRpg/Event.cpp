@@ -40,6 +40,7 @@ Event::Event(int theCoordinateX, int theCoordinateY, int theWidth, int theHeight
 Event::~Event()
 {
    delete mpArea;
+   mpArea = nullptr;
 }
 
 //***************************************************************************************************************************************************

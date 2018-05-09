@@ -40,13 +40,13 @@ class DialogBox
       // Arguments:
       //  theSpeakerName - The string describing who is speaking in the dialog box.
       //  theSpeakerText - The string of the entire dialog the speaker speaks in the dialog box.
-      //  theDimensions - The dimensions of the dialog box including the X-Coordinates, Y-Coordinates, width and height.
+      //  thepDimensions - The dimensions of the dialog box including the X-Coordinates, Y-Coordinates, width and height.
       //
       // Return:
       //  N/A
       //
       //*********************************************************************************************************************************************
-      DialogBox(std::string theSpeakerName, std::string theSpeakerText, RectangleObject* theDimensions);
+      DialogBox(std::string theSpeakerName, std::string theSpeakerText, RectangleObject* thepDimensions);
 
       //*********************************************************************************************************************************************
       //
@@ -56,13 +56,13 @@ class DialogBox
       //  Changes the overlay image pointer.
       //
       // Arguments:
-      //  theOverlayImage - Pointer to the dialog image for the overlay including the image and dimensions.
+      //  thepOverlayImage - Pointer to the dialog image for the overlay including the image and dimensions.
       //
       // Return:
       //  N/A
       //
       //*********************************************************************************************************************************************
-      void AddOverlay(DialogImage* theOverlayImage);
+      void AddOverlay(DialogImage* thepOverlayImage);
 
       //*********************************************************************************************************************************************
       //
@@ -88,13 +88,13 @@ class DialogBox
       //  Update the message box screen location based upon the camera location.
       //
       // Arguments:
-      //  theCamera - Pointer to the camera object used to update the X and Y coordinates relative to the camera.
+      //  thepCamera - Pointer to the camera object used to update the X and Y coordinates relative to the camera.
       //
       // Return:
       //  N/A
       //
       //*********************************************************************************************************************************************
-      void CameraUpdate(Camera* theCamera);
+      void CameraUpdate(Camera* thepCamera);
 
       //*********************************************************************************************************************************************
       //
@@ -130,7 +130,7 @@ class DialogBox
 
    protected:
 
-   // There are currently no protected methods for this class.
+      // There are currently no protected methods for this class.
 
    private:
 
@@ -192,11 +192,11 @@ class DialogBox
 
    public:
 
-   // There are currently no public member variables for this class.
+      // There are currently no public member variables for this class.
 
    protected:
 
-   // There are currently no protected member variables for this class.
+      // There are currently no protected member variables for this class.
 
    private:
 
