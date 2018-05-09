@@ -28,6 +28,8 @@
 ChaseEnemyState::ChaseEnemyState(Enemy* theEnemy) :
 EnemyState(theEnemy)
 {
+   mpNextTile = nullptr;
+   mTravelingToNextTile = false;
 }
 
 //************************************************************************************************************************************************
@@ -40,30 +42,34 @@ EnemyState(theEnemy)
 //************************************************************************************************************************************************
 void ChaseEnemyState::Update(float theTimeChange)
 {
-   TileInformation* targetTile = mpEnemy->GetNextPathTile();
+   if (mTravelingToNextTile == false)
+   {
+      mpNextTile = mpEnemy->GetNextPathTile();
+      mTravelingToNextTile = true;
+   }
 
-   if (targetTile != nullptr)
+   if (mpNextTile != nullptr)
    {
       // Tile is left of player
-      if ((targetTile->TileCoordinateX * targetTile->TileWidth) + (targetTile->TileWidth / 2) < 
+      if ((mpNextTile->TileCoordinateX * mpNextTile->TileWidth) + (mpNextTile->TileWidth / 2) < 
           (mpEnemy->GetMovementHitBox()->GetCoordinateX() + mpEnemy->GetMovementHitBox()->GetWidthCenterPoint()))
       {
          mpEnemy->SetCoordinateX(mpEnemy->GetCoordinateX() - 1);
       }
       // Tile is right of player
-      else if ((targetTile->TileCoordinateX * targetTile->TileWidth) + (targetTile->TileWidth / 2) > 
+      else if ((mpNextTile->TileCoordinateX * mpNextTile->TileWidth) + (mpNextTile->TileWidth / 2) > 
                (mpEnemy->GetMovementHitBox()->GetCoordinateX() + mpEnemy->GetMovementHitBox()->GetWidthCenterPoint()))
       {
          mpEnemy->SetCoordinateX(mpEnemy->GetCoordinateX() + 1);
       }
       // Tile is above player
-      else if ((targetTile->TileCoordinateY * targetTile->TileHeight) + (targetTile->TileHeight / 2) <
+      else if ((mpNextTile->TileCoordinateY * mpNextTile->TileHeight) + (mpNextTile->TileHeight / 2) <
                 (mpEnemy->GetMovementHitBox()->GetCoordinateY() + mpEnemy->GetMovementHitBox()->GetHeightCenterPoint()))
       {
          mpEnemy->SetCoordinateY(mpEnemy->GetCoordinateY() - 1);
       }
       // Tile is below player
-      else if ((targetTile->TileCoordinateY * targetTile->TileHeight) + (targetTile->TileHeight / 2) >
+      else if ((mpNextTile->TileCoordinateY * mpNextTile->TileHeight) + (mpNextTile->TileHeight / 2) >
                (mpEnemy->GetMovementHitBox()->GetCoordinateY() + mpEnemy->GetMovementHitBox()->GetHeightCenterPoint()))
       {
          mpEnemy->SetCoordinateY(mpEnemy->GetCoordinateY() + 1);
@@ -71,12 +77,14 @@ void ChaseEnemyState::Update(float theTimeChange)
       // At tile
       else
       {
-         mpEnemy->RemoveTopPathTile();
+         //mpEnemy->RemoveTopPathTile();
+         mTravelingToNextTile = false;
       }
    }
    else
    {
       // Destination Reached.
+      mTravelingToNextTile = false;
    }
 }
 

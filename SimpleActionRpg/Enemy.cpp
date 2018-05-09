@@ -200,6 +200,14 @@ void Enemy::SetPath(std::vector<TileInformation*> thePath)
    mpPath = thePath;
 }
 
+//************************************************************************************************************************************************
+//
+// Method Name: GetNextPathTile
+//
+// Description:
+//  TODO: Add description.
+//
+//************************************************************************************************************************************************
 TileInformation* Enemy::GetNextPathTile()
 {
    TileInformation* nextPathTile = nullptr;
@@ -208,11 +216,6 @@ TileInformation* Enemy::GetNextPathTile()
       nextPathTile = *mpPath.begin();
    }
    return nextPathTile;
-}
-
-void Enemy::RemoveTopPathTile()
-{
-   mpPath.erase(mpPath.begin());
 }
 
 //************************************************************************************************************************************************
