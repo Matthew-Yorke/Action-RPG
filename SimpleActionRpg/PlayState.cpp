@@ -146,11 +146,11 @@ void PlayState::Update(float theTimeChange)
 
    if (mpGameClock->GetTotalMinutes() <= (12 * 60)) // Note: 12 * 60 is the total minutes in 12 hours.
    {
-      mpShadowLayer->SetIntensity(0.28F * mpGameClock->GetTotalMinutes()); // Note: 202 is max intensity.
+      mpShadowLayer->SetOpacity(0.28F * mpGameClock->GetTotalMinutes()); // Note: 202 is max intensity.
    }
    else
    {
-      mpShadowLayer->SetIntensity(abs((0.28F * mpGameClock->GetTotalMinutes()) - 404));
+      mpShadowLayer->SetOpacity(abs((0.28F * mpGameClock->GetTotalMinutes()) - 404));
    }
 
    PathUpdateTime -= theTimeChange;

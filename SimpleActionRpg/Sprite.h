@@ -23,152 +23,71 @@ class Sprite
    // Start Method Declarations
    //************************************************************************************************************************************************
 
-public:
+   public:
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: Sprite
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  theGraphics - TODO: Add description.
-   //  theFilePath - TODO: Add description.
-   //  theSourceX - TODO: Add description.
-   //  theSourceY - TODO: Add description.
-   //  theWidth - TODO: Add description.
-   //  theHeight - TODO: Add description.
-   //
-   // Return:
-   //  N/A
-   //
-   //************************************************************************************************************************************************
-   Sprite(Graphics& theGraphics, const std::string theFilePath, int theSourceX, int theSourceY, int theWidth, int theHeight);
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: Sprite
+      //
+      // Description:
+      //  Constructor that sets default values for member variables.
+      //
+      // Arguments:
+      //  theGraphics - Reference to the graphics object for drawing to the screen.
+      //  theFilePath - The file path where the sprite(sheet) is located.
+      //  theSourceX - The X-Coordinate where the sprite image on the bitmap is located.
+      //  theSourceY - The Y-Coordinate where the sprite image on the bitmap is located.
+      //  theWidth - The width of the sprite image.
+      //  theHeight - The height of the sprite image.
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      Sprite(Graphics& theGraphics, const std::string theFilePath, int theSourceX, int theSourceY, int theWidth, int theHeight);
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: ~Sprite
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  N/A
-   //
-   // Return:
-   //  N/A
-   //
-   //************************************************************************************************************************************************
-   virtual ~Sprite();
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: SetNewSprite
+      //
+      // Description:
+      //  Sets a new sprite image from the sprite(sheet) bitmap.
+      //
+      // Arguments:
+      //  theSourceX - The X-Coordinate where the new sprite image is on the sprite(sheet) bitmap.
+      //  theSourceY - The Y-Coordinate where the new sprite image is on the sprite(sheet) bitmap.
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      void SetNewSprite(int theSourceX, int theSourceY);
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: SetNewAnimation
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  theSourceX - TODO: Add description.
-   //  theSourceY - TODO: Add description.
-   //  theNumberFrames - TODO: Add description.
-   //
-   // Return:
-   //  N/A
-   //
-   //************************************************************************************************************************************************
-   void SetNewSprite(int theSourceX, int theSourceY);
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: Draw
+      //
+      // Description:
+      //  Draws the sprite image to the screen.
+      //
+      // Arguments:
+      //  theGraphics - Reference to the graphics object for drawing to the screen.
+      //  theDestinationX - The X-Coordinate on the screen where to draw the sprite image.
+      //  theDestinationY - The Y-Coordinate on the screen where to draw the sprite image.
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      void Draw(Graphics& theGraphics, int theDestinationX, int theDestinationY);
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: Draw
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  theGraphics - TODO: Add description.
-   //  theDestinationX - TODO: Add description.
-   //  theDestinationY - TODO: Add description.
-   //
-   // Return:
-   //  N/A
-   //
-   //************************************************************************************************************************************************
-   void Draw(Graphics& theGraphics, int theDestinationX, int theDestinationY);
+   protected:
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: Update
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  theElapsedTime - TODO: Add description.
-   //
-   // Return:
-   //  N/A
-   //
-   //************************************************************************************************************************************************
-   virtual void Update(float theElapsedTime) {};
+      // There are currently no protected methods for this class.
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: SetAngle
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  theAngle - TODO: Add description.
-   //
-   // Return:
-   //  N/A
-   //
-   //************************************************************************************************************************************************
-   inline virtual void SetAngle(float theAngle) { mAngle = theAngle; };
+   private:
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: GetAngle
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  N/A
-   //
-   // Return:
-   //  TODO: Add description.
-   //
-   //************************************************************************************************************************************************
-   inline float GetAngle() { return mAngle; };
-
-   //************************************************************************************************************************************************
-   //
-   // Method Name: GetBitmap
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  theElapsedTime - TODO: Add description.
-   //
-   // Return:
-   //  TODO: Add description.
-   //
-   //************************************************************************************************************************************************
-   inline ALLEGRO_BITMAP* GetBitmap() { return mpSpriteSheet; };
-
-protected:
-
-
-
-private:
-
-   // There are currently no private methods for this class.
+      // There are currently no private methods for this class.
 
    //************************************************************************************************************************************************
    // End Method Declarations
@@ -178,31 +97,28 @@ private:
    // Start Member Variable Declarations
    //************************************************************************************************************************************************
 
-public:
+   public:
 
-   // There are currently no public member variables for this class.
+      // There are currently no public member variables for this class.
 
-protected:
+   protected:
 
-   // TODO: Add description.
-   int mHeight;
+      // Holds the X-Coordinate where the sprite image resides in the sprite(sheet) bitmap.
+      int mSourceX;
 
-   // TODO: Add description.
-   int mSourceX;
+      // Holds the Y-Coordinate where the sprite image resides in the sprite(sheet) bitmap.
+      int mSourceY;
 
-   // TODO: Add description.
-   int mSourceY;
+      // Holds the width of the sprite image.
+      int mWidth;
 
-   // TODO: Add description.
-   int mWidth;
+      // Holds the height of the sprite image.
+      int mHeight;
 
-   // TODO: Add description.
-   float mAngle;
+   private:
 
-private:
-
-   // TODO: Add description.
-   ALLEGRO_BITMAP* mpSpriteSheet;
+      // Holds the bitmap of the sprite(sheet) containing the image(s) of sprites.
+      ALLEGRO_BITMAP* mpSpriteSheet;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

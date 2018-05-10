@@ -26,67 +26,109 @@ class Clock
 
    public:
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
       // Method Name: Clock
       //
       // Description:
-      //  TODO: Add description.
+      //  Constructor that sets member variables to their default values.
       //
       // Arguments:
-      //  theFileLocation - TODO: Add description.
+      //  theSecondsInMinute - The number of real world seconds that correlate to a clock minute.
       //
       // Return:
       //  N/A
       //
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       Clock(float theSecondsInMinute);
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
       // Method Name: GetTimeString
       //
       // Description:
-      //  TODO: Add description.
+      //  Returns the time string in the HH:MM format.
       //
       // Arguments:
       //  N/A
       //
       // Return:
-      //  TODO: Add description.
+      //  Returns a string for the time format as HH:MM.
       //
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       std::string GetTimeString();
 
-      int GetHour() { return mHour; };
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: GetMinute
+      //
+      // Description:
+      //  Returns the current minute of the clock.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  Returns an integer that represent the current minute of the clock.
+      //
+      //*********************************************************************************************************************************************
+      int GetMinute();
 
-      int GetMinute() { return mMinute; };
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: GetHour
+      //
+      // Description:
+      //  Return the current hour of the clock.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  Returns an integer that represent the current hour of the clock.
+      //
+      //*********************************************************************************************************************************************
+      int GetHour();
 
-      int GetTotalMinutes() { return (mHour * 60) + mMinute; };
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: GetTotalMinutes
+      //
+      // Description:
+      //  Return the current total number of minutes the clock is at.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  Returns an integer that represent the total number of minutes the clock is at.
+      //
+      //*********************************************************************************************************************************************
+      int GetTotalMinutes();
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
       // Method Name: Update
       //
       // Description:
-      //  TODO: Add description.
+      //  Updates the clock when enough time has passed to increment to the next minute of the clock.
       //
       // Arguments:
-      //  N/A
+      //  theTimeChange - The time change since the last update.
       //
       // Return:
       //  N/A
       //
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       void Update(float theTimeChange);
 
    protected:
 
-   // There are currently no protected methods for this class.
+      // There are currently no protected methods for this class.
 
    private:
 
-   // There are currently no private methods for this class.
+      // There are currently no private methods for this class.
 
    //************************************************************************************************************************************************
    // End Method Declarations
@@ -98,23 +140,24 @@ class Clock
 
    public:
 
-   // There are currently no public member variables for this class.
+      // There are currently no public member variables for this class.
 
    protected:
 
-   // There are currently no protected member variables for this class.
+      // There are currently no protected member variables for this class.
 
    private:
 
-      // TODO: Add description.
+      // Holds the current minute of clock.
       int mMinute;
 
-      // TODO: Add description.
+      // Holds the current hour of the clock.
       int mHour;
 
-      // TODO: Add description.
+      // Holds the number of real world seconds for a clock minute to occur.
       float mSecondsInMinute;
 
+      // Holds how much time until the next minute occurs for the clock.
       float mTimeUntilTick;
 
    //************************************************************************************************************************************************

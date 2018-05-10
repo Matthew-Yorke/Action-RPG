@@ -24,7 +24,7 @@
 // Method Name: BattleMap
 //
 // Description:
-//  TODO: Add description.
+//  Load the sprite bitmap with the passed in argument. Set member variables to their default values.
 //
 //***************************************************************************************************************************************************
 Sprite::Sprite(Graphics& theGraphics, const std::string theFilePath, int theSourceX, int theSourceY, int theWidth, int theHeight)
@@ -34,29 +34,16 @@ Sprite::Sprite(Graphics& theGraphics, const std::string theFilePath, int theSour
    mSourceY = theSourceY;
    mWidth = theWidth;
    mHeight = theHeight;
-   mAngle = 0.0F;
 }
 
 //***************************************************************************************************************************************************
 //
-// Method Name: ~Sprite
+// Method Name: SetNewSprite
 //
 // Description:
-//  TODO: Add description.
+//  Updates the X-Coordinate and Y-Coordinate on the sprite(sheet) bitmap where the sprite image is located at.
 //
 //***************************************************************************************************************************************************
-Sprite::~Sprite()
-{
-}
-
-//************************************************************************************************************************************************
-//
-// Method Name: SetNewAnimation
-//
-// Description:
-//  TODO: Add description.
-//
-//************************************************************************************************************************************************
 void Sprite::SetNewSprite(int theSourceX, int theSourceY)
 {
    mSourceX = theSourceX;
@@ -68,7 +55,7 @@ void Sprite::SetNewSprite(int theSourceX, int theSourceY)
 // Method Name: Draw
 //
 // Description:
-//  TODO: Add description.
+//  Draws the sprite image to the screen.
 //
 //***************************************************************************************************************************************************
 void Sprite::Draw(Graphics& theGraphics, int theDestinationX, int theDestinationY)
@@ -79,8 +66,7 @@ void Sprite::Draw(Graphics& theGraphics, int theDestinationX, int theDestination
                     mWidth,
                     mHeight,
                     theDestinationX,
-                    theDestinationY,
-                    mAngle);
+                    theDestinationY);
 }
 
 //***************************************************************************************************************************************************

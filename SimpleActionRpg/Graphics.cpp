@@ -22,12 +22,12 @@
 // Method Name: Graphics
 //
 // Description:
-//  TODO: Add description.
+//  Set member variables to default values using the passed in arguments.
 //
 //***************************************************************************************************************************************************
-Graphics::Graphics(ALLEGRO_DISPLAY* theDisplay)
+Graphics::Graphics(ALLEGRO_DISPLAY* pTheDisplay)
 {
-   mpDisplay = theDisplay;
+   mpDisplay = pTheDisplay;
 }
 
 //***************************************************************************************************************************************************
@@ -35,7 +35,7 @@ Graphics::Graphics(ALLEGRO_DISPLAY* theDisplay)
 // Method Name: ~Graphics
 //
 // Description:
-//  TODO: Add description.
+//  Frees any allocated memory managed by this class.
 //
 //***************************************************************************************************************************************************
 Graphics::~Graphics()
@@ -50,46 +50,10 @@ Graphics::~Graphics()
 
 //***************************************************************************************************************************************************
 //
-// Method Name: Draw
-//
-// Description:
-//  TODO: Add description.
-//
-//***************************************************************************************************************************************************
-void Graphics::Draw(ALLEGRO_BITMAP* thepSource, int theStartPositionX, int theStartPositionY, int theWidth, int theHeight, int theDestinationX,
-                    int theDestinationY, float theAngle)
-{
-   ALLEGRO_BITMAP* rotated = NULL;
-   rotated = al_create_bitmap(theWidth,
-                              theHeight);
-   al_set_target_bitmap(rotated);
-
-   al_draw_bitmap_region(thepSource,
-                         theStartPositionX,
-                         theStartPositionY,
-                         theWidth,
-                         theHeight,
-                         0,
-                         0,
-                         0);
-
-   al_set_target_bitmap(al_get_backbuffer(mpDisplay));
-   al_draw_rotated_bitmap(rotated,
-                          al_get_bitmap_width(rotated) / 2,
-                          al_get_bitmap_height(rotated) / 2,
-                          theDestinationX + al_get_bitmap_width(rotated) / 2,
-                          theDestinationY + al_get_bitmap_height(rotated) / 2,
-                          theAngle,
-                          0);
-   al_destroy_bitmap(rotated);
-}
-
-//***************************************************************************************************************************************************
-//
 // Method Name: LoadImage
 //
 // Description:
-//  TODO: Add description.
+//  Check if the image already is loaded and if not load the image. Return the pointer to the bitmap image.
 //
 //***************************************************************************************************************************************************
 ALLEGRO_BITMAP* Graphics::LoadImage(const std::string& theFilePath)
@@ -100,6 +64,40 @@ ALLEGRO_BITMAP* Graphics::LoadImage(const std::string& theFilePath)
    }
 
    return mpSpriteSheets[theFilePath];
+}
+
+//************************************************************************************************************************************************
+//
+// Method Name: GetDisplay
+//
+// Description:
+//  Returns the pointer to the display screen.
+//
+//************************************************************************************************************************************************
+ALLEGRO_DISPLAY* Graphics::GetDisplay()
+{
+   return mpDisplay;
+}
+
+//***************************************************************************************************************************************************
+//
+// Method Name: Draw
+//
+// Description:
+//  Draws the bitmap sprite to the screen using the passed in arguments.
+//
+//***************************************************************************************************************************************************
+void Graphics::Draw(ALLEGRO_BITMAP* pTheSource, int theStartPositionX, int theStartPositionY, int theWidth, int theHeight, int theDestinationX,
+                    int theDestinationY)
+{
+   al_draw_bitmap_region(pTheSource,
+                         theStartPositionX,
+                         theStartPositionY,
+                         theWidth,
+                         theHeight,
+                         theDestinationX,
+                         theDestinationY,
+                         0);
 }
 
 //***************************************************************************************************************************************************

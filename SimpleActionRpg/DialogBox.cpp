@@ -26,62 +26,66 @@
 //  number of lines that will fit in the dialog box.
 //
 //***************************************************************************************************************************************************
-DialogBox::DialogBox(std::string theSpeakerName, std::string theSpeakerText, RectangleObject* thepDimensions)
+DialogBox::DialogBox(std::string theSpeakerName, std::string theSpeakerText, RectangleObject* pTheDimensions)
 {
    mSpeakerName = theSpeakerName;
    mSpeakerText = theSpeakerText;
-   mpDimensions = thepDimensions;
+   mpDimensions = pTheDimensions;
    mCoordianteX = mpDimensions->GetCoordinateX();
    mCoordianteY = mpDimensions->GetCoordinateY();
    mpOverlayImage = nullptr;
    mpCharacterImage = nullptr;
-   mpFont = al_load_ttf_font("../Fonts/VT323-Regular.ttf", 24, 0);
-   mFontColor = al_map_rgb(255, 255, 255);
+   mpFont = al_load_ttf_font("../Fonts/VT323-Regular.ttf",
+                             24,
+                             0);
+   mFontColor = al_map_rgb(255,
+                           255,
+                           255);
 
    DetermineNumberCharactersInLine();
    DetermineNumberLinesToFit();
 }
 
-//*********************************************************************************************************************************************
+//***************************************************************************************************************************************************
 //
 // Method Name: AddOverlay
 //
 // Description:
 //  Changes the overlay image pointer.
 //
-//*********************************************************************************************************************************************
-void DialogBox::AddOverlay(DialogImage* theOverlayImage)
+//***************************************************************************************************************************************************
+void DialogBox::AddOverlay(DialogImage* pTheOverlayImage)
 {
-   mpOverlayImage = theOverlayImage;
+   mpOverlayImage = pTheOverlayImage;
 }
 
-//*********************************************************************************************************************************************
+//***************************************************************************************************************************************************
 //
 // Method Name: AddCharacterImage
 //
 // Description:
 //  Changes the character image pointer. Redetermine the number of characters in a line as the text area is now different.
 //
-//*********************************************************************************************************************************************
-void DialogBox::AddCharacterImage(DialogImage* thepCharacterImage)
+//***************************************************************************************************************************************************
+void DialogBox::AddCharacterImage(DialogImage* pTheCharacterImage)
 {
-   mpCharacterImage = thepCharacterImage;
+   mpCharacterImage = pTheCharacterImage;
    DetermineNumberCharactersInLine();
 }
 
-//*********************************************************************************************************************************************
+//***************************************************************************************************************************************************
 //
 // Method Name: CameraUpdate
 //
 // Description:
 //  Update the dialog pieces coordinates relative to the camera coordinates.
 //
-//*********************************************************************************************************************************************
-void DialogBox::CameraUpdate(Camera* thepCamera)
+//***************************************************************************************************************************************************
+void DialogBox::CameraUpdate(Camera* pTheCamera)
 {
    // Update the entire dialog coordinates based on the dialog screen coordinates and camera coordinates.
-   mCoordianteX = mpDimensions->GetCoordinateX() + thepCamera->GetCoordinateX();
-   mCoordianteY = mpDimensions->GetCoordinateY() + thepCamera->GetCoordinateY();
+   mCoordianteX = mpDimensions->GetCoordinateX() + pTheCamera->GetCoordinateX();
+   mCoordianteY = mpDimensions->GetCoordinateY() + pTheCamera->GetCoordinateY();
    
    // Update the overlay image coordinates based on the update dialog coordinates.
    if (mpOverlayImage != nullptr)
@@ -175,7 +179,9 @@ void DialogBox::Draw(Graphics& theGraphics)
 
    // Draw the speaker text (up to the number of lines that fit) into the dialog.
    int count = 1;
-   for (auto iter = mTextLine.begin(); iter != mTextLine.end(); iter++)
+   for (auto iterator = mTextLine.begin();
+        iterator != mTextLine.end();
+        iterator++)
    {
       // Draw the line text to the next line below.
       al_draw_text(mpFont,
@@ -183,7 +189,7 @@ void DialogBox::Draw(Graphics& theGraphics)
                    mCoordianteX + padding + characterImageWidth,
                    mCoordianteY + padding + (fontHeight * count),
                    ALLEGRO_ALIGN_LEFT,
-                   (*iter).c_str());
+                   (*iterator).c_str());
 
       // Check if another line won't fit and break if so.
       count++;
@@ -217,8 +223,8 @@ void DialogBox::Draw(Graphics& theGraphics)
 // Method Name: DetermineNumberCharactersinLine
 //
 // Description:
-//  Determine the number of characters that can fit in the line by calculating the width of the dialog area of the box and dividing by the width
-//  of a character of the current font.
+//  Determine the number of characters that can fit in the line by calculating the width of the dialog area of the box and dividing by the width of a
+//  character of the current font.
 //
 //***************************************************************************************************************************************************
 void DialogBox::DetermineNumberCharactersInLine()
@@ -241,36 +247,36 @@ void DialogBox::DetermineNumberCharactersInLine()
    mNumberCharactersInLine = textAreaWidth / characterWidth;
 }
 
-//*********************************************************************************************************************************************
+//***************************************************************************************************************************************************
 //
 // Method Name: DetermineNumberLinesToFit
 //
 // Description:
-//  Determine the number of lines that can fit in the dialog area by calculating the height of the dialog area of the box and dividing by the
-//  height of a character of the current font.
+//  Determine the number of lines that can fit in the dialog area by calculating the height of the dialog area of the box and dividing by the height
+//  of a character of the current font.
 //
-//*********************************************************************************************************************************************
+//***************************************************************************************************************************************************
 void DialogBox::DetermineNumberLinesToFit()
 {
    int fontHeight = 24; // Turn to constant later.
    int padding = 10; // Turn to constant later.
 
    // Text Area Height is determined by the dialog box height - font height for where the speaker name is placed - padding on top and bottom.
-   int textAreaHeight = mpDimensions->GetHeight() - fontHeight  - (padding * 2);
+   int textAreaHeight = mpDimensions->GetHeight() - fontHeight - (padding * 2);
 
    // Determine number of character to fit int the text area by dividing the text area width by the character width.
    mNumberOfTextLinesVisible = textAreaHeight / fontHeight;
 }
 
-//************************************************************************************************************************************************
+//***************************************************************************************************************************************************
 //
 // Method Name: BreakUpTextIntoLines
 //
 // Description:
-//  Reduce the text string into individual lines that will fit within the dialog area by creating lines equal to or less than the width of the
-//  dialog area. Store all the lines into a line vector.
+//  Reduce the text string into individual lines that will fit within the dialog area by creating lines equal to or less than the width of the dialog
+//  area. Store all the lines into a line vector.
 //
-//************************************************************************************************************************************************
+//***************************************************************************************************************************************************
 void DialogBox::BreakUpTextIntoLines()
 {
    // Start the number of characters remaining as the maximum characters in a line.
@@ -296,10 +302,12 @@ void DialogBox::BreakUpTextIntoLines()
    mSpeakerText = "";
 
    // Create lines to the maximum character length by appending each word that fits in the length to the string.
-   for (auto iter = parsedTextToSingleWord.begin(); iter != parsedTextToSingleWord.end(); iter++)
+   for (auto iterator = parsedTextToSingleWord.begin();
+        iterator != parsedTextToSingleWord.end();
+        iterator++)
    {
       // Check if the next word will be too big for this line.
-      if ((theCharactersRemainingForLine - static_cast<int>((*iter).length())) < 0)
+      if ((theCharactersRemainingForLine - static_cast<int>((*iterator).length())) < 0)
       {
          // Add the line to the vector of lines.
          mTextLine.push_back(lineText);
@@ -310,9 +318,9 @@ void DialogBox::BreakUpTextIntoLines()
       }
 
       // Decrement the line character count by the number of characters in the word plus one for a space.
-      theCharactersRemainingForLine -= (static_cast<int>((*iter).length()) + 1);
+      theCharactersRemainingForLine -= (static_cast<int>((*iterator).length()) + 1);
       // Append the word the line text.
-      lineText.append((*iter));
+      lineText.append((*iterator));
       // Append a space to go between the words.
       lineText.append(" ");
    }

@@ -18,16 +18,16 @@
 #include <queue>
 #include "Tile.h"
 
-struct CompareGlobalGoal
-{
-   bool operator()(TileInformation* lhs, TileInformation* rhs)
-   {
-      return lhs->GlobalGoal > rhs->GlobalGoal;
-   }
-};
-
 class Pathfinding
 {
+   struct CompareGlobalGoal
+   {
+      bool operator()(TileInformation* lhs, TileInformation* rhs)
+      {
+         return lhs->GlobalGoal > rhs->GlobalGoal;
+      }
+   };
+
    //************************************************************************************************************************************************
    // Start Method Declarations
    //************************************************************************************************************************************************

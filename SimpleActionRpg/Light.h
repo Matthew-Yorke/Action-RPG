@@ -26,33 +26,35 @@ class Light : public CircleObject
 
    public:
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
       // Method Name: Light
       //
       // Description:
-      //  TODO: Add description.
+      //  Constructor that sets default values for member variables.
       //
       // Arguments:
-      //  theCoordinateX - TODO: Add description.
-      //  theCoordinateY - TODO: Add description.
-      //  theRaidus - TODO: Add description.
+      //  theCoordinateX - The X-Coordinate where the light resides.
+      //  theCoordinateY - The Y-Coordinate where the light resides.
+      //  theRaidus - The radius of the light from the center point.
+      //  theColor - The color of the light.
+      //  theOpacity - The opacity of the light.
       //
       // Return:
       //  N/A
       //
-      //************************************************************************************************************************************************
-      Light(int theCoordinateX, int theCoordinateY, int theRaidus, ALLEGRO_COLOR theColor, int theIntensity);
+      //*********************************************************************************************************************************************
+      Light(int theCoordinateX, int theCoordinateY, int theRaidus, ALLEGRO_COLOR theColor, int theOpacity);
 
       //*********************************************************************************************************************************************
       //
       // Method Name: CameraUpdate
       //
       // Description:
-      //  Update the message box screen location based upon the camera location.
+      //  Updates the light positions based on the camera position.
       //
       // Arguments:
-      //  theCamera - Pointer to the camera object used to update the X and Y coordinates relative to the camera.
+      //  theCamera - Pointer to the camera object used to update the X-Coordinate and Y-Coordinate relative to the camera.
       //
       // Return:
       //  N/A
@@ -60,20 +62,20 @@ class Light : public CircleObject
       //*********************************************************************************************************************************************
       void CameraUpdate(Camera* theCamera);
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
       // Method Name: Draw
       //
       // Description:
-      //  TODO: Add description.
+      //  Draws the light.
       //
       // Arguments:
-      //  theGraphics - TODO: Add description.
+      //  theGraphics - Reference to the graphics object for drawing to the screen.
       //
       // Return:
       //  N/A
       //
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       void Draw(Graphics& theGraphics);
 
    protected:
@@ -94,16 +96,16 @@ class Light : public CircleObject
 
    public:
 
-   // There are currently no public member variables for this class.
+      // There are currently no public member variables for this class.
 
    protected:
 
-   // There are currently no protected member variables for this class.
+      // There are currently no protected member variables for this class.
 
    private:
 
-      // TODO: Add description.
-      int mIntensity;
+      // Th
+      int mOpacity;
 
       // TODO: Add description.
       ALLEGRO_COLOR mColor;

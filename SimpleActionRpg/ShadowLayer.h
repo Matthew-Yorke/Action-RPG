@@ -27,28 +27,28 @@ class ShadowLayer
 
    public:
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
       // Method Name: ShadowLayer
       //
       // Description:
-      //  TODO: Add description.
+      //  Constructor that sets default values for member variables.
       //
       // Arguments:
-      //  theFileLocation - TODO: Add description.
+      //  theFileLocation - The file location of the shadow layer image.
       //
       // Return:
       //  N/A
       //
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       ShadowLayer(std::string theFileLocation);
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
       // Method Name: ~ShadowLayer
       //
       // Description:
-      //  TODO: Add description.
+      //  Deconstructor that frees any allocated memory managed by this class.
       //
       // Arguments:
       //  N/A
@@ -56,58 +56,58 @@ class ShadowLayer
       // Return:
       //  N/A
       //
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       ~ShadowLayer();
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
-      // Method Name: GetIntenstiry
+      // Method Name: GetOpacity
       //
       // Description:
-      //  TODO: Add description.
+      //  Returns the current opacity of the shadow layer.
       //
       // Arguments:
       //  N/A
       //
       // Return:
-      //  TODO: Add description.
+      //  Returns an integer representing the current opacity of the shadow layer.
       //
-      //************************************************************************************************************************************************
-      int GetIntenstiry();
+      //*********************************************************************************************************************************************
+      int GetOpacity();
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
-      // Method Name: SetIntensity
+      // Method Name: SetOpacity
       //
       // Description:
-      //  TODO: Add description.
+      //  Update the opacity of the shadow layer.
       //
       // Arguments:
-      //  theIntensity - TODO: Add description.
+      //  theOpacity - The new opacity of the shadow layer.
       //
       // Return:
       //  N/A
       //
-      //************************************************************************************************************************************************
-      void SetIntensity(int theIntensity);
+      //*********************************************************************************************************************************************
+      void SetOpacity(int theOpacity);
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
-      // Method Name: SetIntensity
+      // Method Name: AddLight
       //
       // Description:
-      //  TODO: Add description.
+      //  Adds a light object to the list of lights blended over the shadow layer.
       //
       // Arguments:
-      //  theLight - TODO: Add description.
+      //  pTheLight - Pointer to the light object to be added.
       //
       // Return:
       //  N/A
       //
-      //************************************************************************************************************************************************
-      void AddLight(Light* theLight);
+      //*********************************************************************************************************************************************
+      void AddLight(Light* pTheLight);
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
       // Method Name: RemoveLight
       //
@@ -120,7 +120,7 @@ class ShadowLayer
       // Return:
       //  N/A
       //
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       void RemoveLight();
 
       //*********************************************************************************************************************************************
@@ -128,40 +128,40 @@ class ShadowLayer
       // Method Name: CameraUpdate
       //
       // Description:
-      //  Update the message box screen location based upon the camera location.
+      //  Updates the shadow layer positions based on the camera position.
       //
       // Arguments:
-      //  theCamera - Pointer to the camera object used to update the X and Y coordinates relative to the camera.
+      //  pTheCamera - Pointer to the camera object used to update the X-Coordinate and Y-Coordinate relative to the camera.
       //
       // Return:
       //  N/A
       //
       //*********************************************************************************************************************************************
-      void CameraUpdate(Camera* theCamera);
+      void CameraUpdate(Camera* pTheCamera);
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
       // Method Name: Draw
       //
       // Description:
-      //  TODO: Add description.
+      //  Draws the shadow layer to the screen.
       //
       // Arguments:
-      //  theGraphics - TODO: Add description.
+      //  theGraphics - Reference to the graphics object for drawing to the screen.
       //
       // Return:
       //  N/A
       //
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       void Draw(Graphics& theGraphics);
 
    protected:
 
-   // There are currently no protected methods for this class.
+      // There are currently no protected methods for this class.
 
    private:
 
-   // There are currently no private methods for this class.
+      // There are currently no private methods for this class.
 
    //************************************************************************************************************************************************
    // End Method Declarations
@@ -173,26 +173,30 @@ class ShadowLayer
 
    public:
 
-   // There are currently no public member variables for this class.
+      // There are currently no public member variables for this class.
 
    protected:
 
-   // There are currently no protected member variables for this class.
+      // There are currently no protected member variables for this class.
 
    private:
 
-      // TODO: Add description.
-      ALLEGRO_BITMAP* mBitmap;
+      // A Bitmap of the shadow box blended onto the screen.
+      ALLEGRO_BITMAP* mpShadowBitmap;
 
-      // TODO: Add description.
-      int mIntensity;
+      // The opacity of the shadow layer.
+      int mOpacity;
 
+      // Vector containing all the lights to be blended over the shadow layer.
       std::vector<Light*> mLightList;
 
+      // The dimensions of the shadow layer.
       RectangleObject* mpDimensions;
 
+      // The X-Coordinate where the shadow layer resides.
       float mCoordinateX;
 
+      // The Y-Coordinate where the shadow layer resides.
       float mCoordinateY;
 
    //************************************************************************************************************************************************

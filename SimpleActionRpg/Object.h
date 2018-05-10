@@ -123,22 +123,6 @@ class Object
 
       //*********************************************************************************************************************************************
       //
-      // Method Name: SetWidthCenterPoint
-      //
-      // Description:
-      //  This method updates the width center point of the object based on the passed in value.
-      //
-      // Arguments:
-      //  theWidthCenterPoint - The updated width center point of the object.
-      //
-      // Return:
-      //  N/A
-      //
-      //*********************************************************************************************************************************************
-      void SetWidthCenterPoint(int theWidthCenterPoint);
-
-      //*********************************************************************************************************************************************
-      //
       // Method Name: GetHeightCenterPoint
       //
       // Description:
@@ -152,6 +136,24 @@ class Object
       //
       //*********************************************************************************************************************************************
       int GetHeightCenterPoint();
+
+   protected:
+
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: SetWidthCenterPoint
+      //
+      // Description:
+      //  This method updates the width center point of the object based on the passed in value.
+      //
+      // Arguments:
+      //  theWidthCenterPoint - The updated width center point of the object.
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      void SetWidthCenterPoint(int theWidthCenterPoint);
 
       //*********************************************************************************************************************************************
       //
@@ -169,13 +171,9 @@ class Object
       //*********************************************************************************************************************************************
       void SetHeightCenterPoint(int theHeightCenterPoint);
 
-   protected:
-
-   // There are currently no protected methods for this class.
-
    private:
 
-   // There are currently no private methods for this class.
+      // There are currently no private methods for this class.
 
    //************************************************************************************************************************************************
    // End Method Declarations

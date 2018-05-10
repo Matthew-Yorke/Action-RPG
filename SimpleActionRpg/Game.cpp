@@ -63,7 +63,7 @@ bool Game::Initialize()
                                  "Error",
                                  "Error: al_init",
                                  "Failed to initialize allegro!",
-                                 NULL,
+                                 nullptr,
                                  ALLEGRO_MESSAGEBOX_ERROR);
       return false;
    }
@@ -75,7 +75,7 @@ bool Game::Initialize()
                                  "Error",
                                  "Error: al_init_image_addon",
                                  "Failed to initialize al_init_image_addon!",
-                                 NULL,
+                                 nullptr,
                                  ALLEGRO_MESSAGEBOX_ERROR);
       return false;
    }
@@ -87,7 +87,7 @@ bool Game::Initialize()
                                  "Error",
                                  "Error: al_init_primitives_addon",
                                  "Failed to initialize al_init_primitives_addon!",
-                                 NULL,
+                                 nullptr,
                                  ALLEGRO_MESSAGEBOX_ERROR);
       return false;
    }
@@ -100,7 +100,7 @@ bool Game::Initialize()
                                  "Error",
                                  "Error: display",
                                  "Failed to initialize display!",
-                                 NULL,
+                                 nullptr,
                                  ALLEGRO_MESSAGEBOX_ERROR);
       return false;
    }
@@ -112,7 +112,7 @@ bool Game::Initialize()
                                  "Error",
                                  "Error: audio",
                                  "Failed to initialize the audio add-on!",
-                                 NULL,
+                                 nullptr,
                                  ALLEGRO_MESSAGEBOX_ERROR);
       al_destroy_display(mpDisplay);
       return false;
@@ -125,7 +125,7 @@ bool Game::Initialize()
                                  "Error",
                                  "Error: acodec",
                                  "Failed to initialize the acodec add-on!",
-                                 NULL,
+                                 nullptr,
                                  ALLEGRO_MESSAGEBOX_ERROR);
       al_destroy_display(mpDisplay);
       return false;
@@ -138,7 +138,7 @@ bool Game::Initialize()
                                  "Error",
                                  "Error: reserve samples",
                                  "Failed to reserve samples!",
-                                 NULL,
+                                 nullptr,
                                  ALLEGRO_MESSAGEBOX_ERROR);
       al_destroy_display(mpDisplay);
       return false;
@@ -151,7 +151,7 @@ bool Game::Initialize()
                                  "Error",
                                  "Error: install keyboard",
                                  "Failed to install the keyboard component!",
-                                 NULL,
+                                 nullptr,
                                  ALLEGRO_MESSAGEBOX_ERROR);
       al_destroy_display(mpDisplay);
       return false;
@@ -166,7 +166,7 @@ bool Game::Initialize()
                                  "Error",
                                  "Error: initialize font add-on",
                                  "Failed to initialize the font add-on!",
-                                 NULL,
+                                 nullptr,
                                  ALLEGRO_MESSAGEBOX_ERROR);
       al_destroy_display(mpDisplay);
       return false;
@@ -181,7 +181,7 @@ bool Game::Initialize()
                                  "Error",
                                  "Error: initialize ttf add-on",
                                  "Failed to initialize the ttf add-on!",
-                                 NULL,
+                                 nullptr,
                                  ALLEGRO_MESSAGEBOX_ERROR);
       al_destroy_display(mpDisplay);
       return false;
@@ -194,7 +194,7 @@ bool Game::Initialize()
                                  "Error",
                                  "Error: al_create_event_queue",
                                  "Failed to initialize al_create_event_queue!",
-                                 NULL,
+                                 nullptr,
                                  ALLEGRO_MESSAGEBOX_ERROR);
       al_destroy_display(mpDisplay);
       al_destroy_timer(mpTimer);

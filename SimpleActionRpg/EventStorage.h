@@ -68,13 +68,13 @@ class EventStorage
       //  Adds a change map event to the vector of change map events.
       //
       // Arguments:
-      //  thepChangeMapEvent - The change map event to add to the vector.
+      //  pTheChangeMapEvent - The change map event to add to the vector.
       //
       // Return:
       //  N/A
       //
       //*********************************************************************************************************************************************
-      void AddChangeMapEvent(ChangeMapEvent* thepChangeMapEvent);
+      void AddChangeMapEvent(ChangeMapEvent* pTheChangeMapEvent);
 
       //*********************************************************************************************************************************************
       //

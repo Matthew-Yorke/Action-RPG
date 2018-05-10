@@ -23,26 +23,28 @@
 // Method Name: Light
 //
 // Description:
-//  TODO: Add method description.
+//  Set member variables to default values using the passed in arguments.
 //
 //***************************************************************************************************************************************************
-Light::Light(int theCoordinateX, int theCoordinateY, int theRadius, ALLEGRO_COLOR theColor, int theIntensity) :
-CircleObject(theCoordinateX, theCoordinateY, theRadius)
+Light::Light(int theCoordinateX, int theCoordinateY, int theRadius, ALLEGRO_COLOR theColor, int theOpacity) :
+CircleObject(theCoordinateX,
+             theCoordinateY,
+             theRadius)
 {
    mColor = theColor;
-   mIntensity = theIntensity;
+   mOpacity = theOpacity;
    mWorldCoordinateX = theCoordinateX;
    mWorldCoordinateY = theCoordinateY;
 }
 
-//*********************************************************************************************************************************************
+//***************************************************************************************************************************************************
 //
 // Method Name: CameraUpdate
 //
 // Description:
-//  Update the dialog pieces coordinates relative to the camera coordinates.
+//  Update the X-Coordinate and Y-Coordinate relative to the camera coordinates, preventing the light from moving along with the camera.
 //
-//*********************************************************************************************************************************************
+//***************************************************************************************************************************************************
 void Light::CameraUpdate(Camera* theCamera)
 {
    mWorldCoordinateX = mCoordinateX - theCamera->GetCoordinateX();
@@ -54,7 +56,7 @@ void Light::CameraUpdate(Camera* theCamera)
 // Method Name: Draw
 //
 // Description:
-//  TODO: Add method description.
+//  Loop from the furthest radius point to the closest drawing a layer of the light on top of the previous layer.
 //
 //***************************************************************************************************************************************************
 void Light::Draw(Graphics& theGraphics)
@@ -67,7 +69,7 @@ void Light::Draw(Graphics& theGraphics)
                             al_map_rgba(mColor.r * 255,
                                         mColor.g * 255,
                                         mColor.b * 255,
-                                        mIntensity));
+                                        mOpacity));
    }
 }
 

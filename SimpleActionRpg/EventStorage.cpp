@@ -70,9 +70,9 @@ void EventStorage::ReleaseInstance()
 //  Add a change map event to the change map event vector.
 //
 //***************************************************************************************************************************************************
-void EventStorage::AddChangeMapEvent(ChangeMapEvent* thepChangeMapEvent)
+void EventStorage::AddChangeMapEvent(ChangeMapEvent* pTheChangeMapEvent)
 {
-   mChangeMapEvents.push_back(thepChangeMapEvent);
+   mChangeMapEvents.push_back(pTheChangeMapEvent);
 }
 
 //***************************************************************************************************************************************************

@@ -29,7 +29,7 @@ class CircleObject : public Object
       // Method Name: CircleObject
       //
       // Description:
-      //  TODO: Add description.
+      //  Constructor that sets default values for member variables.
       //
       // Arguments:
       //  theCoordinateX - The X-Coordinate where the circular object is at.
@@ -60,11 +60,11 @@ class CircleObject : public Object
 
    protected:
 
-   // There are currently no protected methods for this class.
+      // There are currently no protected methods for this class.
 
    private:
 
-   // There are currently no private methods for this class.
+      // There are currently no private methods for this class.
 
    //************************************************************************************************************************************************
    // End Method Declarations

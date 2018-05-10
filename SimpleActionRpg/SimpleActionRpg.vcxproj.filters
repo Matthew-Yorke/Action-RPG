@@ -24,9 +24,6 @@
     <Filter Include="Code\Engine\Camera">
       <UniqueIdentifier>{035d5b8e-8475-4739-a607-eae106f2d537}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Code\Engine\Maps">
-      <UniqueIdentifier>{33e90db6-7edf-47be-8196-c01c3d4c8ada}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Code\Game">
       <UniqueIdentifier>{26e8d3b0-754b-4b50-9dc8-e3eb4b854a1b}</UniqueIdentifier>
     </Filter>
@@ -68,6 +65,9 @@
     </Filter>
     <Filter Include="Code\Engine\Vector">
       <UniqueIdentifier>{9f0dcafb-fadb-4149-9024-d42da536e79c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Game\Maps">
+      <UniqueIdentifier>{33e90db6-7edf-47be-8196-c01c3d4c8ada}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -123,7 +123,7 @@
       <Filter>Code\Engine\Objects</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
-      <Filter>Code\Engine\Maps</Filter>
+      <Filter>Code\Game\Maps</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Code\Game</Filter>
@@ -227,7 +227,7 @@
       <Filter>Code\Engine\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>Code\Engine\Maps</Filter>
+      <Filter>Code\Game\Maps</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Code\Game</Filter>
@@ -239,7 +239,7 @@
       <Filter>Code\Game\Game States</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
-      <Filter>Code\Engine\Maps</Filter>
+      <Filter>Code\Game\Maps</Filter>
     </ClInclude>
     <ClInclude Include="Pathfinding.h">
       <Filter>Code\Engine\Pathfinding</Filter>

@@ -25,117 +25,102 @@ class Graphics
    // Start Method Declarations
    //************************************************************************************************************************************************
 
-public:
+   public:
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: Graphics
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  theDisplay - TODO: Add description.
-   //
-   // Return:
-   //  N/A
-   //
-   //************************************************************************************************************************************************
-   Graphics(ALLEGRO_DISPLAY* theDisplay);
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: Graphics
+      //
+      // Description:
+      //  Constructor that sets default values for member variables.
+      //
+      // Arguments:
+      //  pTheDisplay - Pointer to the display screen.
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      Graphics(ALLEGRO_DISPLAY* pTheDisplay);
+      
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: ~Graphics
+      //
+      // Description:
+      //  Deconstructor that frees any allocated memory managed by this class.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      ~Graphics();
+      
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: LoadImage
+      //
+      // Description:
+      //  Load an image.
+      //
+      // Arguments:
+      //  theFilePath - The file path of the image.
+      //
+      // Return:
+      //  Returns the bitmap pointer to the image.
+      //
+      //*********************************************************************************************************************************************
+      ALLEGRO_BITMAP* LoadImage(const std::string& theFilePath);
+      
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: GetDisplay
+      //
+      // Description:
+      //  Returns the display screen.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  Returns pointer to the display screen.
+      //
+      //*********************************************************************************************************************************************
+      ALLEGRO_DISPLAY* GetDisplay();
+      
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: Draw
+      //
+      // Description:
+      //  Draws the bitmap image to the screen.
+      //
+      // Arguments:
+      //  pTheSource - Pointer to the bitmap image sheet to draw from.
+      //  theStartPositionX - The X-Coordinate on the bitmap image to start drawing from.
+      //  theStartPositionY - The Y-Coordinate on the bitmap image to start drawing from.
+      //  theWidth - The width of the sprite image.
+      //  theHeight - The height of the sprite image.
+      //  theDestinationX - The X-Coordinate on the screen to draw to.
+      //  theDestinationY - The Y-Coordinate on the screen to draw to.
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      void Draw(ALLEGRO_BITMAP* pTheSource, int theStartPositionX, int theStartPositionY, int theWidth, int theHeight, int theDestinationX,
+                int theDestinationY);
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: ~Graphics
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  N/A
-   //
-   // Return:
-   //  N/A
-   //
-   //************************************************************************************************************************************************
-   ~Graphics();
+   protected:
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: Draw
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  thepSource - TODO: Add description.
-   //  theStartPositionX - TODO: Add description.
-   //  theStartPositionY - TODO: Add description.
-   //  theWidth - TODO: Add description.
-   //  theHeight - TODO: Add description.
-   //  theDestinationX - TODO: Add description.
-   //  theDestinationY - TODO: Add description.
-   //  theAngle - TODO: Add description.
-   //
-   // Return:
-   //  N/A
-   //
-   //************************************************************************************************************************************************
-   void Draw(ALLEGRO_BITMAP* thepSource, int theStartPositionX, int theStartPositionY, int theWidth, int theHeight, int theDestinationX,
-             int theDestinationY, float theAngle);
+      // There are currently no private methods for this class.
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: LoadImage
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  theFilePath - TODO: Add description.
-   //
-   // Return:
-   //  TODO: Add description.
-   //
-   //************************************************************************************************************************************************
-   ALLEGRO_BITMAP* LoadImage(const std::string& theFilePath);
+   private:
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: GetDisplay
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  N/A
-   //
-   // Return:
-   //  TODO: Add description.
-   //
-   //************************************************************************************************************************************************
-   inline ALLEGRO_DISPLAY* GetDisplay() { return mpDisplay; };
-
-protected:
-
-   //************************************************************************************************************************************************
-   //
-   // Method Name: SetAngleInRadians
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  theAngle - TODO: Add description.
-   //
-   // Return:
-   //  N/A
-   //
-   //************************************************************************************************************************************************
-   void SetAngleInRadians(float theAngle);
-
-private:
-
-   // There are currently no private methods for this class.
+      // There are currently no private methods for this class.
 
    //************************************************************************************************************************************************
    // End Method Declarations
@@ -145,21 +130,21 @@ private:
    // Start Member Variable Declarations
    //************************************************************************************************************************************************
 
-public:
+   public:
 
-   // There are currently no public member variables for this class.
+      // There are currently no public member variables for this class.
 
-protected:
+   protected:
 
-   // There are currently no protected member variables for this class.
+      // There are currently no protected member variables for this class.
 
-private:
+   private:
 
-   // TODO: Add description.
-   std::map<std::string, ALLEGRO_BITMAP*> mpSpriteSheets;
+      // TODO: Add description.
+      std::map<std::string, ALLEGRO_BITMAP*> mpSpriteSheets;
 
-   // TODO: Add description.
-   ALLEGRO_DISPLAY* mpDisplay;
+      // TODO: Add description.
+      ALLEGRO_DISPLAY* mpDisplay;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

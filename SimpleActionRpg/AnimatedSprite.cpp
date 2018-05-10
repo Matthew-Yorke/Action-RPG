@@ -1,6 +1,6 @@
 //***************************************************************************************************************************************************
 //
-// File Name: Graphics.cpp
+// File Name: AnimatedSprite.cpp
 //
 // Description:
 //  TODO: Add file description.
@@ -23,52 +23,45 @@
 // Method Name: AnimatedSprite
 //
 // Description:
-//  TODO: Add description.
+//  Set member variables to their default values.
 //
 //***************************************************************************************************************************************************
 AnimatedSprite::AnimatedSprite(Graphics& theGraphics, const std::string theFilePath, int theSourceX, int theSourceY, int theWidth, int theHeight,
                                float theFps, int theNumberFrames) :
-   Sprite(theGraphics, theFilePath, theSourceX, theSourceY, theWidth, theHeight),
-   mFrameTime(1 / theFps),
-   mNumberFrames(theNumberFrames),
-   mCurrentFrame(0),
-   mElapsedTime(0)
+   Sprite(theGraphics,
+          theFilePath,
+          theSourceX,
+          theSourceY,
+          theWidth,
+          theHeight)
 {
+   mFrameTime = 1.0F / theFps;
+   mNumberFrames = theNumberFrames;
+   mCurrentFrame = 0;
+   mElapsedTime = 0;
 }
 
 //***************************************************************************************************************************************************
-//
-// Method Name: ~AnimatedSprite
-//
-// Description:
-//  TODO: Add description.
-//
-//***************************************************************************************************************************************************
-AnimatedSprite::~AnimatedSprite()
-{
-}
-
-//************************************************************************************************************************************************
 //
 // Method Name: SetAnimationSourceX
 //
 // Description:
-//  TODO: Add description.
+//  Updates the X-Coordinate of the animation on the sprite(sheet) bitmap.
 //
-//************************************************************************************************************************************************
+//***************************************************************************************************************************************************
 void AnimatedSprite::SetAnimationSourceX(int theSourceX)
 {
    mSourceX = theSourceX;
 }
 
-//************************************************************************************************************************************************
+//***************************************************************************************************************************************************
 //
 // Method Name: SetAnimationSourceY
 //
 // Description:
-//  TODO: Add description.
+//  Updates the Y-Coordinate of the animation on the sprite(sheet) bitmap and the number of frames for the new animation.
 //
-//************************************************************************************************************************************************
+//***************************************************************************************************************************************************
 void AnimatedSprite::SetAnimationSourceY(int theSourceY, int theNumberFrames)
 {
    mSourceY = theSourceY;
@@ -77,25 +70,46 @@ void AnimatedSprite::SetAnimationSourceY(int theSourceY, int theNumberFrames)
 
 //***************************************************************************************************************************************************
 //
+// Method Name: ResetFrames
+//
+// Description:
+//  Reset the current frame and the time elapsed.
+//
+//***************************************************************************************************************************************************
+void AnimatedSprite::ResetFrames()
+{
+   mCurrentFrame = 0;
+   mElapsedTime = 0.0F;
+}
+
+//***************************************************************************************************************************************************
+//
 // Method Name: Update
 //
 // Description:
-//  TODO: Add description.
+//  Update the amount of time that has elapsed for the current frame. If the amount of time exceeds the frame time, update to the next frame and
+//  reset the elapsed time.
 //
 //***************************************************************************************************************************************************
 void AnimatedSprite::Update(float theElapsedTime)
 {
+   // Increase the elapsed time by the amount of time since the last update.
    mElapsedTime += theElapsedTime;
 
+   // Check if elapsed time exceeds the frame time.
    if (mElapsedTime > mFrameTime)
    {
+      // Update the next frame and reset the elapsed time.
       mCurrentFrame++;
       mElapsedTime = 0;
 
+      // If the next frame is still within the bounds of the number of frames then increase the X-Coordinate of the sprite(sheet) by the sprite
+      // width.
       if (mCurrentFrame < mNumberFrames)
       {
          mSourceX += mWidth;
       }
+      // The next frame is past the bounds of the number of frames. Reset the X-coordinate and current frame to the first frame of the animation.
       else
       {
          mSourceX = 0;

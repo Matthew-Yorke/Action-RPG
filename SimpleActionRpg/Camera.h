@@ -26,7 +26,7 @@ class Camera
 
    public:
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
       // Method Name: Camera
       //
@@ -34,16 +34,16 @@ class Camera
       //  Constructor that sets member variables to default values.
       //
       // Arguments:
-      //  thepBoundaries - Pointer to a rectangle depicting the world coordinate boundary limits of the camera.
-      //  thepObject - Pointer to the initial object for the camera to follow.
+      //  pTheBoundaries - Pointer to a rectangle depicting the world coordinate boundary limits of the camera.
+      //  pTheObject - Pointer to the initial object for the camera to follow.
       //
       // Return:
       //  N/A
       //
-      //************************************************************************************************************************************************
-      Camera(RectangleObject* thepBoundaries, Object* thepObject);
+      //*********************************************************************************************************************************************
+      Camera(RectangleObject* pTheBoundaries, Object* pTheObject);
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
       // Method Name: ChangeFollowingObject
       //
@@ -51,15 +51,15 @@ class Camera
       //  This method changes what object to point at for the camera to follow.
       //
       // Arguments:
-      //  thepObject - Pointer to the object for the camera to follow.
+      //  pTheObject - Pointer to the object for the camera to follow.
       //
       // Return:
       //  N/A
       //
-      //************************************************************************************************************************************************
-      void ChangeFollowingObject(Object* thepObject);
+      //*********************************************************************************************************************************************
+      void ChangeFollowingObject(Object* pTheObject);
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
       // Method Name: GetCoordinateX
       //
@@ -72,10 +72,10 @@ class Camera
       // Return:
       //  Returns the current X-Coordinate of the camera.
       //
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       int GetCoordinateX();
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
       // Method Name: GetCoordinateY
       //
@@ -88,10 +88,10 @@ class Camera
       // Return:
       //  Returns the current Y-Coordinate of the camera.
       //
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       int GetCoordinateY();
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
       // Method Name: SetBoundaries
       //
@@ -99,15 +99,15 @@ class Camera
       //  This method changes the boundary limits with the passed in rectangle.
       //
       // Arguments:
-      //  thepBoundaries - Pointer to the rectangle containing the boundary limits for the camera.
+      //  pTheBoundaries - Pointer to the rectangle containing the boundary limits for the camera.
       //
       // Return:
       //  N/A
       //
-      //************************************************************************************************************************************************
-      void SetBoundaries(RectangleObject* thepBoundaries);
+      //*********************************************************************************************************************************************
+      void SetBoundaries(RectangleObject* pTheBoundaries);
 
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       //
       // Method Name: Update
       //
@@ -120,16 +120,16 @@ class Camera
       // Return:
       //  N/A
       //
-      //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
       void Update();
 
    protected:
 
-   // There are currently no protected methods for this class.
+      // There are currently no protected methods for this class.
 
    private:
 
-   // There are currently no private methods for this class.
+      // There are currently no private methods for this class.
 
    //************************************************************************************************************************************************
    // End Method Declarations
@@ -141,11 +141,11 @@ class Camera
 
    public:
 
-   // There are currently no public member variables for this class.
+      // There are currently no public member variables for this class.
 
    protected:
 
-   // There are currently no protected member variables for this class.
+      // There are currently no protected member variables for this class.
 
    private:
 

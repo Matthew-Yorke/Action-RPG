@@ -29,7 +29,7 @@ class RectangleObject : public Object
       // Method Name: RectangleObject
       //
       // Description:
-      //  TODO: Add description.
+      //  Constructor that sets default values for member variables.
       //
       // Arguments:
       //  N/A
@@ -45,10 +45,10 @@ class RectangleObject : public Object
       // Method Name: SetWidth
       //
       // Description:
-      //  TODO: Add description.
+      //  Updates the width of the rectangular object.
       //
       // Arguments:
-      //  theWidth - TODO: Add description.
+      //  theWidth - The new width of the rectangular object.
       //
       // Return:
       //  N/A
@@ -77,10 +77,10 @@ class RectangleObject : public Object
       // Method Name: SetHeight
       //
       // Description:
-      //  TODO: Add description.
+      //  Updates the height of the rectangular object.
       //
       // Arguments:
-      //  theHeight - TODO: Add description.
+      //  theHeight - The new height of the rectangular object.
       //
       // Return:
       //  N/A
@@ -99,18 +99,18 @@ class RectangleObject : public Object
       //  N/A
       //
       // Return:
-      //  Returns the rectangular object height
+      //  Returns the rectangular object height.
       //
       //*********************************************************************************************************************************************
       int GetHeight();
 
    protected:
 
-   // There are currently no protected methods for this class.
+      // There are currently no protected methods for this class.
 
    private:
 
-   // There are currently no private methods for this class.
+      // There are currently no private methods for this class.
 
    //************************************************************************************************************************************************
    // End Method Declarations

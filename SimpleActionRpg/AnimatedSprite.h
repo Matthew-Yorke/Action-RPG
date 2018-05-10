@@ -23,139 +23,134 @@ class AnimatedSprite : public Sprite
    // Start Method Declarations
    //************************************************************************************************************************************************
 
-public:
+   public:
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: AnimatedSprite
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  theGraphics - TODO: Add description.
-   //  theFilePath - TODO: Add description.
-   //  theSourceX - TODO: Add description.
-   //  theSourceY - TODO: Add description.
-   //  theWidth - TODO: Add description.
-   //  theHeight - TODO: Add description.
-   //  theFps - TODO: Add description.
-   //  theNumberFrames - TODO: Add description.
-   //
-   // Return:
-   //  N/A
-   //
-   //************************************************************************************************************************************************
-   AnimatedSprite(Graphics& theGraphics, const std::string theFilePath, int theSourceX, int theSourceY, int theWidth, int theHeight, float theFps,
-                  int theNumberFrames);
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: AnimatedSprite
+      //
+      // Description:
+      //  Constructor that sets default values for member variables.
+      //
+      // Arguments:
+      //  theGraphics - Reference to the graphics object for drawing to the screen.
+      //  theFilePath - The file path where the sprite(sheet) is located.
+      //  theSourceX - The X-Coordinate where the sprite image on the bitmap is located.
+      //  theSourceY - The Y-Coordinate where the sprite image on the bitmap is located.
+      //  theWidth - The width of the sprite image.
+      //  theHeight - The height of the sprite image.
+      //  theFps - The number of frames that occur in a second.
+      //  theNumberFrames - The number of frames in the animation.
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      AnimatedSprite(Graphics& theGraphics, const std::string theFilePath, int theSourceX, int theSourceY, int theWidth, int theHeight, float theFps,
+                     int theNumberFrames);
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: ~AnimatedSprite
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  N/A
-   //
-   // Return:
-   //  N/A
-   //
-   //************************************************************************************************************************************************
-   ~AnimatedSprite();
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: SetAnimationSourceX
+      //
+      // Description:
+      //  Updates the X-Coordinate of the animation on the sprite(sheet) bitmap.
+      //
+      // Arguments:
+      //  theSourceX - The X-Coordinate on the sprite(sheet) bitmap to update to.
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      void SetAnimationSourceX(int theSourcex);
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: SetAnimationSourceX
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  theSourceX - TODO: Add description.
-   //  theSourceY - TODO: Add description.
-   //  theNumberFrames - TODO: Add description.
-   //
-   // Return:
-   //  N/A
-   //
-   //************************************************************************************************************************************************
-   void SetAnimationSourceX(int theSourcex);
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: SetAnimationSourceY
+      //
+      // Description:
+      //  Updates the Y-Coordinate of the animation on the sprite(sheet) bitmap and the number of frames for the new animation.
+      //
+      // Arguments:
+      //  theSourceY - The Y-Coordinate on the sprite(sheet) bitmap to update to.
+      //  theNumberFrames - The number of frames in the animation.
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      void SetAnimationSourceY(int theSourceY, int theNumberFrames);
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: SetAnimationSourceY
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  theSourceX - TODO: Add description.
-   //  theSourceY - TODO: Add description.
-   //  theNumberFrames - TODO: Add description.
-   //
-   // Return:
-   //  N/A
-   //
-   //************************************************************************************************************************************************
-   void SetAnimationSourceY(int theSourceY, int theNumberFrames);
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: ResetFrames
+      //
+      // Description:
+      //  Reset the current frame and the time elapsed.
+      //
+      // Arguments:
+      //  N/A
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      void ResetFrames();
 
-   void ResetFrames() { mCurrentFrame = 0; mElapsedTime = 0.0F; };
+      //*********************************************************************************************************************************************
+      //
+      // Method Name: Update
+      //
+      // Description:
+      //  Update to the next frame when enough time has passed.
+      //
+      // Arguments:
+      //  theElapsedTime - The amount of time elapsed since the last update.
+      //
+      // Return:
+      //  N/A
+      //
+      //*********************************************************************************************************************************************
+      void Update(float theElapsedTime);
 
-   //************************************************************************************************************************************************
-   //
-   // Method Name: Update
-   //
-   // Description:
-   //  TODO: Add description.
-   //
-   // Arguments:
-   //  theElapsedTime - TODO: Add description.
-   //
-   // Return:
-   //  N/A
-   //
-   //************************************************************************************************************************************************
-   void Update(float theElapsedTime);
+   protected:
 
-protected:
+      // There are currently no protected methods for this class.
 
-   // There are currently no protected methods for this class.
+   private:
 
-private:
+      // There are currently no private methods for this class.
 
-   // There are currently no private methods for this class.
+      //*********************************************************************************************************************************************
+      // End Method Declarations
+      //*********************************************************************************************************************************************
 
-   //************************************************************************************************************************************************
-   // End Method Declarations
-   //************************************************************************************************************************************************
+      //*********************************************************************************************************************************************
+      // Start Member Variable Declarations
+      //*********************************************************************************************************************************************
 
-   //************************************************************************************************************************************************
-   // Start Member Variable Declarations
-   //************************************************************************************************************************************************
+   public:
 
-public:
+      // There are currently no public member variables for this class.
 
-   // There are currently no public member variables for this class.
+   protected:
 
-protected:
+      // There are currently no protected member variables for this class.
 
-   // There are currently no protected member variables for this class.
+   private:
 
-private:
+      // Holds the amount of time until a frame should be updated to the next frame.
+      float mFrameTime;
 
-   // TODO: Add description.
-   const float mFrameTime;
+      // Holds the number of frames in the current animation.
+      int mNumberFrames;
 
-   // TODO: Add description.
-   int mNumberFrames;
+      // Holds the current frame number in the number of frames.
+      int mCurrentFrame;
 
-   // TODO: Add description.
-   int mCurrentFrame;
-
-   // TODO: Add description.
-   float mElapsedTime;
+      // Holds the amount of time that has elapsed in total for the current frame.
+      float mElapsedTime;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

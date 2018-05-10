@@ -77,11 +77,11 @@ class Event
 
    protected:
 
-   // There are currently no protected methods for this class.
+      // There are currently no protected methods for this class.
 
    private:
 
-   // There are currently no private methods for this class.
+      // There are currently no private methods for this class.
 
    //************************************************************************************************************************************************
    // End Method Declarations
@@ -93,11 +93,11 @@ class Event
 
    public:
 
-   // There are currently no public member variables for this class.
+      // There are currently no public member variables for this class.
 
    protected:
 
-   // There are currently no protected member variables for this class.
+      // There are currently no protected member variables for this class.
 
    private:
 

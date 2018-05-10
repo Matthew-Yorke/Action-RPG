@@ -27,47 +27,50 @@
 //***************************************************************************************************************************************************
 ChangeMapEvent::ChangeMapEvent(int theCoordinateX, int theCoordianteY, int theWidth, int theHeight, std::string theMapFileLocation,
                                int theObjectDestinationCoordinateX, int theObjectDestinationCoordinateY) :
-Event(theCoordinateX, theCoordianteY, theWidth, theHeight)
+Event(theCoordinateX,
+      theCoordianteY,
+      theWidth,
+      theHeight)
 {
    mMapFileLocation = theMapFileLocation;
    mObjectDestinationCoordinateX = theObjectDestinationCoordinateX;
    mObjectDestinationCoordinateY = theObjectDestinationCoordinateY;
 }
 
-//************************************************************************************************************************************************
+//***************************************************************************************************************************************************
 //
 // Method Name: GetObjectDestinationCoordinateX
 //
 // Description:
 //  Return the X-Coordinate the object is to be placed at.
 //
-//************************************************************************************************************************************************
+//***************************************************************************************************************************************************
 int ChangeMapEvent::GetObjectDestinationCoordinateX()
 {
    return mObjectDestinationCoordinateX;
 }
 
-//************************************************************************************************************************************************
+//***************************************************************************************************************************************************
 //
 // Method Name: GetObjectDestinationCoordinateY
 //
 // Description:
 //  Return the Y-Coordinate the object is to be placed at.
 //
-//************************************************************************************************************************************************
+//***************************************************************************************************************************************************
 int ChangeMapEvent::GetObjectDestinationCoordinateY()
 {
    return mObjectDestinationCoordinateY;
 }
 
-//************************************************************************************************************************************************
+//***************************************************************************************************************************************************
 //
 // Method Name: GetMapFileLocation
 //
 // Description:
 //  Return the map file location.
 //
-//************************************************************************************************************************************************
+//***************************************************************************************************************************************************
 std::string ChangeMapEvent::GetMapFileLocation()
 {
    return mMapFileLocation;

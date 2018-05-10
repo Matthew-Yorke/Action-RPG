@@ -1,3 +1,16 @@
+//***************************************************************************************************************************************************
+//
+// File Name: MathConstants.h
+//
+// Description:
+//  TODO: Add file description.
+//
+// Change History:
+//  Author               Date           Description
+//  Matthew D. Yorke     MM/DD/2018     TODO: Add history update
+//
+//***************************************************************************************************************************************************
+
 #ifndef MathConstants_h
 #define MathConstants_h
 

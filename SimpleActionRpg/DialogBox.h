@@ -40,13 +40,13 @@ class DialogBox
       // Arguments:
       //  theSpeakerName - The string describing who is speaking in the dialog box.
       //  theSpeakerText - The string of the entire dialog the speaker speaks in the dialog box.
-      //  thepDimensions - The dimensions of the dialog box including the X-Coordinates, Y-Coordinates, width and height.
+      //  pTheDimensions - The dimensions of the dialog box including the X-Coordinates, Y-Coordinates, width and height.
       //
       // Return:
       //  N/A
       //
       //*********************************************************************************************************************************************
-      DialogBox(std::string theSpeakerName, std::string theSpeakerText, RectangleObject* thepDimensions);
+      DialogBox(std::string theSpeakerName, std::string theSpeakerText, RectangleObject* pTheDimensions);
 
       //*********************************************************************************************************************************************
       //
@@ -56,13 +56,13 @@ class DialogBox
       //  Changes the overlay image pointer.
       //
       // Arguments:
-      //  thepOverlayImage - Pointer to the dialog image for the overlay including the image and dimensions.
+      //  pTheOverlayImage - Pointer to the dialog image for the overlay including the image and dimensions.
       //
       // Return:
       //  N/A
       //
       //*********************************************************************************************************************************************
-      void AddOverlay(DialogImage* thepOverlayImage);
+      void AddOverlay(DialogImage* pTheOverlayImage);
 
       //*********************************************************************************************************************************************
       //
@@ -72,13 +72,13 @@ class DialogBox
       //  Changes the character image pointer.
       //
       // Arguments:
-      //  theCharacterImage - Pointer to the dialog image for the overlay including the image and dimensions.
+      //  pTheCharacterImage - Pointer to the dialog image for the overlay including the image and dimensions.
       //
       // Return:
       //  N/A
       //
       //*********************************************************************************************************************************************
-      void AddCharacterImage(DialogImage* theCharacterImage);
+      void AddCharacterImage(DialogImage* pTheCharacterImage);
 
       //*********************************************************************************************************************************************
       //
@@ -88,13 +88,13 @@ class DialogBox
       //  Update the message box screen location based upon the camera location.
       //
       // Arguments:
-      //  thepCamera - Pointer to the camera object used to update the X and Y coordinates relative to the camera.
+      //  pTheCamera - Pointer to the camera object used to update the X and Y coordinates relative to the camera.
       //
       // Return:
       //  N/A
       //
       //*********************************************************************************************************************************************
-      void CameraUpdate(Camera* thepCamera);
+      void CameraUpdate(Camera* pTheCamera);
 
       //*********************************************************************************************************************************************
       //
