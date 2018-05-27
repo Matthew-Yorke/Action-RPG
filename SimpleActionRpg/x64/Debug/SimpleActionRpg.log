@@ -1,27 +1,2 @@
-﻿  AnimatedSprite.cpp
-  ChaseEnemyState.cpp
-  Clock.cpp
-  DialogBox.cpp
-  DialogImage.cpp
-  Enemy.cpp
-  EnemyState.cpp
-  Game.cpp
-  GameState.cpp
-  Graphics.cpp
-  IdleEnemyState.cpp
-  IdleState.cpp
-  Light.cpp
-  Main.cpp
-  Map.cpp
-  MeleeAttackState.cpp
-  MeleeWeapon.cpp
-  MovingState.cpp
-  PlayState.cpp
-  PlayerCharacter.cpp
-  Generating Code...
-  Compiling...
-  ShadowLayer.cpp
-  Sprite.cpp
-  State.cpp
-  Generating Code...
+﻿  RegularPlayState.cpp
   SimpleActionRpg.vcxproj -> C:\Users\Yorke\source\projects\Action RPG\Action-RPG\x64\Debug\SimpleActionRpg.exe

@@ -168,6 +168,7 @@
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CastMagicPlayState.cpp" />
     <ClCompile Include="ChangeMapEvent.cpp" />
     <ClCompile Include="ChaseEnemyState.cpp" />
     <ClCompile Include="CircleObject.cpp" />
@@ -193,7 +194,9 @@
     <ClCompile Include="Pathfinding.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="PlayState.cpp" />
+    <ClCompile Include="PlaySubState.cpp" />
     <ClCompile Include="RectangleObject.cpp" />
+    <ClCompile Include="RegularPlayState.cpp" />
     <ClCompile Include="ShadowLayer.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="State.cpp" />
@@ -202,6 +205,7 @@
   <ItemGroup>
     <ClInclude Include="AnimatedSprite.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CastMagicPlayState.h" />
     <ClInclude Include="ChangeMapEvent.h" />
     <ClInclude Include="ChaseEnemyState.h" />
     <ClInclude Include="CircleObject.h" />
@@ -228,7 +232,9 @@
     <ClInclude Include="MovingState.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="PlayState.h" />
+    <ClInclude Include="PlaySubState.h" />
     <ClInclude Include="RectangleObject.h" />
+    <ClInclude Include="RegularPlayState.h" />
     <ClInclude Include="ShadowLayer.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="State.h" />

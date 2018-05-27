@@ -69,6 +69,9 @@
     <Filter Include="Code\Game\Maps">
       <UniqueIdentifier>{33e90db6-7edf-47be-8196-c01c3d4c8ada}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Code\Game\Game States\PlayState SubStates">
+      <UniqueIdentifier>{c21db3ba-6668-46de-bbca-b75a14c0a9a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp">
@@ -134,9 +137,6 @@
     <ClCompile Include="GameState.cpp">
       <Filter>Code\Game\Game States</Filter>
     </ClCompile>
-    <ClCompile Include="PlayState.cpp">
-      <Filter>Code\Game\Game States</Filter>
-    </ClCompile>
     <ClCompile Include="Pathfinding.cpp">
       <Filter>Code\Engine\Pathfinding</Filter>
     </ClCompile>
@@ -166,6 +166,18 @@
     </ClCompile>
     <ClCompile Include="EventStorage.cpp">
       <Filter>Code\Engine\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayState.cpp">
+      <Filter>Code\Game\Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaySubState.cpp">
+      <Filter>Code\Game\Game States\PlayState SubStates</Filter>
+    </ClCompile>
+    <ClCompile Include="RegularPlayState.cpp">
+      <Filter>Code\Game\Game States\PlayState SubStates</Filter>
+    </ClCompile>
+    <ClCompile Include="CastMagicPlayState.cpp">
+      <Filter>Code\Game\Game States\PlayState SubStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -235,9 +247,6 @@
     <ClInclude Include="GameState.h">
       <Filter>Code\Game\Game States</Filter>
     </ClInclude>
-    <ClInclude Include="PlayState.h">
-      <Filter>Code\Game\Game States</Filter>
-    </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Code\Game\Maps</Filter>
     </ClInclude>
@@ -270,6 +279,18 @@
     </ClInclude>
     <ClInclude Include="EventStorage.h">
       <Filter>Code\Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayState.h">
+      <Filter>Code\Game\Game States</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaySubState.h">
+      <Filter>Code\Game\Game States\PlayState SubStates</Filter>
+    </ClInclude>
+    <ClInclude Include="RegularPlayState.h">
+      <Filter>Code\Game\Game States\PlayState SubStates</Filter>
+    </ClInclude>
+    <ClInclude Include="CastMagicPlayState.h">
+      <Filter>Code\Game\Game States\PlayState SubStates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

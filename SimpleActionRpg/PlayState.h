@@ -15,6 +15,7 @@
 #define PlayState_H
 
 #include "GameState.h"
+#include "PlaySubState.h"
 #include "Map.h"
 #include "ShadowLayer.h"
 #include "PlayerCharacter.h"
@@ -22,6 +23,8 @@
 #include "Clock.h"
 #include "Enemy.h"
 #include "EventStorage.h"
+
+class PlaySubState;
 
 class PlayState : public GameState
 {
@@ -62,6 +65,22 @@ class PlayState : public GameState
       //
       //*********************************************************************************************************************************************
       ~PlayState();
+
+      //************************************************************************************************************************************************
+      //
+      // Method Name: ChangeSubState
+      //
+      // Description:
+      //  TODO: Add description.
+      //
+      // Arguments:
+      //  theState - TODO: Add description.
+      //
+      // Return:
+      //  N/A
+      //
+      //************************************************************************************************************************************************
+      void ChangeSubState(PlaySubState* theState);
 
       //*********************************************************************************************************************************************
       //
@@ -133,70 +152,7 @@ class PlayState : public GameState
 
    private:
 
-      //*********************************************************************************************************************************************
-      //
-      // Method Name: CollisionDetection
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  theRectangleOne - TODO: Add description.
-      //  theRectangleTwo - TODO: Add description.
-      //
-      // Return:
-      //  TODO: Add description.
-      //
-      //*********************************************************************************************************************************************
-      bool CollisionDetection(RectangleObject* theRectangleOne, RectangleObject* theRectangleTwo);
-
-      //*********************************************************************************************************************************************
-      //
-      // Method Name: PlayerAttackCollision
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A
-      //
-      // Return:
-      //  N/A
-      //
-      //*********************************************************************************************************************************************
-      void PlayerAttackCollision();
-
-      //*********************************************************************************************************************************************
-      //
-      // Method Name: MapNonTraverableMapTileCollision
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A
-      //
-      // Return:
-      //  N/A
-      //
-      //*********************************************************************************************************************************************
-      void MapNonTraverableMapTileCollision();
-
-      //*********************************************************************************************************************************************
-      //
-      // Method Name: MapEventCollision
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A
-      //
-      // Return:
-      //  N/A
-      //
-      //*********************************************************************************************************************************************
-      void MapEventCollision();
+      // There are currently no private methods for this class.
 
    //************************************************************************************************************************************************
    // End Method Declarations
@@ -207,14 +163,6 @@ class PlayState : public GameState
    //************************************************************************************************************************************************
 
    public:
-
-      // There are currently no public member variables for this class.
-
-   protected:
-
-      // There are currently no protected member variables for this class.
-
-   private:
 
       Graphics* mpGraphics;
 
@@ -233,6 +181,17 @@ class PlayState : public GameState
       float PathUpdateTime; 
 
       EventStorage* mpEventStorage;
+
+      // TODO: Add description.
+      PlaySubState* mpCurrentSubState;
+
+   protected:
+
+      // There are currently no protected member variables for this class.
+
+   private:
+
+      
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations
