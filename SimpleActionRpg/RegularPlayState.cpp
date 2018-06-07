@@ -13,6 +13,7 @@
 
 #include <vector>
 #include "RegularPlayState.h"
+#include "CastMagicPlayState.h"
 #include "PlayerCharacter.h"
 
 //***************************************************************************************************************************************************
@@ -49,6 +50,14 @@ PlaySubState(pThePlayState)
 void RegularPlayState::KeyDown(ALLEGRO_EVENT theEvent)
 {
    mpPlayeState->mpPlayer->KeyDown(theEvent);
+
+   switch (theEvent.keyboard.keycode)
+   {
+      case ALLEGRO_KEY_X:
+      {
+         mpPlayeState->ChangeSubState(new CastMagicPlayState(mpPlayeState));
+      }
+   }
 }
 
 //************************************************************************************************************************************************

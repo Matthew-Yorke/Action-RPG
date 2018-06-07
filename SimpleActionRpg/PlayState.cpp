@@ -13,6 +13,7 @@
 
 #include "PlayState.h"
 #include "RegularPlayState.h"
+#include "CastMagicPlayState.h"
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -48,7 +49,7 @@ PlayState::PlayState(Graphics& theGraphics)
 
    mpEventStorage = mpEventStorage->GetInstance();
 
-   mpCurrentSubState = new RegularPlayState(this);
+   mpCurrentSubState = new CastMagicPlayState(this);
 }
 
 //***************************************************************************************************************************************************
