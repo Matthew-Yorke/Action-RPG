@@ -19,6 +19,7 @@
 #include "ShadowLayer.h"
 #include "Clock.h"
 #include "Sprite.h"
+#include "CircleObject.h"
 
 class CastMagicPlayState : public PlaySubState
 {
@@ -150,20 +151,12 @@ class CastMagicPlayState : public PlaySubState
 
    private:
 
-      Sprite* mpSelector;
+      bool mIsUpPressed;
+      bool mIsDownPressed;
+      bool mIsLeftPressed;
+      bool mIsRightPressed;
 
-      int mSelectorCenterLocationX;
-      int mSelectorCenterLocationY;
-
-      bool mUpdateNeeded;
-
-      struct MagicAreaSquare
-      {
-         int x;
-         int y;
-      };
-
-      std::vector<MagicAreaSquare*> mMagicArea;
+      CircleObject* mpSpellArea;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

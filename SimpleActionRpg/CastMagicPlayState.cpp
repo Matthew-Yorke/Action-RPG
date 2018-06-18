@@ -31,10 +31,14 @@
 CastMagicPlayState::CastMagicPlayState(PlayState* pThePlayState) :
 PlaySubState(pThePlayState)
 {
-   mpSelector = new Sprite(*pThePlayState->mpGraphics, "../Images/Selector.png", 0, 0, 32, 32);
-   mSelectorCenterLocationX = 0;
-   mSelectorCenterLocationY = 0;
-   mUpdateNeeded = true;
+   mpSpellArea = new CircleObject(pThePlayState->mpPlayer->GetCoordinateX() + pThePlayState->mpPlayer->GetWidthCenterPoint(),
+                                  pThePlayState->mpPlayer->GetCoordinateY() + pThePlayState->mpPlayer->GetHeightCenterPoint(),
+                                  50.0F);
+
+   mIsUpPressed = false;
+   mIsDownPressed = false;
+   mIsLeftPressed = false;
+   mIsRightPressed = false;
 }
 
 //************************************************************************************************************************************************
@@ -52,26 +56,22 @@ void CastMagicPlayState::KeyDown(ALLEGRO_EVENT theEvent)
    {
       case ALLEGRO_KEY_DOWN:
       {
-         mSelectorCenterLocationY++;
-         mUpdateNeeded = true;
+         mIsDownPressed = true;
          break;
       }
       case ALLEGRO_KEY_UP:
       {
-         mSelectorCenterLocationY--;
-         mUpdateNeeded = true;
+         mIsUpPressed = true;
          break;
       }
       case ALLEGRO_KEY_RIGHT:
       {
-         mSelectorCenterLocationX++;
-         mUpdateNeeded = true;
+         mIsRightPressed = true;
          break;
       }
       case ALLEGRO_KEY_LEFT:
       {
-         mSelectorCenterLocationX--;
-         mUpdateNeeded = true;
+         mIsLeftPressed = true;
          break;
       }
       case ALLEGRO_KEY_Z:
@@ -91,7 +91,30 @@ void CastMagicPlayState::KeyDown(ALLEGRO_EVENT theEvent)
 //************************************************************************************************************************************************
 void CastMagicPlayState::KeyUp(ALLEGRO_EVENT theEvent)
 {
-   mpPlayeState->mpPlayer->KeyUp(theEvent);
+   // Track that a key was pressed down and enter that action's state.
+   switch (theEvent.keyboard.keycode)
+   {
+      case ALLEGRO_KEY_DOWN:
+      {
+         mIsDownPressed = false;
+         break;
+      }
+      case ALLEGRO_KEY_UP:
+      {
+         mIsUpPressed = false;
+         break;
+      }
+      case ALLEGRO_KEY_RIGHT:
+      {
+         mIsRightPressed = false;
+         break;
+      }
+      case ALLEGRO_KEY_LEFT:
+      {
+         mIsLeftPressed = false;
+         break;
+      }
+   }
 }
 
 //************************************************************************************************************************************************
@@ -104,117 +127,21 @@ void CastMagicPlayState::KeyUp(ALLEGRO_EVENT theEvent)
 //************************************************************************************************************************************************
 void CastMagicPlayState::Update(float theTimeChange)
 {
-   if (mUpdateNeeded == true)
+   if (mIsDownPressed == true)
    {
-      for (auto iterator = mMagicArea.begin(); iterator != mMagicArea.end(); iterator++)
-      {
-         delete *iterator;
-      }
-      mMagicArea.clear();
-
-      int currentX = 0;
-      int currentY = 0;
-
-      // Holds the list of tile locations to investigate from for more moveable spaces.
-      std::vector<MagicAreaSquare*> investigateAreas;
-      // List of new areas found from the investigate areas container.
-      std::vector<MagicAreaSquare*> newInvestigateAreas;
-
-      // Add the ships location as the starting investigate area.
-      MagicAreaSquare* startingNode = new MagicAreaSquare();
-      startingNode->x = mSelectorCenterLocationX;
-      startingNode->y = mSelectorCenterLocationY;
-      investigateAreas.push_back(startingNode);
-
-      // Add the ships location as a tile where it can move to.
-      mMagicArea.push_back(startingNode);
-
-      // For as many movement spaces that are left, check which tiles are needed in the moveable tile container for the tiles the ship can traverse
-      // to.
-      for (int currentMovementDistance = 0;
-           currentMovementDistance < 3;
-           currentMovementDistance++)
-      {
-         // For each tile that is to be investigated this iteration, search for each adjacent tile to check if it's already added to the moveable
-         // tiles container. If they aren't found in the moveable tiles container, then add them to the moveable tiles and new areas to investigate
-         // containers so the next iteration will know what tiles are already found and which tiles to check next respectfully.
-         for (auto currentInvestigateArea = investigateAreas.begin();
-              currentInvestigateArea < investigateAreas.end();
-              currentInvestigateArea++)
-         {
-            // Check the tile above of the investigate tile.
-            currentX = (*currentInvestigateArea)->x;
-            currentY = (*currentInvestigateArea)->y - 1;
-            auto foundMoveableTileIterator = std::find_if(mMagicArea.begin(),
-                                                          mMagicArea.end(),
-                                                          [currentX, currentY](const MagicAreaSquare* d){return d->x == currentX && d->y == currentY;});
-            if (foundMoveableTileIterator == mMagicArea.end())
-            {
-               MagicAreaSquare* ValidNode = new MagicAreaSquare();
-               ValidNode->x = currentX;
-               ValidNode->y = currentY;
-               mMagicArea.push_back(ValidNode);
-               newInvestigateAreas.push_back(ValidNode);
-            }
-
-            
-            // Check the tile below of the investigate tile.
-            currentX = (*currentInvestigateArea)->x;
-            currentY = (*currentInvestigateArea)->y + 1;
-            foundMoveableTileIterator = std::find_if(mMagicArea.begin(),
-                                                     mMagicArea.end(),
-                                                     [currentX, currentY](const MagicAreaSquare* d){return d->x == currentX && d->y == currentY;});
-            if (foundMoveableTileIterator == mMagicArea.end())
-            {
-               MagicAreaSquare* ValidNode = new MagicAreaSquare();
-               ValidNode->x = currentX;
-               ValidNode->y = currentY;
-               mMagicArea.push_back(ValidNode);
-               newInvestigateAreas.push_back(ValidNode);
-            }
-
-            // Check the tile to the left of the investigate tile.
-            currentX = (*currentInvestigateArea)->x - 1;
-            currentY = (*currentInvestigateArea)->y;
-            foundMoveableTileIterator = std::find_if(mMagicArea.begin(),
-                                                     mMagicArea.end(),
-                                                     [currentX, currentY](const MagicAreaSquare* d){return d->x == currentX && d->y == currentY;});
-            if (foundMoveableTileIterator == mMagicArea.end())
-            {
-               MagicAreaSquare* ValidNode = new MagicAreaSquare();
-               ValidNode->x = currentX;
-               ValidNode->y = currentY;
-               mMagicArea.push_back(ValidNode);
-               newInvestigateAreas.push_back(ValidNode);
-            }
-
-            // Check the tile to the right of the investigate tile.
-            currentX = (*currentInvestigateArea)->x + 1;
-            currentY = (*currentInvestigateArea)->y;
-            foundMoveableTileIterator = std::find_if(mMagicArea.begin(),
-                                                     mMagicArea.end(),
-                                                     [currentX, currentY](const MagicAreaSquare* d){return d->x == currentX && d->y == currentY;});
-            if (foundMoveableTileIterator == mMagicArea.end())
-            {
-               MagicAreaSquare* ValidNode = new MagicAreaSquare();
-               ValidNode->x = currentX;
-               ValidNode->y = currentY;
-               mMagicArea.push_back(ValidNode);
-               newInvestigateAreas.push_back(ValidNode);
-            }
-         }
-
-         // Transfer the data from the new investigate areas container to the investigate areas container for the next iteratio to know which tiles
-         // to search from.
-         investigateAreas.clear();
-         investigateAreas = newInvestigateAreas;
-         newInvestigateAreas.clear();
-      }
-
-      // Clear the investigate area container.
-      investigateAreas.clear();
-
-      mUpdateNeeded = false;
+      mpSpellArea->SetCoordinateY(mpSpellArea->GetCoordinateY() + 1);
+   }
+   else if (mIsUpPressed == true)
+   {
+      mpSpellArea->SetCoordinateY(mpSpellArea->GetCoordinateY() - 1);
+   }
+   else if (mIsRightPressed == true)
+   {
+      mpSpellArea->SetCoordinateX(mpSpellArea->GetCoordinateX() + 1);
+   }
+   else if (mIsLeftPressed == true)
+   {
+      mpSpellArea->SetCoordinateX(mpSpellArea->GetCoordinateX() - 1);
    }
 }
 
@@ -252,10 +179,7 @@ void CastMagicPlayState::Draw(Graphics& theGraphics)
    }
 
    // Selector
-   for (auto iterator = mMagicArea.begin(); iterator != mMagicArea.end(); iterator++)
-   {
-      mpSelector->Draw(theGraphics, (*iterator)->x * 32, (*iterator)->y * 32);
-   }
+   al_draw_filled_circle(mpSpellArea->GetCoordinateX(), mpSpellArea->GetCoordinateY(), mpSpellArea->GetRadius(), al_map_rgba(255, 0, 0, 100));
 }
 
 //***************************************************************************************************************************************************
