@@ -170,6 +170,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CastMagicPlayState.cpp" />
     <ClCompile Include="ChangeMapEvent.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="ChaseEnemyState.cpp" />
     <ClCompile Include="CircleObject.cpp" />
     <ClCompile Include="Clock.cpp" />
@@ -182,9 +183,12 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="HealingEffect.cpp" />
     <ClCompile Include="IdleEnemyState.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="Light.cpp" />
+    <ClCompile Include="Magic.cpp" />
+    <ClCompile Include="MagicAnimationPlayState.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MeleeAttackState.cpp" />
@@ -198,6 +202,8 @@
     <ClCompile Include="RectangleObject.cpp" />
     <ClCompile Include="RegularPlayState.cpp" />
     <ClCompile Include="ShadowLayer.cpp" />
+    <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="DamageEffect.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="Vector2D.cpp" />
@@ -207,6 +213,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CastMagicPlayState.h" />
     <ClInclude Include="ChangeMapEvent.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="ChaseEnemyState.h" />
     <ClInclude Include="CircleObject.h" />
     <ClInclude Include="Clock.h" />
@@ -219,7 +226,13 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Effect.h" />
+    <ClInclude Include="DamageEffect.h" />
+    <ClInclude Include="HealingEffect.h" />
     <ClInclude Include="IdleEnemyState.h" />
+    <ClInclude Include="Magic.h" />
+    <ClInclude Include="MagicAnimationPlayState.h" />
+    <ClInclude Include="WorldConstants.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MathConstants.h" />
     <ClInclude Include="Object.h" />

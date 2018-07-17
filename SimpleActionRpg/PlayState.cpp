@@ -49,7 +49,7 @@ PlayState::PlayState(Graphics& theGraphics)
 
    mpEventStorage = mpEventStorage->GetInstance();
 
-   mpCurrentSubState = new CastMagicPlayState(this);
+   mpCurrentSubState = new RegularPlayState(this);
 }
 
 //***************************************************************************************************************************************************

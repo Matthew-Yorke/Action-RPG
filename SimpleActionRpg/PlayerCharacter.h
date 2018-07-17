@@ -19,14 +19,15 @@
 #include "Vector2D.h"
 #include "AnimatedSprite.h"
 #include "MeleeWeapon.h"
-#include "RectangleObject.h"
+#include "Character.h"
 #include "State.h"
 #include "PlayerConstants.h"
 #include <vector>
 #include <algorithm>
 #include "Tile.h"
+#include "Magic.h"
 
-class PlayerCharacter : public RectangleObject
+class PlayerCharacter : public Character
 {
    //************************************************************************************************************************************************
    // Start Method Declarations
@@ -81,38 +82,6 @@ class PlayerCharacter : public RectangleObject
       //
       //************************************************************************************************************************************************
       PlayerConstants::DIRECTION GetDirection();
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: SetCurrentTile
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  theCurrentTile - TODO: Add description.
-      //
-      // Return:
-      //  N/A
-      //
-      //************************************************************************************************************************************************
-      void SetCurrentTile(TileInformation* theCurrentTile);
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: GetCurrentTile
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A.
-      //
-      // Return:
-      //  TODO: Add description.
-      //
-      //************************************************************************************************************************************************
-      TileInformation* GetCurrentTile();
 
       //************************************************************************************************************************************************
       //
@@ -209,54 +178,6 @@ class PlayerCharacter : public RectangleObject
       //
       //************************************************************************************************************************************************
       Vector2D* GetVelocity();
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: GetSprite
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A
-      //
-      // Return:
-      //  TODO: Add description.
-      //
-      //************************************************************************************************************************************************
-      AnimatedSprite* GetSprite();
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: GetHitBox
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A
-      //
-      // Return:
-      //  TODO: Add description.
-      //
-      //************************************************************************************************************************************************
-      RectangleObject* GetHitBox();
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: GetMovementHitBox
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A
-      //
-      // Return:
-      //  TODO: Add description.
-      //
-      //************************************************************************************************************************************************
-      RectangleObject* GetMovementHitBox();
 
       //************************************************************************************************************************************************
       //
@@ -389,28 +310,7 @@ class PlayerCharacter : public RectangleObject
    private:
 
       // TODO: Add description.
-      int mMaxHealth;
-
-      // TODO: Add description.
-      int mCurrentHealth;
-
-      // TODO: Add description.
-      int mMaxMana;
-
-      // TODO: Add description.
-      int mCurrentMana;
-
-      // TODO: Add description.
       Vector2D* mpVelocity;
-
-      // TODO: Add description.
-      AnimatedSprite* mpSprite;
-
-      // TODO: Add description.
-      RectangleObject* mpHitbox;
-
-      // TODO: Add description.
-      RectangleObject* mpMovementHitbox;
 
       // TODO: Add description.
       MeleeWeapon* mpMeleeWeapon;
@@ -424,7 +324,11 @@ class PlayerCharacter : public RectangleObject
       // TODO: Add description.
       std::vector<PlayerConstants::DIRECTION> mMovingDirectionVector;
 
-      TileInformation* mpCurrentTile;
+      Magic* mpTestDamageSpell;
+
+      bool mIsCharging;
+
+      float mCurrentSpellChargeTime;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

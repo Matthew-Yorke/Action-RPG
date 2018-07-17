@@ -23,12 +23,12 @@
 #include "PlayerConstants.h"
 #include <vector>
 #include <algorithm>
-#include "RectangleObject.h"
+#include "Character.h"
 #include "Tile.h"
 #include "EnemyState.h"
 #include "CircleObject.h"
 
-class Enemy : public RectangleObject
+class Enemy : public Character
 {
    //************************************************************************************************************************************************
    // Start Method Declarations
@@ -54,23 +54,7 @@ class Enemy : public RectangleObject
 
       //************************************************************************************************************************************************
       //
-      // Method Name: ~Enemy
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A
-      //
-      // Return:
-      //  N/A
-      //
-      //************************************************************************************************************************************************
-      ~Enemy();
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: GetSprite
+      // Method Name: GetPathReachedRange
       //
       // Description:
       //  TODO: Add description.
@@ -82,40 +66,6 @@ class Enemy : public RectangleObject
       //  TODO: Add description.
       //
       //************************************************************************************************************************************************
-      AnimatedSprite* GetSprite();
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: GetHitBox
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A
-      //
-      // Return:
-      //  TODO: Add description.
-      //
-      //************************************************************************************************************************************************
-      RectangleObject* GetHitBox();
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: GetMovementHitBox
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A
-      //
-      // Return:
-      //  TODO: Add description.
-      //
-      //************************************************************************************************************************************************
-      RectangleObject* GetMovementHitBox();
-
       CircleObject* GetPathReachedRange();
 
       //************************************************************************************************************************************************
@@ -133,39 +83,6 @@ class Enemy : public RectangleObject
       //
       //************************************************************************************************************************************************
       void ChangeState(EnemyState* theState);
-
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: SetCurrentTile
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  theCurrentTile - TODO: Add description.
-      //
-      // Return:
-      //  N/A
-      //
-      //************************************************************************************************************************************************
-      void SetCurrentTile(TileInformation* theCurrentTile);
-
-      //************************************************************************************************************************************************
-      //
-      // Method Name: GetCurrentTile
-      //
-      // Description:
-      //  TODO: Add description.
-      //
-      // Arguments:
-      //  N/A.
-      //
-      // Return:
-      //  TODO: Add description.
-      //
-      //************************************************************************************************************************************************
-      TileInformation* GetCurrentTile();
 
       //************************************************************************************************************************************************
       //
@@ -329,26 +246,9 @@ class Enemy : public RectangleObject
 
    private:
 
-      // TODO: Add description.
-      int mMaxHealth;
-
-      // TODO: Add description.
-      int mCurrentHealth;
-
-      // TODO: Add description.
-      AnimatedSprite* mpSprite;
-
-      // TODO: Add description.
-      RectangleObject* mpHitbox;
-
-      // TODO: Add description.
-      RectangleObject* mpMovementHitbox;
-
       bool mInvincible;
 
       float mInvincibleTime;
-
-      TileInformation* mpCurrentTile;
 
       std::vector<TileInformation*> mpPath;
 

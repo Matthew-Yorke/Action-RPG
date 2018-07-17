@@ -14,7 +14,7 @@
 #include <vector>
 #include "CastMagicPlayState.h"
 #include "PlayerCharacter.h"
-#include "RegularPlayState.h"
+#include "MagicAnimationPlayState.h"
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -76,7 +76,7 @@ void CastMagicPlayState::KeyDown(ALLEGRO_EVENT theEvent)
       }
       case ALLEGRO_KEY_Z:
       {
-         mpPlayeState->ChangeSubState(new RegularPlayState(mpPlayeState));
+         mpPlayeState->ChangeSubState(new MagicAnimationPlayState(mpPlayeState));
       }
    }
 }
@@ -127,6 +127,7 @@ void CastMagicPlayState::KeyUp(ALLEGRO_EVENT theEvent)
 //************************************************************************************************************************************************
 void CastMagicPlayState::Update(float theTimeChange)
 {
+   // Vertical direction.
    if (mIsDownPressed == true)
    {
       mpSpellArea->SetCoordinateY(mpSpellArea->GetCoordinateY() + 1);
@@ -135,7 +136,9 @@ void CastMagicPlayState::Update(float theTimeChange)
    {
       mpSpellArea->SetCoordinateY(mpSpellArea->GetCoordinateY() - 1);
    }
-   else if (mIsRightPressed == true)
+   
+   // Horizontal direction.
+   if (mIsRightPressed == true)
    {
       mpSpellArea->SetCoordinateX(mpSpellArea->GetCoordinateX() + 1);
    }

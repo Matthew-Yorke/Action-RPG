@@ -21,14 +21,14 @@
 
 //***************************************************************************************************************************************************
 //
-// Method Name: PlayerCharacter
+// Method Name: Enemy
 //
 // Description:
 //  TODO: Add method description.
 //
 //***************************************************************************************************************************************************
 Enemy::Enemy(Graphics& theGraphics, int theCoordinateX, int theCoordinateY) :
-RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
+Character(theGraphics, theCoordinateX, theCoordinateY)
 {
    mCurrentHealth = mMaxHealth = 1;
    mpSprite = new AnimatedSprite(theGraphics,
@@ -55,60 +55,14 @@ RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
    mpState = new ChaseEnemyState(this);
 }
 
-//***************************************************************************************************************************************************
-//
-// Method Name: ~PlayerCharacter
-//
-// Description:
-//  TODO: Add method description.
-//
-//***************************************************************************************************************************************************
-Enemy::~Enemy()
-{
-   delete mpSprite;
-   delete mpHitbox;
-   delete mpMovementHitbox;
-}
-
 //************************************************************************************************************************************************
 //
-// Method Name: GetSprite
+// Method Name: GetPathReachedRange
 //
 // Description:
 //  TODO: Add description.
 //
 //************************************************************************************************************************************************
-AnimatedSprite* Enemy::GetSprite()
-{
-   return mpSprite;
-}
-
-//************************************************************************************************************************************************
-//
-// Method Name: GetHitBox
-//
-// Description:
-//  TODO: Add description.
-//
-//************************************************************************************************************************************************
-RectangleObject* Enemy::GetHitBox()
-{
-   return mpHitbox;
-}
-
-//************************************************************************************************************************************************
-//
-// Method Name: GetMovementHitBox
-//
-// Description:
-//  TODO: Add description.
-//
-//************************************************************************************************************************************************
-RectangleObject* Enemy::GetMovementHitBox()
-{
-   return mpMovementHitbox;
-}
-
 CircleObject* Enemy::GetPathReachedRange()
 {
    return PathReachedRange;
@@ -126,34 +80,6 @@ CircleObject* Enemy::GetPathReachedRange()
 {
    delete mpState;
    mpState = theState;
-}
-
-//************************************************************************************************************************************************
-//
-// Method Name: SetCurrentTile
-//
-// Description:
-//  TODO: Add description.
-//
-
-//************************************************************************************************************************************************
-void Enemy::SetCurrentTile(TileInformation* theCurrentTile)
-{
-   mpCurrentTile = theCurrentTile;
-}
-
-//************************************************************************************************************************************************
-//
-// Method Name: GetCurrentTile
-//
-// Description:
-//  TODO: Add description.
-//
-
-//************************************************************************************************************************************************
-TileInformation* Enemy::GetCurrentTile()
-{
-   return mpCurrentTile;
 }
 
 //************************************************************************************************************************************************

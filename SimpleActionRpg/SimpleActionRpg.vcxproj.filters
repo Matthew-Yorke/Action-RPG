@@ -30,32 +30,17 @@
     <Filter Include="Code\Game\Objects">
       <UniqueIdentifier>{bac07d4a-f74f-4f64-a983-6181ff42ac00}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Code\Game\Objects\Player">
-      <UniqueIdentifier>{5882526b-b982-4be8-b087-2a00cd9e0de2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Code\Game\Objects\Player\States">
-      <UniqueIdentifier>{6e752616-b6bb-4c6f-9ca0-4c3327b472c5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Code\Game\Objects\Weapons">
       <UniqueIdentifier>{712f7b74-f0e5-4a69-89a0-47cae41b5b4f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Code\Game\Game States">
       <UniqueIdentifier>{5a568844-eceb-438f-8fbf-c185328d8182}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Code\Game\Objects\NPCs">
-      <UniqueIdentifier>{2bbec233-e4f3-4f12-bca5-de191a7232a9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Code\Engine\Events">
       <UniqueIdentifier>{c87e8d71-6898-4fdd-bf0d-e4857f228d5c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Code\Engine\Pathfinding">
       <UniqueIdentifier>{ec10b5fc-911a-4caa-817b-c253464f4e15}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Code\Game\Objects\NPCs\Enemy">
-      <UniqueIdentifier>{b7c3fb7a-22b4-4c4d-ae86-db127d4d132c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Code\Game\Objects\NPCs\Enemy\States">
-      <UniqueIdentifier>{ce0c2c02-efa9-445b-ae1f-1e8359d8e4fb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Code\Engine\Events\Event Types">
       <UniqueIdentifier>{08954bed-dc20-4a8e-be05-f2d5c7b85b16}</UniqueIdentifier>
@@ -72,6 +57,30 @@
     <Filter Include="Code\Game\Game States\PlayState SubStates">
       <UniqueIdentifier>{c21db3ba-6668-46de-bbca-b75a14c0a9a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Code\Game\Magic">
+      <UniqueIdentifier>{e5fecfbe-8dd1-4e91-9380-2d49b9d0f4f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Game\Magic\Effect">
+      <UniqueIdentifier>{b70027e1-a089-4842-876b-f70816036349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Game\Objects\Characters">
+      <UniqueIdentifier>{df5266e6-771e-4a05-93d4-099f80a61ca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Game\Objects\Characters\NPCs">
+      <UniqueIdentifier>{2bbec233-e4f3-4f12-bca5-de191a7232a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Game\Objects\Characters\NPCs\Enemy">
+      <UniqueIdentifier>{b7c3fb7a-22b4-4c4d-ae86-db127d4d132c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Game\Objects\Characters\NPCs\Enemy\States">
+      <UniqueIdentifier>{ce0c2c02-efa9-445b-ae1f-1e8359d8e4fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Game\Objects\Characters\Player">
+      <UniqueIdentifier>{5882526b-b982-4be8-b087-2a00cd9e0de2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Game\Objects\Characters\Player\States">
+      <UniqueIdentifier>{6e752616-b6bb-4c6f-9ca0-4c3327b472c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp">
@@ -84,22 +93,22 @@
       <Filter>Code\Engine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="PlayerCharacter.cpp">
-      <Filter>Code\Game\Objects\Player</Filter>
+      <Filter>Code\Game\Objects\Characters\Player</Filter>
     </ClCompile>
     <ClCompile Include="MeleeWeapon.cpp">
       <Filter>Code\Game\Objects\Weapons</Filter>
     </ClCompile>
     <ClCompile Include="State.cpp">
-      <Filter>Code\Game\Objects\Player\States</Filter>
+      <Filter>Code\Game\Objects\Characters\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="IdleState.cpp">
-      <Filter>Code\Game\Objects\Player\States</Filter>
+      <Filter>Code\Game\Objects\Characters\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="MovingState.cpp">
-      <Filter>Code\Game\Objects\Player\States</Filter>
+      <Filter>Code\Game\Objects\Characters\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="MeleeAttackState.cpp">
-      <Filter>Code\Game\Objects\Player\States</Filter>
+      <Filter>Code\Game\Objects\Characters\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="Light.cpp">
       <Filter>Code\Engine\Graphics</Filter>
@@ -141,16 +150,16 @@
       <Filter>Code\Engine\Pathfinding</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>Code\Game\Objects\NPCs\Enemy</Filter>
+      <Filter>Code\Game\Objects\Characters\NPCs\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="EnemyState.cpp">
-      <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
+      <Filter>Code\Game\Objects\Characters\NPCs\Enemy\States</Filter>
     </ClCompile>
     <ClCompile Include="ChaseEnemyState.cpp">
-      <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
+      <Filter>Code\Game\Objects\Characters\NPCs\Enemy\States</Filter>
     </ClCompile>
     <ClCompile Include="IdleEnemyState.cpp">
-      <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
+      <Filter>Code\Game\Objects\Characters\NPCs\Enemy\States</Filter>
     </ClCompile>
     <ClCompile Include="ChangeMapEvent.cpp">
       <Filter>Code\Engine\Events\Event Types</Filter>
@@ -179,6 +188,24 @@
     <ClCompile Include="CastMagicPlayState.cpp">
       <Filter>Code\Game\Game States\PlayState SubStates</Filter>
     </ClCompile>
+    <ClCompile Include="MagicAnimationPlayState.cpp">
+      <Filter>Code\Game\Game States\PlayState SubStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic.cpp">
+      <Filter>Code\Game\Magic</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Code\Game\Magic\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageEffect.cpp">
+      <Filter>Code\Game\Magic\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="HealingEffect.cpp">
+      <Filter>Code\Game\Magic\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Code\Game\Objects\Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -191,31 +218,28 @@
       <Filter>Code\Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="PlayerCharacter.h">
-      <Filter>Code\Game\Objects\Player</Filter>
+      <Filter>Code\Game\Objects\Characters\Player</Filter>
     </ClInclude>
     <ClInclude Include="MeleeWeapon.h">
       <Filter>Code\Game\Objects\Weapons</Filter>
     </ClInclude>
     <ClInclude Include="State.h">
-      <Filter>Code\Game\Objects\Player\States</Filter>
+      <Filter>Code\Game\Objects\Characters\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="IdleState.h">
-      <Filter>Code\Game\Objects\Player\States</Filter>
+      <Filter>Code\Game\Objects\Characters\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="MovingState.h">
-      <Filter>Code\Game\Objects\Player\States</Filter>
+      <Filter>Code\Game\Objects\Characters\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="MeleeAttackState.h">
-      <Filter>Code\Game\Objects\Player\States</Filter>
+      <Filter>Code\Game\Objects\Characters\Player\States</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
       <Filter>Code\Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="ShadowLayer.h">
       <Filter>Code\Engine\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerConstants.h">
-      <Filter>Code\Game\Objects</Filter>
     </ClInclude>
     <ClInclude Include="DialogBox.h">
       <Filter>Code\Engine\Dialog</Filter>
@@ -254,16 +278,16 @@
       <Filter>Code\Engine\Pathfinding</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>Code\Game\Objects\NPCs\Enemy</Filter>
+      <Filter>Code\Game\Objects\Characters\NPCs\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyState.h">
-      <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
+      <Filter>Code\Game\Objects\Characters\NPCs\Enemy\States</Filter>
     </ClInclude>
     <ClInclude Include="ChaseEnemyState.h">
-      <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
+      <Filter>Code\Game\Objects\Characters\NPCs\Enemy\States</Filter>
     </ClInclude>
     <ClInclude Include="IdleEnemyState.h">
-      <Filter>Code\Game\Objects\NPCs\Enemy\States</Filter>
+      <Filter>Code\Game\Objects\Characters\NPCs\Enemy\States</Filter>
     </ClInclude>
     <ClInclude Include="ChangeMapEvent.h">
       <Filter>Code\Engine\Events\Event Types</Filter>
@@ -291,6 +315,30 @@
     </ClInclude>
     <ClInclude Include="CastMagicPlayState.h">
       <Filter>Code\Game\Game States\PlayState SubStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicAnimationPlayState.h">
+      <Filter>Code\Game\Game States\PlayState SubStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic.h">
+      <Filter>Code\Game\Magic</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Code\Game\Magic\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageEffect.h">
+      <Filter>Code\Game\Magic\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldConstants.h">
+      <Filter>Code\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="HealingEffect.h">
+      <Filter>Code\Game\Magic\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Code\Game\Objects\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerConstants.h">
+      <Filter>Code\Game\Objects\Characters\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

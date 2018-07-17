@@ -14,6 +14,7 @@
 #include <allegro5/allegro_primitives.h>
 #include "PlayerCharacter.h"
 #include "IdleState.h"
+#include "DamageEffect.h"
 
 //***************************************************************************************************************************************************
 // Start Public Method Definitions
@@ -28,7 +29,7 @@
 //
 //***************************************************************************************************************************************************
 PlayerCharacter::PlayerCharacter(Graphics& theGraphics, int theCoordinateX, int theCoordinateY) :
-RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
+Character(theGraphics, theCoordinateX, theCoordinateY)
 {
    mCurrentHealth = mMaxHealth = 10;
    mCurrentMana = mMaxMana = 5;
@@ -55,6 +56,10 @@ RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
    mpCurrentState = new IdleState(this);
    mDirection = PlayerConstants::DIRECTION::DOWN;
    mpCurrentTile = nullptr;
+
+   mpTestDamageSpell = new Magic(new DamageEffect(1, 2), 20, 5, 1.0F);
+   mIsCharging = false;
+   mCurrentSpellChargeTime = 0.0F;
 }
 
 //***************************************************************************************************************************************************
@@ -68,9 +73,6 @@ RectangleObject(theCoordinateX, theCoordinateY, 64, 64)
 PlayerCharacter::~PlayerCharacter()
 {
    delete mpVelocity;
-   delete mpSprite;
-   delete mpHitbox;
-   delete mpMovementHitbox;
    delete mpMeleeWeapon;
 }
 
@@ -85,34 +87,6 @@ PlayerCharacter::~PlayerCharacter()
 PlayerConstants::DIRECTION PlayerCharacter::GetDirection()
 {
    return mDirection;
-}
-
-//************************************************************************************************************************************************
-//
-// Method Name: SetCurrentTile
-//
-// Description:
-//  TODO: Add description.
-//
-
-//************************************************************************************************************************************************
-void PlayerCharacter::SetCurrentTile(TileInformation* theCurrentTile)
-{
-   mpCurrentTile = theCurrentTile;
-}
-
-//************************************************************************************************************************************************
-//
-// Method Name: GetCurrentTile
-//
-// Description:
-//  TODO: Add description.
-//
-
-//************************************************************************************************************************************************
-TileInformation* PlayerCharacter::GetCurrentTile()
-{
-   return mpCurrentTile;
 }
 
 //************************************************************************************************************************************************
@@ -196,45 +170,6 @@ PlayerConstants::DIRECTION PlayerCharacter::GetFrontOfMovingDirectionVector()
 Vector2D* PlayerCharacter::GetVelocity()
 {
    return mpVelocity;
-}
-
-//************************************************************************************************************************************************
-//
-// Method Name: GetSprite
-//
-// Description:
-//  TODO: Add description.
-//
-//************************************************************************************************************************************************
-AnimatedSprite* PlayerCharacter::GetSprite()
-{
-   return mpSprite;
-}
-
-//************************************************************************************************************************************************
-//
-// Method Name: GetHitBox
-//
-// Description:
-//  TODO: Add description.
-//
-//************************************************************************************************************************************************
-RectangleObject* PlayerCharacter::GetHitBox()
-{
-   return mpHitbox;
-}
-
-//************************************************************************************************************************************************
-//
-// Method Name: GetMovementHitBox
-//
-// Description:
-//  TODO: Add description.
-//
-//************************************************************************************************************************************************
-RectangleObject* PlayerCharacter::GetMovementHitBox()
-{
-   return mpMovementHitbox;
 }
 
 //************************************************************************************************************************************************
