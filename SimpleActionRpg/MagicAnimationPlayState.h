@@ -43,7 +43,7 @@ class MagicAnimationPlayState : public PlaySubState
       //  N/A
       //
       //*********************************************************************************************************************************************
-      MagicAnimationPlayState(PlayState* pThePlayState);
+      MagicAnimationPlayState(PlayState* pThePlayState, Magic* pTheCastedSpell, std::vector<Character*> theAffectedCharacters);
 
       //*********************************************************************************************************************************************
       //
@@ -157,6 +157,10 @@ class MagicAnimationPlayState : public PlaySubState
       bool mIsRightPressed;
 
       CircleObject* mpSpellArea;
+
+      Magic* mpCastedSpell;
+
+      std::vector<Character*> mAffectedCharacters;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

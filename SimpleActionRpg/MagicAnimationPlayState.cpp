@@ -28,9 +28,11 @@
 //  TODO: Add method description.
 //
 //***************************************************************************************************************************************************
-MagicAnimationPlayState::MagicAnimationPlayState(PlayState* pThePlayState) :
+MagicAnimationPlayState::MagicAnimationPlayState(PlayState* pThePlayState, Magic* theCastedSpell, std::vector<Character*> theAffectedCharacters) :
 PlaySubState(pThePlayState)
 {
+   mpCastedSpell = theCastedSpell;
+   mAffectedCharacters = theAffectedCharacters;
 }
 
 //************************************************************************************************************************************************
@@ -44,6 +46,12 @@ PlaySubState(pThePlayState)
 void MagicAnimationPlayState::Update(float theTimeChange)
 {
    // Update magic animation.
+   for (auto iterator = mAffectedCharacters.begin();
+        iterator != mAffectedCharacters.end();
+        iterator++)
+   {
+      mpCastedSpell->ExecuteSpell(*iterator);
+   }
    mpPlayeState->ChangeSubState(new RegularPlayState(mpPlayeState));
 }
 

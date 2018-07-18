@@ -28,17 +28,31 @@
 //  TODO: Add method description.
 //
 //***************************************************************************************************************************************************
-CastMagicPlayState::CastMagicPlayState(PlayState* pThePlayState) :
+CastMagicPlayState::CastMagicPlayState(PlayState* pThePlayState, Magic* theSpellBeingCasted) :
 PlaySubState(pThePlayState)
 {
+   mpSpellBeingCasted = theSpellBeingCasted;
    mpSpellArea = new CircleObject(pThePlayState->mpPlayer->GetCoordinateX() + pThePlayState->mpPlayer->GetWidthCenterPoint(),
                                   pThePlayState->mpPlayer->GetCoordinateY() + pThePlayState->mpPlayer->GetHeightCenterPoint(),
-                                  50.0F);
+                                  theSpellBeingCasted->GetRadius());
 
    mIsUpPressed = false;
    mIsDownPressed = false;
    mIsLeftPressed = false;
    mIsRightPressed = false;
+}
+
+//*********************************************************************************************************************************************
+//
+// Method Name: ~CastMagicPlayState
+//
+// Description:
+//  TODO: Add description.
+//
+//*********************************************************************************************************************************************
+CastMagicPlayState::~CastMagicPlayState()
+{
+   delete mpSpellArea;
 }
 
 //************************************************************************************************************************************************
@@ -76,7 +90,17 @@ void CastMagicPlayState::KeyDown(ALLEGRO_EVENT theEvent)
       }
       case ALLEGRO_KEY_Z:
       {
-         mpPlayeState->ChangeSubState(new MagicAnimationPlayState(mpPlayeState));
+         // Retrieve enemies within the spell area.
+         std::vector<Enemy*> enemyList = mpPlayeState->mpCurrentMap->GetEnemyList();
+         std::vector<Character*> affectedCharacters;
+         for (auto iterator = enemyList.begin();
+              iterator != enemyList.end();
+              iterator++)
+         {
+            affectedCharacters.push_back(*iterator);
+         }
+
+         mpPlayeState->ChangeSubState(new MagicAnimationPlayState(mpPlayeState, mpSpellBeingCasted, affectedCharacters));
       }
    }
 }

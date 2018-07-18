@@ -291,6 +291,8 @@ class PlayerCharacter : public Character
       //************************************************************************************************************************************************
       void DrawSprite(Graphics& theGraphics);
 
+      Magic* GetCurrentSpell();
+
    protected:
 
    private:

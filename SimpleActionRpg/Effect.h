@@ -16,6 +16,7 @@
 
 #include <vector>
 #include "AnimatedSprite.h"
+#include "Character.h"
 
 class Effect
 {
@@ -55,7 +56,7 @@ class Effect
       //  N/A
       //
       //*********************************************************************************************************************************************
-      virtual void Execute(/*Target Object*/) = 0;
+      virtual void Execute(Character* theAffectedCharacter) = 0;
 
    protected:
 

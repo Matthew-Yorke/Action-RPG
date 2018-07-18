@@ -15,6 +15,7 @@
 #define DamageEffect_H
 
 #include "Effect.h"
+#include "Character.h"
 
 class DamageEffect : public Effect
 {
@@ -54,7 +55,7 @@ class DamageEffect : public Effect
       //  N/A
       //
       //*********************************************************************************************************************************************
-      void Execute(/*Target Objects*/);
+      void Execute(Character* theAffectedCharacter);
 
    protected:
 

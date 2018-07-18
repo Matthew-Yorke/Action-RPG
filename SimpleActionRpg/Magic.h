@@ -18,6 +18,7 @@
 #include "AnimatedSprite.h"
 #include "WorldConstants.h"
 #include "Effect.h"
+#include "Character.h"
 
 class Magic
 {
@@ -58,6 +59,10 @@ class Magic
       //
       //*********************************************************************************************************************************************
       ~Magic();
+
+      float GetRadius();
+
+      void ExecuteSpell(Character* theAffectedCharacter);
 
    protected:
 

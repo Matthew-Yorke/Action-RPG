@@ -38,8 +38,9 @@ Effect(theMinimumEffect, theMaximumEffect)
 //  TODO: Add description.
 //
 //*********************************************************************************************************************************************
-void DamageEffect::Execute(/*Target Objects*/)
+void DamageEffect::Execute(Character* theAffectedCharacter)
 {
+   theAffectedCharacter->TakeDamage(1);
    // Determine spell effect value.
 
    // Determine elemental effect against target and adjust spell effect value accordingly.

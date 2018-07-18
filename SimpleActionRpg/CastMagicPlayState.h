@@ -43,7 +43,7 @@ class CastMagicPlayState : public PlaySubState
       //  N/A
       //
       //*********************************************************************************************************************************************
-      CastMagicPlayState(PlayState* pThePlayState);
+      CastMagicPlayState(PlayState* pThePlayState, Magic* theSpellBeingCasted);
 
       //*********************************************************************************************************************************************
       //
@@ -157,6 +157,8 @@ class CastMagicPlayState : public PlaySubState
       bool mIsRightPressed;
 
       CircleObject* mpSpellArea;
+
+      Magic* mpSpellBeingCasted;
 
    //************************************************************************************************************************************************
    // End Member Variable Declarations

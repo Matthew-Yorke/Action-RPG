@@ -17,6 +17,7 @@
 #include <vector>
 #include "Effect.h"
 #include "WorldConstants.h"
+#include "Character.h"
 
 class HealingEffect : public Effect
 {
@@ -56,7 +57,7 @@ class HealingEffect : public Effect
       //  N/A
       //
       //*********************************************************************************************************************************************
-      void Execute(/*Target Objects*/);
+      void Execute(Character* theAffectedCharacter);
 
    protected:
 

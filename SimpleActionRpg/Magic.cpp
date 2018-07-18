@@ -46,6 +46,16 @@ Magic::~Magic()
    delete mpEffect;
 }
 
+float Magic::GetRadius()
+{
+   return mRadius;
+}
+
+void Magic::ExecuteSpell(Character* theAffectedCharacter)
+{
+   mpEffect->Execute(theAffectedCharacter);
+};
+
 //***************************************************************************************************************************************************
 // End Public Method Definitions
 //***************************************************************************************************************************************************

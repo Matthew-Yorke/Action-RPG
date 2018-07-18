@@ -140,6 +140,23 @@ void PlayState::KeyUp(ALLEGRO_EVENT theEvent)
 void PlayState::Update(float theTimeChange)
 {
    mpCurrentSubState->Update(theTimeChange);
+
+   // Check if the enemy NPC has depleted their life
+   std::vector<Enemy*> temporaryEnemyList = mpCurrentMap->GetEnemyList();
+   for(auto currentEnemy = temporaryEnemyList.begin();
+       currentEnemy != temporaryEnemyList.end();)
+   {
+      if ((*currentEnemy)->GetCurrentHealth() <= 0)
+      {
+         delete (*currentEnemy);
+         currentEnemy = temporaryEnemyList.erase(currentEnemy);
+         mpCurrentMap->UpdateEnemyList(temporaryEnemyList);
+      }
+      else
+      {
+         currentEnemy++;
+      }
+   }
 }
 
 //************************************************************************************************************************************************

@@ -55,7 +55,7 @@ void RegularPlayState::KeyDown(ALLEGRO_EVENT theEvent)
    {
       case ALLEGRO_KEY_X:
       {
-         mpPlayeState->ChangeSubState(new CastMagicPlayState(mpPlayeState));
+         mpPlayeState->ChangeSubState(new CastMagicPlayState(mpPlayeState, mpPlayeState->mpPlayer->GetCurrentSpell()));
       }
    }
 }

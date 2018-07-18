@@ -1,17 +1,2 @@
-﻿  CastMagicPlayState.cpp
-  Character.cpp
-  DamageEffect.cpp
-  Effect.cpp
-  Game.cpp
-  HealingEffect.cpp
-  IdleState.cpp
-  Magic.cpp
-  MagicAnimationPlayState.cpp
-  MeleeAttackState.cpp
-  MovingState.cpp
-  PlayState.cpp
-  PlaySubState.cpp
-  PlayerCharacter.cpp
-  RegularPlayState.cpp
-  Generating Code...
+﻿  PlayState.cpp
   SimpleActionRpg.vcxproj -> C:\Users\Yorke\source\projects\Action RPG\Action-RPG\x64\Debug\SimpleActionRpg.exe

@@ -89,17 +89,17 @@ void PlaySubState::PlayerAttackCollision()
             (*currentEnemy)->TakeDamage(mpPlayeState->mpPlayer->GetMeleeWeapon()->GetDamage());
             (*currentEnemy)->TemporaryInvincible();
             
-            // Check if the enemy NPC has depleted their life
-            if ((*currentEnemy)->GetCurrentHealth() <= 0)
-            {
-               delete (*currentEnemy);
-               currentEnemy = temporaryEnemyList.erase(currentEnemy);
-               mpPlayeState->mpCurrentMap->UpdateEnemyList(temporaryEnemyList);
-            }
-            else
-            {
-               currentEnemy++;
-            }
+            //// Check if the enemy NPC has depleted their life
+            //if ((*currentEnemy)->GetCurrentHealth() <= 0)
+            //{
+            //   delete (*currentEnemy);
+            //   currentEnemy = temporaryEnemyList.erase(currentEnemy);
+            //   mpPlayeState->mpCurrentMap->UpdateEnemyList(temporaryEnemyList);
+            //}
+            //else
+            //{
+            //   currentEnemy++;
+            //}
          }
          else
          {

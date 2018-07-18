@@ -39,7 +39,7 @@ Effect(theMinimumEffect, theMaximumEffect)
 //  TODO: Add description.
 //
 //*********************************************************************************************************************************************
-void HealingEffect::Execute(/*Target Objects*/)
+void HealingEffect::Execute(Character* theAffectedCharacter)
 {
    // Determine spell effect value.
 
